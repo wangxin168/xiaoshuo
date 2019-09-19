@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="../js/swiper-4.3.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-4.3.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<title>
+
+		</title>
+	</head>
+	<body>
+		<div id="app">
+			<div class="top">
+				<!-- tab标签 -->
+				<div class="swiper-tab">
+					<!-- <div class="swiper-tab-list" @click="swichNav($event)" v-for="(item,index) in navtab" :data-ye="index">{{item}}</div> -->
+					<div class="swiper-tab-list selected">推荐</div>
+					<div class="swiper-tab-list">关注</div>
+				</div>
+				<div class="fabiao">发表</div>
+			</div>
+			<div v-if="yeshu==0" class="one">
+				<!-- 顶部书本 -->
+				<div class="swiper-container shuben dingbu_shu">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+					</div>
+				</div>
+				<!-- 灰色 -->
+				<div class="huise"></div>
+				<div class="wenzhang">
+					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
+					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
+					<img src="../img/位图2.png" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img src="../img/jinrong.png" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
+						</div>
+						<div class="right">
+							<img src="../img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
+							<img src="../img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
+						</div>
+					</div>
+				</div>
+				<!-- 新书上架 -->
+				<div class="xinshu">
+					<div class="xin_tit">新上好书 与你共度</div>
+					<div class="swiper-container xinshang xinshu_jia">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 书籍简介 -->
+				<div class="book_jian">
+					<div class="book">
+						<img src="../img/4.png" alt="">
+						<div class="book_rgh">
+							<p>《长安十二时辰》（上）</p>
+							<p>作者：马伯庸</p>
+							<p>领读人：李渊</p>
+						</div>
+
+					</div>
+					<div class="book_bot">
+						拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……
+					</div>
+				</div>
+				<!-- 灰色 -->
+				<div class="huise"></div>
+				<!-- 新书上架 -->
+				<div class="xinshu">
+					<div class="xin_tit">最热书籍 大家在读</div>
+					<div class="swiper-container xinshang xinshang_er">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide xin_sli">
+								<img src="../img/3.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lingdu">
+					<div class="ling_tit">新上好书 与你共度</div>
+					<div class="swiper-container ling_box lingdu_shu">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+							<div class="swiper-slide ling_sli">
+								<img src="../img/jinrong.png" alt="">
+								<p>金融书单</p>
+								<p>陆一</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div v-if="yeshu==1"  class="two" style="display: none;">
+				<!-- 顶部书本 -->
+				<div class="swiper-container shuben shuben_box">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+						<div class="swiper-slide shuben_sli">
+							<img src="../img/jinrong.png" alt="">
+							<p>金融书单</p>
+						</div>
+					</div>
+				</div>
+				<!-- 灰色 -->
+				<div class="huise"></div>
+				<div class="wenzhang">
+					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
+					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
+					<img src="../img/位图2.png" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img src="../img/jinrong.png" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
+						</div>
+						<div class="right">
+							<img src="../img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
+							<img src="../img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
+						</div>
+					</div>
+				</div>
+				<!-- 灰色 -->
+				<div class="huise"></div>
+				<!-- 书籍简介 -->
+				<div class="book_jian">
+					<div class="book">
+						<img src="../img/4.png" alt="">
+						<div class="book_rgh">
+							<p>《长安十二时辰》（上）</p>
+							<p>作者：马伯庸</p>
+							<p>领读人：李渊</p>
+						</div>
+					</div>
+					<div class="book_bot">
+						拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……
+					</div>
+				</div>
+				<!-- 灰色 -->
+				<div class="huise"></div>
+				<div class="wenzhang" style="margin-bottom: 1rem;">
+					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
+					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
+					<img src="../img/位图2.png" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img src="../img/jinrong.png" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
+						</div>
+						<div class="right">
+							<img src="../img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
+							<img src="../img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--尾部 -->
+			<footer class="footer">
+				<nav>
+					<a href="index.html" class="select-btn">
+						<img src="../img/shouye_yes.png" alt="" class="icon" />
+						<p>首页</p>
+					</a>
+					<a href="list.html">
+						<img src="../img/fenlei_no.png" alt="" class="icon" />
+						<p>分类</p>
+					</a>
+					<a href="shujia.html">
+						<img src="../img/shujia_no.png" alt="" class="icon" />
+						<p>书架</p>
+					</a>
+					<a href="wode.html">
+						<img src="../img/wode_no.png" alt="" class="icon" />
+						<p>我的</p>
+					</a>
+				</nav>
+			</footer>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+			var mySwiper = new Swiper('.dingbu_shu', {
+				slidesPerView: 3,
+			})
+			var mySwiper = new Swiper('.xinshu_jia', {
+				slidesPerView: 2,
+			})
+			var mySwiper = new Swiper('.xinshang_er', {
+				slidesPerView: 3,
+			})
+			var mySwiper = new Swiper('.lingdu_shu', {
+				slidesPerView: 3,
+			})
+			var mySwiper = new Swiper('.shuben_box', {
+				slidesPerView: 3,
+			})
+			$('.swiper-tab-list').on('click', function() {
+				if ($(this).hasClass('selected')) {
+					return false
+				} else {
+					$(this)
+						.siblings()
+						.removeClass('selected')
+						.end()
+						.addClass('selected')
+					var tabName = $(this).text()
+					if (tabName == '推荐') {
+						$('.one').show();
+						$('.two').hide();
+						
+					} else if (tabName == '关注') {
+						$('.one').hide();
+						$('.two').show();
+					}
+					// return alert('切换至：' + type)
+					// list1();
+				}
+			})
+		});
+		// var app = new Vue({
+		// 	el: '#app',
+		// 	data: {
+		// 		navtab: ["推荐", "关注"],
+		// 		yeshu: 0
+		// 	},
+		// 	created: function() {
+		// 		var that = this;
+		// 	
+		// 	},
+		// 	mounted() {
+		// 		
+		// 		
+		// 	},
+		// 	methods: {
+		// 		
+		// 	}
+		// })
+	</script>
+</html>

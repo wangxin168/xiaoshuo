@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<title>
+
+		</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.footer {
+				width: 100%;
+				height: 0.96rem;
+				background: #fff;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			.footer nav {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				line-height: 1;
+				text-align: center;
+			}
+
+			.footer nav a {
+				text-decoration: none;
+			}
+
+			.footer nav p {
+				font-size: 0.22rem;
+				color: #666666;
+				margin-top: 0.1rem;
+			}
+
+			.footer .icon {
+				width: 0.44rem;
+				height: 0.44rem;
+			}
+
+			.footer .select-btn p {
+				font-size: 0.22rem;
+				color: #D7142A;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+			}
+
+			.serch {
+				width: 6.69rem;
+				height: 0.635rem;
+				margin: 0.36rem auto 0;
+				border: 1px solid #EEEEEE;
+				border-radius: 0.38rem;
+				display: flex;
+				align-items: center;
+			}
+
+			.serch img {
+				width: 0.26rem;
+				height: 0.28rem;
+				margin-left: 1.28rem;
+			}
+
+			.serch input {
+				border: none;
+				background: none;
+				outline: none;
+				margin-left: 0.19rem;
+			}
+			.list{
+				width: 100%;
+				padding: 0 0 0 0.4rem;
+				box-sizing: border-box;
+				margin-top: 0.526rem;
+			}
+			.list li{
+				float: left;
+				margin-right: 0.42rem;
+				width: 1.92rem;
+				height: 1.92rem;
+				background: #403F3D;
+				margin-bottom: 0.326rem;
+				border-radius: 0.0576rem;
+			}
+			.list li p{
+				color: white;
+				text-align: center;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				margin-top: 0.05rem;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="fenlei">
+			分类
+		</div>
+		<div class="serch">
+			<img src="../img/4256db47eeb50412fe33ff9380f3406.png" alt="">
+			<input type="text" placeholder="请输入要搜索的书名或作者姓名">
+		</div>
+		<ul class="list">
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+			<li>
+				<p>金融知识</p>
+			</li>
+		</ul>
+		<!--尾部 -->
+		<footer class="footer">
+			<nav>
+				<a href="index.html">
+					<img src="../img/shouye_no.png" alt="" class="icon" />
+					<p>首页</p>
+				</a>
+				<a href="list.html" class="select-btn">
+					<img src="../img/fenlei_yes.png" alt="" class="icon" />
+					<p>分类</p>
+				</a>
+				<a href="shujia.html">
+					<img src="../img/shujia_no.png" alt="" class="icon" />
+					<p>书架</p>
+				</a>
+				<a href="wode.html">
+					<img src="../img/wode_no.png" alt="" class="icon" />
+					<p>我的</p>
+				</a>
+			</nav>
+		</footer>
+	</body>
+	<script>
+		$('.list li').click(function(){
+			window.location.href="leibie.html"
+		})
+	</script>
+</html>

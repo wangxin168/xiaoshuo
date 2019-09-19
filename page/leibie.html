@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<title>
+
+		</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.footer {
+				width: 100%;
+				height: 0.96rem;
+				background: #fff;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			.footer nav {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				line-height: 1;
+				text-align: center;
+			}
+
+			.footer nav a {
+				text-decoration: none;
+			}
+
+			.footer nav p {
+				font-size: 0.22rem;
+				color: #666666;
+				margin-top: 0.1rem;
+			}
+
+			.footer .icon {
+				width: 0.44rem;
+				height: 0.44rem;
+			}
+
+			.footer .select-btn p {
+				font-size: 0.22rem;
+				color: #D7142A;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			.book_box{
+				width: 100%;
+				padding: 0 0.4rem 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.book_box li{
+				width: 6.7rem;
+				height: 3.39rem;
+				margin: auto;
+				display: flex;
+				padding: 0.55rem 0;
+				box-sizing: border-box;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			.book_box li img{
+				width: 1.63rem;
+				height: 2.29rem;
+			}
+			.book_rgh{
+				margin-left: 0.32rem;
+				height: 2.29rem;
+			}
+			.book_rgh p:nth-of-type(1){
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.book_rgh p:nth-of-type(2){
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+			.book_rgh p:nth-of-type(3){
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: justify;
+				margin-top: 0.2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fenlei">
+			金融知识
+		</div>
+		<ul class="book_box">
+			<li class="book">
+				<img src="../img/4.png" alt="">
+				<div class="book_rgh">
+					<p>《长安十二时辰》（上）</p>
+					<p>作者：列夫·托尔斯泰</p>
+					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
+				</div>
+			</li>
+			<li class="book">
+				<img src="../img/4.png" alt="">
+				<div class="book_rgh">
+					<p>《长安十二时辰》（上）</p>
+					<p>作者：列夫·托尔斯泰</p>
+					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script src="../js/jquery-3.2.1.js"></script>
+	<script>
+		$('.book').click(function(){
+			window.location.href="xiangqing.html"
+		})
+	</script>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="../js/swiper-4.3.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-4.3.3.min.css"/>
+		<title>
+			长安十二时辰
+		</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			html,body{
+				background: #F8F8F8;
+			}
+			.footer {
+				width: 100%;
+				height: 0.96rem;
+				background: #fff;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			.footer nav {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				line-height: 1;
+				text-align: center;
+			}
+
+			.footer nav a {
+				text-decoration: none;
+			}
+
+			.footer nav p {
+				font-size: 0.22rem;
+				color: #666666;
+				margin-top: 0.1rem;
+			}
+
+			.footer .icon {
+				width: 0.44rem;
+				height: 0.44rem;
+			}
+
+			.footer .select-btn p {
+				font-size: 0.22rem;
+				color: #D7142A;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				background: white;
+			}
+			.book_jian{
+				width: 100%;
+				padding: 0.36rem 0.32rem 0.36rem 0.4rem;
+				box-sizing: border-box;
+			}
+			.book{
+				display: flex;
+			}
+			.book img{
+				width: 1.63rem;
+				height: 2.29rem;
+			}
+			.book .book_rgh{
+				margin-left: 0.32rem;
+				
+			}
+			.book .book_rgh p:nth-of-type(1){
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.book .book_rgh p:nth-of-type(2){
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+			.book .book_rgh p:nth-of-type(3){
+				font-size: 0.24rem;
+				color: #333333;
+				margin-top: 0.99rem;
+			}
+			.bott{
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				display: flex;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				background: white;
+				border-top: 1px solid #DBDBDB;
+			}
+			.bott li{
+				width: 33.3%;
+				height: 100%;
+				text-align: center;
+				border-right: 1px solid #DBDBDB;
+				font-size: 0.34rem;
+				color: #333333;
+			}
+			.bott li:last-child{
+				border:none;
+				background: #D7142A;
+				color: #ffffff;
+			}
+			.select-list {
+				margin-top: 0.28rem;
+				font-size: 0.32rem;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				color: #999999;
+				background: white;
+				height: 0.75rem;
+				border-bottom: 1px solid #DBDBDB;
+			}
+			.select-list div{
+				width: 25%;
+				text-align: center;
+				height: 0.42rem;
+				border-right: 1px solid #DBDBDB;
+			}
+			.select-list div:nth-of-type(4){
+				border: none;
+			}
+			.select-list .selected {
+				color: #333333;
+			}
+			.con_box{
+				width: 100%;
+				
+			}
+			.xiang_box{
+				width: 100%;
+				background: white;
+				/* height: 2.37rem; */
+				padding: 0.36rem 0.4rem;
+				box-sizing: border-box;
+				margin-bottom: 1rem;
+			}
+			.xiang_box .xiang_con{
+				font-size: 0.24rem;
+				color: #999999;
+			}
+			.xiang_box .xian{
+				float: right;
+				font-size: 0.22rem;
+				color: #999999;
+				margin-top: 0.36rem;
+			}
+			.xinshu{
+				width: 100%;
+				height: 5.33rem;
+				padding: 0.49rem 0 0 0.4rem;
+				box-sizing: border-box;
+				background: #F8F8F8;
+			}
+			.xinshu .xin_tit{
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.xinshang {
+				width: 100%;
+				height: 3.1rem;
+				margin-top: 0.6rem;
+			}
+			.xin_sli{
+				width: 2.18rem!important;
+				height: 3.1rem;
+				margin-right: 0.4rem;
+				background: white;
+				text-align: center;
+			}
+			.xin_sli img{
+				width: 1.3rem;
+				height: 1.8rem;
+				margin-top: 0.2rem;
+			}
+			.xin_sli p:nth-of-type(1){
+				font-size: 0.24rem;
+				color: #333333;
+				text-align: center;
+				margin-top: 0.2rem;
+			}
+			.xin_sli p:nth-of-type(2){
+				font-size: 0.22rem;
+				color: #9E9E9E;
+				text-align: center;
+			}
+			.gong{
+				width: 100%;
+				font-size: 0.32rem;
+				color: #B79476;
+				padding: 0.3rem 0 0 0.4rem;
+				box-sizing: border-box;
+				background: white;
+			}
+			.jing{
+				width: 100%;
+				font-size: 0.32rem;
+				color: #333333;
+				padding: 0.3rem 0 0 0.4rem;
+				box-sizing: border-box;
+				background: white;
+			}
+			.mulu{
+				width: 100%;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+				background: white;
+				overflow: hidden;
+			}
+			.mulu li{
+				width: 100%;
+				height: 0.75rem;
+				line-height: 0.75rem;
+				border-bottom: 1px solid #EEEEEE;
+				font-size: 0.26rem;
+				color: #333333;
+			}
+			.mulu li:first-child{
+				margin-top: 0.1rem;
+			}
+			.wenjian li{
+				display: flex;
+				height: 2.03rem;
+				width: 6.7rem;
+				margin: auto;
+				align-items: center;
+				border-bottom: 1px solid #EEEEEE;
+				justify-content: space-between;
+			}
+			.wenjian li img{
+				width: 0.88rem;
+				height: 1.03rem;
+			}
+			.wenjian li .name_type{
+				margin-left: 0.3rem;
+			}
+			.wenjian li .name_type>p:nth-of-type(1){
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.wenjian li .name_type>p:nth-of-type(2){
+				font-size: 0.24rem;
+				color: #999999;
+			}
+			.wenjian li span{
+				width: 1.25rem;
+				height: 0.37rem;
+				text-align: center;
+				line-height: 0.37rem;
+				border: 1px solid #999999;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #999999;
+				float: right;
+				margin-right: 0;
+			}
+			.wenjian li .all_con{
+				display: flex;
+			}
+			.shuqian li{
+				height: 1.69rem;
+			}
+			.shuqian img{
+				width: 0.44rem!important;
+				height: 0.44rem!important;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div class="fenlei">
+			长安十二时辰
+		</div> -->
+		<!-- 书籍简介 -->
+		<div class="book_jian">
+			<div class="book">
+				<img src="../img/4.png" alt="">
+				<div class="book_rgh">
+					<p>《长安十二时辰》（上）</p>
+					<p>作者：马伯庸</p>
+					<p>领读人：李渊</p>
+				</div>
+				
+			</div>
+		</div>
+		<div class="select-list">
+			<div class="week-btn selected">详情</div>
+			<div class="day-btn">目录</div>
+			<div class="month-btn">精读</div>
+			<div class="shenhao-btn">书签</div>
+		</div>
+		<div class="con_box">
+			<!-- 第一页 -->
+			<!-- <div class="xiang_box">
+				<div class="xiang_con">简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</div>
+				<div class="xian">限500字</div>
+			</div> -->
+			<!-- 新书上架 -->
+			<!-- <div class="xinshu">
+				<div class="xin_tit">新上好书  与你共度</div>
+				<div class="swiper-container xinshang">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide xin_sli">
+							<img src="../img/3.png" alt="">
+							<p>金融书单</p>
+							<p>陆一</p>
+						</div>
+						<div class="swiper-slide xin_sli">
+							<img src="../img/3.png" alt="">
+							<p>金融书单</p>
+							<p>陆一</p>
+						</div>
+						<div class="swiper-slide xin_sli">
+							<img src="../img/3.png" alt="">
+							<p>金融书单</p>
+							<p>陆一</p>
+						</div>
+						<div class="swiper-slide xin_sli">
+							<img src="../img/3.png" alt="">
+							<p>金融书单</p>
+							<p>陆一</p>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<!-- 第二页 -->
+			<!-- <div class="gong">共5章</div>
+			<ul class="mulu">
+				<li>第一章：一个乞丐的流窜</li>
+				<li>第一章：一个乞丐的流窜</li>
+				<li>第一章：一个乞丐的流窜</li>
+				<li>第一章：一个乞丐的流窜</li>
+			</ul> -->
+			<!-- 第三页 -->
+			<!-- <div class="jing">精读目录：</div>
+			<ul class="wenjian xiang_box">
+				<li>
+					<img src="../img/pdf1.png" >
+					<div>
+						<p>《长安十二时辰》</p>
+						<p>类型：文章</p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/pdf1.png" >
+					<div>
+						<p>《长安十二时辰》</p>
+						<p>类型：文章</p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/pdf1.png" >
+					<div>
+						<p>《长安十二时辰》</p>
+						<p>类型：文章</p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/pdf1.png" >
+					<div>
+						<p>《长安十二时辰》</p>
+						<p>类型：文章</p>
+					</div>
+				</li>
+			</ul> -->
+			<!-- 第四页 -->
+			<div class="jing">精读目录：</div>
+			<ul class="wenjian xiang_box shuqian">
+				<li>
+					<div class="all_con">
+						<img src="../img/label.png" >
+						<div class="name_type">
+							<p>《长安十二时辰》</p>
+							<p>类型：文章</p>
+						</div>
+					</div>
+					<span>删除书签</span>
+				</li>
+				<li>
+					<div class="all_con">
+						<img src="../img/label.png" >
+						<div class="name_type">
+							<p>《长安十二时辰》</p>
+							<p>类型：文章</p>
+						</div>
+					</div>
+					<span>删除书签</span>
+				</li>
+				<li>
+					<div class="all_con">
+						<img src="../img/label.png" >
+						<div class="name_type">
+							<p>《长安十二时辰》</p>
+							<p>类型：文章</p>
+						</div>
+					</div>
+					<span>删除书签</span>
+				</li>
+				<li>
+					<div class="all_con">
+						<img src="../img/label.png" >
+						<div class="name_type">
+							<p>《长安十二时辰》</p>
+							<p>类型：文章</p>
+						</div>
+					</div>
+					<span>删除书签</span>
+				</li>
+			</ul>
+		</div>
+		<ul class="bott">
+			<li>发起领读</li>
+			<li>加入书架</li>
+			<li class="yuedu">立即阅读</li>
+		</ul>
+	</body>
+	
+	<script>
+		var bang_type=''
+		$('.select-list >div').click(function() {
+			$('.select-list >div').removeClass('selected')
+			$(this).addClass('selected')
+			bang_type = $('.selected').html()
+		})
+		var mySwiper=new Swiper('.xinshang', {
+			slidesPerView : 2,  
+		})
+		$('.yuedu').click(function(){
+			window.location.href="read.html"
+		})
+	</script>
+</html>

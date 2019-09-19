@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<title>
+			我的
+		</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			html,body{
+				background: #F8F8F8;
+			}
+			.footer {
+				width: 100%;
+				height: 0.96rem;
+				background: #fff;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			.footer nav {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				line-height: 1;
+				text-align: center;
+			}
+			.footer nav a{
+				text-decoration: none;
+			}
+			.footer nav p {
+				font-size: 0.22rem;
+				color: #666666;
+				margin-top: 0.1rem;
+			}
+
+			.footer .icon {
+				width: 0.44rem;
+				height: 0.44rem;
+			}
+
+			.footer .select-btn p {
+				font-size: 0.22rem;
+				color: #D7142A;
+			}
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				background: white;
+			}
+			.news{
+				width: 100%;
+				padding: 0.36rem 0.4rem;
+				display: flex;
+				align-items: center;
+			}
+			.news img{
+				width: 0.9rem;
+				height: 0.9rem;
+			}
+			.news p{
+				font-size: 0.32rem;
+				color: #333333;
+				margin-left: 0.3rem;
+			}
+			.zhongxin{
+				width: 6.7rem;
+				height: 2.44rem;
+				background: white;
+				margin: auto;
+				overflow: hidden;
+			}
+			.zhong_tit{
+				font-size: 0.26rem;
+				color: #333333;
+				margin-left: 0.35rem;
+				margin-top: 0.35rem;
+			}
+			.zhong_ul{
+				width: 100%;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+				margin-top: 0.4rem;
+				display: flex;
+				justify-content: space-between;
+				text-align: center;
+			}
+			.zhong_ul li img{
+				width: 0.44rem;
+				height: 0.38rem;
+			}
+				
+			.zhong_ul li p{
+				font-size: 0.24rem;
+				color: #666666;
+				margin-top: 0.2rem;
+			}
+			.wode{
+				width: 6.7rem;
+				height: 4.58rem;
+				margin: 0.36rem auto;
+				background: white;
+			}
+			.wode li{
+				width: 90%;
+				margin: auto;
+				height: 0.9rem;
+				line-height: 0.9rem;
+				border-bottom: 1px solid #EEEEEE;
+				color: #333333;
+				font-size: 0.26rem;
+			}
+			.wode li:last-child{
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div class="fenlei">
+			我的
+		</div> -->
+		<div class="news">
+			<img src="../img/jinrong.png" >
+			<p>唐纳德·特朗普</p>
+		</div>
+		<div class="zhongxin">
+			<p class="zhong_tit">个人中心：</p>
+			<ul class="zhong_ul">
+				<li>
+					<img src="../img/xiaoxi.png" alt="">
+					<p>消息</p>
+				</li>
+				<li>
+					<img src="../img/gongdu.png" alt="">
+					<p>共读</p>
+				</li>
+				<li>
+					<img src="../img/Font_Linear.png" alt="">
+					<p>感悟·书单</p>
+				</li>
+				<li class="shuping">
+					<img src="../img/mingpianyangshi.png" alt="">
+					<p>书评</p>
+				</li>
+			</ul>
+		</div>
+		<ul class="wode">
+			<li>我的收藏</li>
+			<li>我的关注</li>
+			<li>我的评论</li>
+			<li>意见反馈</li>
+			<li>关于我们</li>
+		</ul>
+		<!--尾部 -->
+		<footer class="footer">
+			<nav>
+				<a href="index.html">
+					<img src="../img/shouye_no.png" alt="" class="icon" />
+					<p>首页</p>
+				</a>
+				<a href="list.html">
+					<img src="../img/fenlei_no.png" alt="" class="icon" />
+					<p>分类</p>
+				</a>
+				<a href="shujia.html">
+					<img src="../img/shujia_no.png" alt="" class="icon" />
+					<p>书架</p>
+				</a>
+				<a href="wode.html" class="select-btn">
+					<img src="../img/wode_yes.png" alt="" class="icon" />
+					<p>我的</p>
+				</a>
+			</nav>
+		</footer>
+	</body>
+	<script>
+		$('.shuping').click(function(){
+			window.location.href="shuping.html"
+		})
+	</script>
+</html>

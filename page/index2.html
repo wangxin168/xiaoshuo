@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../duanxin/jquery-3.2.1.js"></script>
+		<style type="text/css">
+			.login-err {
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+				transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+				border-radius: 4px;
+				background: #ffeaea none repeat scroll 0 0;
+				border: 1px solid #e5c3c4;
+				color: #b94a48;
+				line-height: 38px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <ul class="ull">
+			
+		</ul>
+		<button onclick="dianji()"></button> -->
+		<div id="login-err" class="login-err">请输入正确的帐号或密码</div>
+		<div id="login-eee" class="login-err">请输入正确的帐号</div>
+	</body>
+	<script>
+		
+		function shake() {
+			var $panel = $(".login-err");
+			box_left = 0;
+			$panel.css({
+				'left': box_left,
+				'position': 'relative'
+			});
+			for (var i = 1; 4 >= i; i++) {
+				$panel.animate({
+					left: box_left - (20 - 5 * i)
+				}, 300);
+				$panel.animate({
+					left: box_left + (20 - 5 * i)
+				}, 300);
+			}
+		}
+		setInterval(shake,1000)
+	</script>
+</html>
