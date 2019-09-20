@@ -11,6 +11,7 @@
 		<meta name="keywords" content="" />
 		<script type="text/javascript" src="../js/rem.js"></script>
 		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<title>
 
 		</title>
@@ -93,93 +94,115 @@
 				outline: none;
 				margin-left: 0.19rem;
 			}
-			.list{
+
+			.list {
 				width: 100%;
 				padding: 0 0 0 0.4rem;
 				box-sizing: border-box;
 				margin-top: 0.526rem;
 			}
-			.list li{
+
+			.list li {
 				float: left;
 				margin-right: 0.42rem;
 				width: 1.92rem;
 				height: 1.92rem;
-				background: #403F3D;
 				margin-bottom: 0.326rem;
 				border-radius: 0.0576rem;
+				position: relative;
 			}
-			.list li p{
+			.list li img{
+				width: 100%;
+				height: 100%;
+				border-radius: 0.0576rem;
+			}
+			.list li p {
 				color: white;
 				text-align: center;
 				font-size: 0.34rem;
 				color: #FFFFFF;
-				margin-top: 0.05rem;
+				top: 0.05rem;
+				position: absolute;
+				width: 100%;
 			}
-			
 		</style>
 	</head>
 	<body>
-		<div class="fenlei">
-			分类
+		<div id="list">
+			<div class="fenlei">
+				分类
+			</div>
+			<div class="serch">
+				<img src="../img/4256db47eeb50412fe33ff9380f3406.png" alt="">
+				<input type="text" placeholder="请输入要搜索的书名或作者姓名">
+			</div>
+			<ul class="list">
+				<li v-for="(item,index) in list" @click="xiangqing($event)" :data-typeid="item.type_id">
+					<img v-bind:src="item.type_img" alt="">
+					<p>{{item.type_name}}</p>
+				</li>
+				
+			</ul>
+			<!--尾部 -->
+			<footer class="footer">
+				<nav>
+					<a href="index.html">
+						<img src="../img/shouye_no.png" alt="" class="icon" />
+						<p>首页</p>
+					</a>
+					<a href="list.html" class="select-btn">
+						<img src="../img/fenlei_yes.png" alt="" class="icon" />
+						<p>分类</p>
+					</a>
+					<a href="shujia.html">
+						<img src="../img/shujia_no.png" alt="" class="icon" />
+						<p>书架</p>
+					</a>
+					<a href="wode.html">
+						<img src="../img/wode_no.png" alt="" class="icon" />
+						<p>我的</p>
+					</a>
+				</nav>
+			</footer>
 		</div>
-		<div class="serch">
-			<img src="../img/4256db47eeb50412fe33ff9380f3406.png" alt="">
-			<input type="text" placeholder="请输入要搜索的书名或作者姓名">
-		</div>
-		<ul class="list">
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-			<li>
-				<p>金融知识</p>
-			</li>
-		</ul>
-		<!--尾部 -->
-		<footer class="footer">
-			<nav>
-				<a href="index.html">
-					<img src="../img/shouye_no.png" alt="" class="icon" />
-					<p>首页</p>
-				</a>
-				<a href="list.html" class="select-btn">
-					<img src="../img/fenlei_yes.png" alt="" class="icon" />
-					<p>分类</p>
-				</a>
-				<a href="shujia.html">
-					<img src="../img/shujia_no.png" alt="" class="icon" />
-					<p>书架</p>
-				</a>
-				<a href="wode.html">
-					<img src="../img/wode_no.png" alt="" class="icon" />
-					<p>我的</p>
-				</a>
-			</nav>
-		</footer>
 	</body>
 	<script>
-		$('.list li').click(function(){
-			window.location.href="leibie.html"
+		// $('.list li').click(function() {
+		// 	window.location.href = "leibie.html"
+		// })
+		var app = new Vue({
+			el: '#list',
+			data: {
+				list:[]
+			},
+			created: function() {
+				var that = this;
+				
+			},
+			mounted() {
+				var that=this;
+				$.ajax('http://172.168.30.44:8080/books/index.php/books/api/get_type_list_api',{
+					data:{
+						
+					},
+					dataType:'json',//服务器返回json格式数据
+					success:function(data){
+						console.log(data)
+						that.list=data.data.type_list
+						console.log(that.list)
+					},
+					error:function(xhr,type,errorThrown){
+						
+					}
+				});
+
+			},
+			methods: {
+				xiangqing:function(e){
+					var typeid=e.currentTarget.getAttribute("data-typeid")
+					console.log(typeid)
+				}
+			}
 		})
 	</script>
 </html>
