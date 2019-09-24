@@ -401,7 +401,7 @@
 					<div class="xiang_con">
 						<!-- 简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰…… -->
 					</div>
-					<div class="xian">限500字</div>
+					<!-- <div class="xian">限500字</div> -->
 				</div>
 				<!-- 新书上架 -->
 				<div class="xinshu">
@@ -538,7 +538,7 @@
 					var pick = data.data.books_other
 					var picker = '';
 					$.each(pick, function(i, obj) {
-						picker += '<div class="swiper-slide xin_sli" onclick="img_dian()">'
+						picker += '<div class="swiper-slide xin_sli" onclick="img_dian(' + obj.books_id + ')">'
 						picker += '<img src="' + obj.books_img + '">';
 						picker += '<p>';
 						picker += obj.books_name
@@ -588,25 +588,30 @@
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
-					var pick = data.data.books_mark
-					var picker = '';
-					$.each(pick, function(i, obj) {
-						picker += '<li>'
-							picker += '<div class="all_con">'
-								picker += '<img src="img/label.png">'
-								picker += '<div class="name_type">'
-									picker += '<p>'
-										picker += obj.mark_name
-									picker += '</p>'
-									picker += '<p>'
-										picker += obj.mark_time
-									picker += '</p>'
+					if(data.data.books_mark==null){
+						$('.shuqian').html('您还未给此书籍添加书签')
+					}else{
+						var pick = data.data.books_mark
+						var picker = '';
+						$.each(pick, function(i, obj) {
+							picker += '<li>'
+								picker += '<div class="all_con">'
+									picker += '<img src="img/label.png">'
+									picker += '<div class="name_type">'
+										picker += '<p>'
+											picker += obj.mark_name
+										picker += '</p>'
+										picker += '<p>'
+											picker += obj.mark_time
+										picker += '</p>'
+									picker += '</div>'
 								picker += '</div>'
-							picker += '</div>'
-							picker +='<span>删除书签</span>'
-						picker += '</li>';
-					})
-					$('.shuqian').html(picker)
+								picker +='<span>删除书签</span>'
+							picker += '</li>';
+						})
+						$('.shuqian').html(picker)
+					}
+					
 				}
 			});
 		}
@@ -622,22 +627,27 @@
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
-					var pick = data.data.books_soul.soul_arr
-					var picker = '';
-					$.each(pick, function(i, obj) {
-						picker += '<li>'
-						picker += '<img src="img/pdf1.png" >'
-						picker += '<div>'
-						picker += '<p>'
-						picker += obj.soul_name 
-						picker += '</p>'
-						picker += '<p>'
-						picker += '类型：' + obj.soul_type_name 
-						picker += '</p>'
-						picker += '</div>'
-						picker += '</li>';
-					}) 
-					$('.jingdu').html(picker)
+					if(data.data.books_soul.soul_arr==null){
+						$('.jingdu').html('该书籍暂无精读内容')
+					}else{
+						var pick = data.data.books_soul.soul_arr
+						var picker = '';
+						$.each(pick, function(i, obj) {
+							picker += '<li>'
+							picker += '<img src="img/pdf1.png" >'
+							picker += '<div>'
+							picker += '<p>'
+							picker += obj.soul_name 
+							picker += '</p>'
+							picker += '<p>'
+							picker += '类型：' + obj.soul_type_name 
+							picker += '</p>'
+							picker += '</div>'
+							picker += '</li>';
+						}) 
+						$('.jingdu').html(picker)
+					}
+					
 				}
 			});
 		}
@@ -665,5 +675,8 @@
 				}
 			});
 		})
+		function img_dian(bookid){
+			window.location.href = "xiangqing.html?books_id=" + bookid
+		}
 	</script>
 </html>
