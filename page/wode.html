@@ -79,6 +79,7 @@
 			.news img{
 				width: 0.9rem;
 				height: 0.9rem;
+				border-radius: 50%;
 			}
 			.news p{
 				font-size: 0.32rem;
@@ -142,8 +143,8 @@
 			我的
 		</div> -->
 		<div class="news">
-			<img src="../img/jinrong.png" >
-			<p>唐纳德·特朗普</p>
+			<img src="../img/jinrong.png" class="touxiang">
+			<p class="name">唐纳德·特朗普</p>
 		</div>
 		<div class="zhongxin">
 			<p class="zhong_tit">个人中心：</p>
@@ -199,5 +200,24 @@
 		$('.shuping').click(function(){
 			window.location.href="shuping.html"
 		})
+		var url=localStorage.url
+		$.ajax(url + '/index.php/books/api/personal_api', {
+			data: {
+				user_id:1
+			},
+			type:'post',
+			dataType: 'json', //服务器返回json格式数据
+			success: function(data) {
+				console.log(data)
+				if(data.status==1){
+					$('.name').html(data.data.user_name);
+					$('.touxiang').attr('src',data.data.user_head_img)
+				}
+				
+			},
+			error: function(xhr, type, errorThrown) {
+		
+			}
+		});
 	</script>
 </html>
