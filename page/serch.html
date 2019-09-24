@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title>搜索</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.serch {
+				width: 6.69rem;
+				height: 0.635rem;
+				margin: 0.36rem auto 0;
+				border: 1px solid #EEEEEE;
+				border-radius: 0.38rem;
+				display: flex;
+				align-items: center;
+				font-size: 0.268rem;
+				color: #DBDBDB;
+			}
+
+			.serch img {
+				width: 0.26rem;
+				height: 0.28rem;
+				margin-left: 1.28rem;
+			}
+
+			.serch input {
+				border: none;
+				background: none;
+				outline: none;
+				margin-left: 0.19rem;
+			}
+
+			.select-list {
+				margin-top: 0.28rem;
+				font-size: 0.32rem;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				color: #999999;
+				background: white;
+				height: 0.75rem;
+				border-bottom: 1px solid #DBDBDB;
+			}
+
+			.select-list div {
+				width: 33.3%;
+				text-align: center;
+				height: 0.42rem;
+				border-right: 1px solid #DBDBDB;
+			}
+
+			.select-list div:nth-of-type(3) {
+				border: none;
+			}
+
+			.select-list .selected {
+				color: #333333;
+			}
+
+			.book_box {
+				width: 100%;
+				padding: 0 0.4rem 0 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.book_box li {
+				width: 6.7rem;
+				height: 3.39rem;
+				margin: auto;
+				display: flex;
+				padding: 0.55rem 0;
+				box-sizing: border-box;
+				border-bottom: 1px solid #EEEEEE;
+			}
+
+			.book_box li img {
+				width: 1.63rem;
+			}
+
+			.book_rgh {
+				margin-left: 0.32rem;
+				height: 2.29rem;
+			}
+
+			.book_rgh p:nth-of-type(1) {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.book_rgh p:nth-of-type(2) {
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+
+			.book_rgh p:nth-of-type(3) {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: justify;
+				margin-top: 0.2rem;
+			}
+			.wenzhang{
+				width: 100%;
+				padding: 0.36rem 0.4rem;
+				box-sizing: border-box;
+			}
+			.wenzhang .title{
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.wenzhang .con_tit{
+				font-size: 0.26rem;
+				color: #666666;
+				margin-top: 0.11rem;
+			}
+			.wenzhang .wen_img{
+				width: 6.7rem;
+				height: 2.28rem;
+				margin-top: 0.17rem;
+			}
+			.bott{
+				margin-top: 0.17rem;
+				display: flex;
+				justify-content: space-between;
+			}
+			.bott .left{
+				display: flex;
+				align-items: center;
+			}
+			.bott .left img{
+				width: 0.52rem;
+				height: 0.52rem;
+			}
+			.right{
+				display: flex;
+				align-items: center;
+			}
+			.right .dianzan{
+				width: 0.3rem;
+				height: 0.3rem;
+			}
+			.right .xinxi{
+				width: 0.3rem;
+				height: 0.26rem;
+				margin-left: 0.2rem;
+			}
+			.null{
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+			.null img{
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+			.null p{
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+			.user_box div{
+				width: 100%;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				height: 1.2rem;
+			}
+			.user_box div p{
+				display: flex;
+				align-items: center;
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			.user_box div p>span{
+				margin-left: 0.3rem;
+			}
+			.user_box div p img{
+				width: 0.9rem;
+				height: 0.9rem;
+				display: block;
+			}
+			.user_box div>span{
+				border: 1px solid #F5A623;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #F5A623;
+				height: 0.37rem;
+				line-height: 0.37rem;
+				padding: 0 0.05rem;
+				box-sizing: border-box;
+			}
+			.touxiang{
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="serch">
+				<img src="../img/4256db47eeb50412fe33ff9380f3406.png" alt="">
+				<input type="text" placeholder="请输入要搜索的书名或作者姓名" @input="inputFun">
+			</div>
+			<div class="select-list">
+				<div class="week-btn selected" @click="fangfa(1)">书籍</div>
+				<div class="day-btn" @click="fangfa(2)">感悟·书评</div>
+				<div class="month-btn" @click="fangfa(3)">用户</div>
+			</div>
+			<ul class="book_box">
+				<li class="book" v-for="(item,index) in list" :data-books_id="item.books_id" @click="xiangq($event)">
+					<img :src="item.books_img" alt="">
+					<div class="book_rgh">
+						<p>{{item.books_name}}</p>
+						<p>作者：{{item.books_author}}</p>
+						<p>简介：{{item.books_brief}}</p>
+					</div>
+				</li>
+			</ul>
+			<div class="wen_con" style="display: none;">
+				<div class="wenzhang" style="margin-bottom: 1rem;">
+					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
+					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
+					<img src="../img/位图2.png" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img src="../img/jinrong.png" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
+						</div>
+						<div class="right">
+							<img src="../img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
+							<img src="../img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user_box" style="display: none;">
+				<div v-for="(item,index) in books_user_list">
+					<p>
+						<img :src="item.user_head_img" class="touxiang">
+						<span>{{item.user_name}}</span>
+					</p>
+					<span>已关注</span>
+				</div>
+			</div>
+			<div class="null">
+				<img src="../img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				list: [],
+				url: localStorage.url,
+				type_id: 1,
+				inputValue: '',
+				books_user_list:[]
+			},
+			created() {
+
+			},
+			mounted() {
+				var that = this;
+				console.log(that.url)
+				$.ajax(that.url + '/index.php/books/api/search_api', {
+					data: {
+						type_id: that.type_id,
+						search_val: this.inputValue
+					},
+					dataType: 'json', //服务器返回json格式数据
+					success: function(data) {
+						console.log(data)
+						if(data.status==2){
+							$('.null').show();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+
+					}
+				});
+			},
+			methods: {
+				fangfa: function(con) {
+					// console.log(con)
+					var that = this
+					$('.select-list >div').removeClass('selected')
+					if (con == 1) {
+						$('.week-btn').addClass('selected')
+						that.type_id = 1
+						that.xuanran();
+						$('.book_box').show();
+						$('.wen_con').hide();
+						$('.user_box').hide();
+					} else if (con == 2) {
+						$('.day-btn').addClass('selected')
+						that.type_id = 2
+						that.xuanran();
+						$('.book_box').hide();
+						$('.wen_con').show();
+						$('.user_box').hide();
+					} else if (con == 3) {
+						$('.month-btn').addClass('selected')
+						that.type_id = 3
+						that.xuanran();
+						$('.book_box').hide();
+						$('.wen_con').hide();
+						$('.user_box').show();
+					}
+				},
+				xuanran() {
+					var that = this;
+					$.ajax(that.url + '/index.php/books/api/search_api', {
+						data: {
+							type_id: that.type_id,
+							search_val: this.inputValue
+						},
+						type: 'post',
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if(data.status==2){
+								$('.null').show();
+							}else{
+								that.list = data.data.books_list.list
+								that.books_user_list=data.data.books_user_list.list
+								console.log(data.data.books_list.books_user_list)
+								$('.null').hide();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+
+						}
+					});
+				},
+				inputFun(e) {
+					var that = this;
+					//e.target 指向了dom元素
+					this.inputValue = e.target.value;
+					console.log(this.inputValue)
+					that.xuanran();
+				}
+			}
+		})
+	</script>
+</html>

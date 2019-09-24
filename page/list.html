@@ -13,7 +13,7 @@
 		<script src="../js/jquery-3.2.1.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<title>
-
+			分类
 		</title>
 		<style type="text/css">
 			* {
@@ -80,6 +80,8 @@
 				border-radius: 0.38rem;
 				display: flex;
 				align-items: center;
+				font-size: 0.268rem;
+				color: #DBDBDB;
 			}
 
 			.serch img {
@@ -129,12 +131,13 @@
 	</head>
 	<body>
 		<div id="list">
-			<div class="fenlei">
+			<!-- <div class="fenlei">
 				分类
-			</div>
-			<div class="serch">
+			</div> -->
+			<div class="serch" @click="serch()">
 				<img src="../img/4256db47eeb50412fe33ff9380f3406.png" alt="">
-				<input type="text" placeholder="请输入要搜索的书名或作者姓名">
+				<!-- <input type="text" placeholder="请输入要搜索的书名或作者姓名"> -->
+				<span>请输入要搜索的书名或作者姓名</span>
 			</div>
 			<ul class="list">
 				<li v-for="(item,index) in list" @click="xiangqing($event)" :data-typeid="item.type_id">
@@ -170,10 +173,12 @@
 		// $('.list li').click(function() {
 		// 	window.location.href = "leibie.html"
 		// })
+		// var url = localStorage.url
 		var app = new Vue({
 			el: '#list',
 			data: {
-				list:[]
+				list:[],
+				url:localStorage.url
 			},
 			created: function() {
 				var that = this;
@@ -181,7 +186,8 @@
 			},
 			mounted() {
 				var that=this;
-				$.ajax('http://172.168.30.44:8080/books/index.php/books/api/get_type_list_api',{
+				console.log(that.url)
+				$.ajax(that.url+'/index.php/books/api/get_type_list_api',{
 					data:{
 						
 					},
@@ -201,6 +207,11 @@
 				xiangqing:function(e){
 					var typeid=e.currentTarget.getAttribute("data-typeid")
 					console.log(typeid)
+					window.location.href="leibie.html?typeid="+typeid
+				},
+					
+				serch:function(){
+					window.location.href="serch.html"
 				}
 			}
 		})

@@ -10,6 +10,8 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<title>
 
 		</title>
@@ -69,12 +71,14 @@
 				text-align: center;
 				border-bottom: 1px solid #EEEEEE;
 			}
-			.book_box{
+
+			.book_box {
 				width: 100%;
 				padding: 0 0.4rem 0 0.4rem;
 				box-sizing: border-box;
 			}
-			.book_box li{
+
+			.book_box li {
 				width: 6.7rem;
 				height: 3.39rem;
 				margin: auto;
@@ -83,58 +87,163 @@
 				box-sizing: border-box;
 				border-bottom: 1px solid #EEEEEE;
 			}
-			.book_box li img{
+
+			.book_box li img {
 				width: 1.63rem;
 				height: 2.29rem;
 			}
-			.book_rgh{
+
+			.book_rgh {
 				margin-left: 0.32rem;
 				height: 2.29rem;
 			}
-			.book_rgh p:nth-of-type(1){
+
+			.book_rgh p:nth-of-type(1) {
 				font-size: 0.32rem;
 				color: #333333;
 			}
-			.book_rgh p:nth-of-type(2){
+
+			.book_rgh p:nth-of-type(2) {
 				font-size: 0.24rem;
 				color: #999999;
 				margin-top: 0.19rem;
 			}
-			.book_rgh p:nth-of-type(3){
+
+			.book_rgh p:nth-of-type(3) {
 				font-size: 0.24rem;
 				color: #999999;
 				text-align: justify;
 				margin-top: 0.2rem;
 			}
+				
+			.null{
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+			.null img{
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+			.null p{
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
 		</style>
 	</head>
 	<body>
-		<div class="fenlei">
-			金融知识
+		<div id="app">
+			<!-- <div class="fenlei">
+				金融知识
+			</div> -->
+			<ul class="book_box">
+				<li class="book" v-for="(item,index) in books_list" :data-books_id="item.books_id" @click="xiangq($event)">
+					<img :src="item.books_img" alt="">
+					<div class="book_rgh">
+						<p>{{item.books_name}}</p>
+						<p>作者：{{item.books_author}}</p>
+						<p>简介：{{item.books_brief}}</p>
+					</div>
+				</li>
+
+			</ul>
+			<div class="null">
+				<img src="../img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
 		</div>
-		<ul class="book_box">
-			<li class="book">
-				<img src="../img/4.png" alt="">
-				<div class="book_rgh">
-					<p>《长安十二时辰》（上）</p>
-					<p>作者：列夫·托尔斯泰</p>
-					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
-				</div>
-			</li>
-			<li class="book">
-				<img src="../img/4.png" alt="">
-				<div class="book_rgh">
-					<p>《长安十二时辰》（上）</p>
-					<p>作者：列夫·托尔斯泰</p>
-					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
-				</div>
-			</li>
-		</ul>
 	</body>
 	<script src="../js/jquery-3.2.1.js"></script>
 	<script>
-		$('.book').click(function(){
-			window.location.href="xiangqing.html"
+		$('.book').click(function() {
+			window.location.href = "xiangqing.html"
+		})
+		var typeid = ''
+
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				typeid = parameter_arr_new[0];
+			}
+		}
+
+		geturl()
+		var app = new Vue({
+			el: '#app',
+			data: {
+				typeid: typeid,
+				books_list: [],
+				page:0,
+				sum_data_num:'',
+				url:localStorage.url
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				// console.log(that.typeid)
+				$.ajax({
+					url: that.url+'/index.php/books/api/get_books_list_api',
+					type: "POST",
+					data: {
+						type_id: typeid,
+						page_start: that.page,
+						page_end: 4
+					},
+					dataType: 'json', //服务器返回json格式数据
+					success: function(data) {
+						console.log(data)
+						if(data.status==2){
+							$('.null').show();
+						}else{
+							that.books_list = data.data.books_list
+							that.sum_data_num=data.data.page.sum_data_num
+							// console.log(that.books_list)
+						}
+						
+					}
+				});
+				window.addEventListener('scroll', this.onScroll);
+			},
+			methods: {
+				xiangq: function(e) {
+					var books_id = e.currentTarget.getAttribute("data-books_id")
+					console.log(books_id)
+					window.location.href = "xiangqing.html?books_id=" + books_id
+				},
+				
+				onScroll() {
+					var that=this;
+					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+						//加载更多操作
+						that.page += 4;
+						console.log(that.page)
+						if(that.page<=that.sum_data_num){
+							$.ajax({
+								url: 'http://172.168.30.10:8080/books/index.php/books/api/get_books_list_api',
+								type: "POST",
+								data: {
+									type_id: typeid,
+									page_start: that.page,
+									page_end: 4
+								},
+								dataType: 'json', //服务器返回json格式数据
+								success: function(data) {
+									that.books_list=that.books_list.concat(data.data.books_list)
+								}
+							});
+						}
+						
+					}
+				}
+			}
 		})
 	</script>
 </html>

@@ -302,6 +302,9 @@
 		</div>
 	</body>
 	<script>
+		localStorage.setItem("url", "http://flydev.yuanchuangyuan.com");
+		// 首页轮播
+		var url = localStorage.url
 		$(document).ready(function(){
 			var mySwiper = new Swiper('.dingbu_shu', {
 				slidesPerView: 3,

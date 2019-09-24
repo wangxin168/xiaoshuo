@@ -10,6 +10,8 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<script type="text/javascript" src="../js/rem.js"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<title>
 
 		</title>
@@ -69,12 +71,14 @@
 				text-align: center;
 				border-bottom: 1px solid #EEEEEE;
 			}
-			.book_box{
+
+			.book_box {
 				width: 100%;
 				padding: 0 0.4rem 0 0.4rem;
 				box-sizing: border-box;
 			}
-			.book_box li{
+
+			.book_box li {
 				width: 6.7rem;
 				height: 3.39rem;
 				margin: auto;
@@ -83,34 +87,41 @@
 				box-sizing: border-box;
 				border-bottom: 1px solid #EEEEEE;
 			}
-			.book_box li img{
+
+			.book_box li img {
 				width: 1.63rem;
 				height: 2.29rem;
 			}
-			.book_rgh{
+
+			.book_rgh {
 				margin-left: 0.32rem;
 				height: 2.29rem;
 			}
-			.book_rgh p:nth-of-type(1){
+
+			.book_rgh p:nth-of-type(1) {
 				font-size: 0.32rem;
 				color: #333333;
 			}
-			.book_rgh p:nth-of-type(2){
+
+			.book_rgh p:nth-of-type(2) {
 				font-size: 0.24rem;
 				color: #999999;
 				margin-top: 0.19rem;
 			}
-			.book_rgh p:nth-of-type(3){
+
+			.book_rgh p:nth-of-type(3) {
 				font-size: 0.24rem;
 				color: #999999;
 				text-align: justify;
 				margin-top: 0.2rem;
 			}
-			.book_bot{
+
+			.book_bot {
 				display: flex;
 				margin-top: 0.05rem;
 			}
-			.book_bot span{
+
+			.book_bot span {
 				border-radius: 0.04rem;
 				width: 1.25rem;
 				height: 0.44rem;
@@ -118,67 +129,173 @@
 				line-height: 0.44rem;
 				font-size: 0.24rem;
 			}
-			.book_bot span:nth-of-type(1){
+
+			.book_bot span:nth-of-type(1) {
 				background: #DBDBDB;
 				color: #999999;
 			}
-			.book_bot span:nth-of-type(2){
+
+			.book_bot span:nth-of-type(2) {
 				background: #D7142A;
 				color: #FFFFFF;
 				margin-left: 0.2rem;
 			}
+			.null{
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+			.null img{
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+			.null p{
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+			.tan{
+				width: 3rem;
+				height: 1rem;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				background: skyblue;
+				text-align: center;
+				margin: auto;
+				border-radius: 0.2rem;
+				line-height: 1rem;
+				left: 2.25rem;
+				display: none;
+				z-index: 10;
+				/* padding: 0 0.2rem; */
+				/* box-sizing: border-box; */
+				color: white;
+			}
 		</style>
 	</head>
 	<body>
-		<div class="fenlei">
+		<!-- <div class="fenlei">
 			书架
+		</div> -->
+		<div id="app">
+			<ul class="book_box">
+				<li class="book" v-for="(item,index) in list">
+					<img :src="item.books_img" alt="">
+					<div class="book_rgh">
+						<p>{{item.books_name}}</p>
+						<p>作者：{{item.books_author}}</p>
+						<p>简介：{{item.books_brief}}</p>
+						<p class="book_bot">
+							<span @click="yichu($event)" :data-books_shelf_id="item.books_shelf_id">移除书架</span>
+							<span>继续阅读</span>
+						</p>
+					</div>
+				</li>
+			</ul>
+			<!--尾部 -->
+			<footer class="footer">
+				<nav>
+					<a href="index.html">
+						<img src="../img/shouye_no.png" alt="" class="icon" />
+						<p>首页</p>
+					</a>
+					<a href="list.html">
+						<img src="../img/fenlei_no.png" alt="" class="icon" />
+						<p>分类</p>
+					</a>
+					<a href="shujia.html" class="select-btn">
+						<img src="../img/shujia_yes.png" alt="" class="icon" />
+						<p>书架</p>
+					</a>
+					<a href="wode.html">
+						<img src="../img/wode_no.png" alt="" class="icon" />
+						<p>我的</p>
+					</a>
+				</nav>
+			</footer>
+			<div class="tan"></div>
+			<div class="null">
+				<img src="../img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
 		</div>
-		<ul class="book_box">
-			<li class="book">
-				<img src="../img/4.png" alt="">
-				<div class="book_rgh">
-					<p>《长安十二时辰》（上）</p>
-					<p>作者：列夫·托尔斯泰</p>
-					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
-					<p class="book_bot">
-						<span>移除书架</span>
-						<span>继续阅读</span>
-					</p>
-				</div>
-			</li>
-			<li class="book">
-				<img src="../img/4.png" alt="">
-				<div class="book_rgh">
-					<p>《长安十二时辰》（上）</p>
-					<p>作者：列夫·托尔斯泰</p>
-					<p>简介：拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……</p>
-					<p class="book_bot">
-						<span>移除书架</span>
-						<span>继续阅读</span>
-					</p>
-				</div>
-			</li>
-		</ul>
-		<!--尾部 -->
-		<footer class="footer">
-			<nav>
-				<a href="index.html">
-					<img src="../img/shouye_no.png" alt="" class="icon" />
-					<p>首页</p>
-				</a>
-				<a href="list.html">
-					<img src="../img/fenlei_no.png" alt="" class="icon" />
-					<p>分类</p>
-				</a>
-				<a href="shujia.html" class="select-btn">
-					<img src="../img/shujia_yes.png" alt="" class="icon" />
-					<p>书架</p>
-				</a>
-				<a href="wode.html">
-					<img src="../img/wode_no.png" alt="" class="icon" />
-					<p>我的</p>
-				</a>
-			</nav>
-		</footer>
 	</body>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				list: [],
+				url: localStorage.url
+			},
+			created: function() {
+				var that = this;
+
+			},
+			mounted() {
+				var that = this;
+				that.xuanran();
+
+			},
+			methods: {
+				xuanran(){
+					var that=this;
+					$.ajax(that.url + '/index.php/books/api/get_books_shelf_list_api', {
+						data: {
+							user_id:1
+						},
+						type:'post',
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							that.list = data.data.books_shelf_list
+							console.log(that.list)
+							if(data.data==''){
+								$('.null').show();
+							}else{
+								$('.null').hide();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+					
+						}
+					});
+				},
+				xiangqing: function(e) {
+					var typeid = e.currentTarget.getAttribute("data-typeid")
+					console.log(typeid)
+					window.location.href = "leibie.html?typeid=" + typeid
+				},
+				yichu:function(e){
+					console.log(e)
+					var that=this;
+					var books_shelf_id = e.currentTarget.getAttribute("data-books_shelf_id")
+					$.ajax(that.url + '/index.php/books/api/del_book_shelf_api', {
+						data: {
+							user_id:1,
+							books_shelf_id:books_shelf_id
+						},
+						type:'post',
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if(data.status==1){
+								// 提示框显示隐藏
+								$('.tan').html('移除成功');
+								$('.tan').css('display', 'block');
+								$('.tan').fadeOut(2000);
+								that.xuanran()
+							}
+							
+						},
+						error: function(xhr, type, errorThrown) {
+					
+						}
+					});
+				}
+			}
+		})
+	</script>
 </html>
