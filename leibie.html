@@ -203,9 +203,14 @@
 						if(data.status==2){
 							$('.null').show();
 						}else{
-							that.books_list = data.data.books_list
-							that.sum_data_num=data.data.page.sum_data_num
-							// console.log(that.books_list)
+							
+							if(data.data==''){
+								$('.null').show();
+							}else{
+								that.books_list = data.data.books_list
+								that.sum_data_num=data.data.page.sum_data_num
+								// console.log(that.books_list)
+							}
 						}
 						
 					}
