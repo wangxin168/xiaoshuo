@@ -190,7 +190,7 @@
 						<p>作者：{{item.books_author}}</p>
 						<p>简介：{{item.books_brief}}</p>
 						<p class="book_bot">
-							<span @click="yichu($event)" :data-books_shelf_id="item.books_shelf_id">移除书架</span>
+							<span @click="yichu($event)" :data-books_shelf_id="item.books_shelf_id">移出书架</span>
 							<span @click="jixu($event)" :data-bookid="item.books_id">继续阅读</span>
 						</p>
 					</div>
