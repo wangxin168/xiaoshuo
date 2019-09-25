@@ -516,8 +516,9 @@
 		var mySwiper = new Swiper('.xinshang', {
 			slidesPerView: 2,
 		})
+		// 移除书架要用的
+		var books_shelf_id=''
 		xuanran();
-
 		function xuanran() {
 			$.ajax({
 				url: url + '/index.php/books/api/get_books_details_api',
@@ -528,13 +529,19 @@
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
-					// console.log(data)
+					console.log(data)
 					$('.book_name').html(data.data.books_details.books_name)
 					$('.author').html('作者：' + data.data.books_details.books_author)
 					$('.readr').html('出版时间：' + data.data.books_details.books_publish_time_str)
 					$('.fengmian').attr('src', data.data.books_details.books_img)
 					$('.xiang_con').html(data.data.books_details.books_brief)
-
+					// 移除书架的id
+					books_shelf_id=data.data.books_shelf.books_shelf_id
+					if(data.data.books_shelf.is_status==1){
+						$('.jiaru').html('移出书架');
+					}else if(data.data.books_shelf.is_status==2){
+						$('.jiaru').html('加入书架');
+					}
 					var pick = data.data.books_other
 					var picker = '';
 					$.each(pick, function(i, obj) {
@@ -668,25 +675,51 @@
 			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+1
 		})
 		$('.jiaru').click(function(){
-			$.ajax({
-				url: url + '/index.php/books/api/add_book_shelf_api',
-				data: {
-					books_id: books_list,
-					user_id: 1
-				},
-				dataType: 'json', //服务器返回json格式数据
-				type: 'post', //HTTP请求类型
-				success: function(data) {
-					console.log(data)
-					if(data.status==1){
-						// 提示框显示隐藏
-						$('.tan').html('添加成功');
-						$('.tan').css('display', 'block');
-						$('.tan').fadeOut(2000);
+			var name=$('.jiaru').html()
+			if(name=='加入书架'){
+				$.ajax({
+					url: url + '/index.php/books/api/add_book_shelf_api',
+					data: {
+						books_id: books_list,
+						user_id: 1
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					success: function(data) {
+						console.log(data)
+						if(data.status==1){
+							// 提示框显示隐藏
+							$('.tan').html('添加成功');
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							xuanran();
+						}
+						
 					}
-					
-				}
-			});
+				});
+			}else if(name=='移出书架'){
+				$.ajax({
+					url: url + '/index.php/books/api/del_book_shelf_api',
+					data: {
+						user_id: 1,
+						books_shelf_id:books_shelf_id
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					success: function(data) {
+						console.log(data)
+						if(data.status==1){
+							// 提示框显示隐藏
+							$('.tan').html('移出成功');
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							xuanran();
+						}
+						
+					}
+				});
+			}
+			
 		})
 		function img_dian(bookid){
 			window.location.href = "xiangqing.html?books_id=" + bookid

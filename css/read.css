@@ -95,7 +95,7 @@ body {
 .shuqian {
 	display: flex;
 	width: 90%;
-	margin: 0.355rem auto;
+	margin: 0.355rem auto 0.4rem;
 }
 
 .shuqian span {
