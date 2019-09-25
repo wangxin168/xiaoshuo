@@ -1,0 +1,244 @@
+@charset "utf-8";
+
+.pdfobject-container {
+	height: 30rem;
+	border: 1rem solid rgba(0, 0, 0, .1);
+}
+
+iframe {
+	height: 11rem !important;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+.fenlei {
+	width: 100%;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	font-size: 0.34rem;
+	color: #333333;
+	text-align: center;
+	border-bottom: 1px solid #EEEEEE;
+	background: white;
+}
+
+.bott {
+	width: 100%;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: white;
+	border-top: 1px solid #DBDBDB;
+}
+
+.bott li {
+	width: 25%;
+	height: 100%;
+	text-align: center;
+	font-size: 0.26rem;
+	color: #666666;
+}
+
+.con_box {
+	font-size: 0.28rem;
+	color: #666666;
+	padding: 0.36rem;
+	box-sizing: border-box;
+	line-height: 0.4rem;
+	margin-bottom: 1rem;
+	min-height: 100%;
+}
+
+.shezhi_box,
+.tian_shuqian {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.shezhi_con {
+	width: 5.58rem;
+	height: 4.03rem;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0.964rem;
+	background: white;
+	border-radius: 0.15rem;
+	position: absolute;
+}
+
+.shezhi_con>p,
+.tian_dong>p {
+	font-size: 0.32rem;
+	color: #333333;
+	text-align: center;
+	margin-top: 0.2rem;
+}
+
+.shuqian {
+	display: flex;
+	width: 90%;
+	margin: 0.355rem auto;
+}
+
+.shuqian span {
+	line-height: 0.6rem;
+	font-size: 0.26rem;
+	color: #333333;
+}
+
+.shuqian div {
+	width: 1rem;
+	height: 0.6rem;
+	border: 1px solid #999999;
+	border-radius: 0.45rem;
+	text-align: center;
+	line-height: 0.6rem;
+	font-size: 0.26rem;
+	color: #999999;
+	align-items: center;
+	margin-right: 0.2rem;
+}
+
+.shuqian .selected {
+	border: 1px solid #D7142A;
+	color: #D7142A;
+}
+
+.anniu,
+.tian_anniu {
+	width: 100%;
+	display: flex;
+}
+
+.anniu p,
+.tian_anniu p {
+	width: 50%;
+	height: 1.05rem;
+	line-height: 1.05rem;
+	text-align: center;
+	font-size: 0.34rem;
+
+}
+
+.anniu p:nth-of-type(1),
+.tian_anniu p:nth-of-type(1) {
+	background: #DBDBDB;
+	color: #999999;
+	border-radius: 0 0 0 0.15rem;
+}
+
+.anniu p:nth-of-type(2),
+.tian_anniu p:nth-of-type(2) {
+	background: #D7142A;
+	color: #FFFFFF;
+	border-radius: 0 0 0.15rem 0;
+}
+
+.gong {
+	width: 100%;
+	font-size: 0.32rem;
+	color: #B79476;
+	padding: 0.3rem 0 0 0.4rem;
+	box-sizing: border-box;
+	background: white;
+}
+
+.mulu {
+	width: 100%;
+	padding: 0 0.4rem;
+	box-sizing: border-box;
+	background: white;
+	overflow: hidden;
+}
+
+.mulu li {
+	width: 100%;
+	height: 0.75rem;
+	line-height: 0.75rem;
+	border-bottom: 1px solid #EEEEEE;
+	font-size: 0.26rem;
+	color: #333333;
+}
+
+.mulu li:first-child {
+	margin-top: 0.1rem;
+	/* color: red; */
+}
+
+.mulu_box {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: white;
+	width: 100%;
+	height: 100%;
+}
+
+.tian_dong {
+	width: 5.58rem;
+	height: 3.67rem;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0.964rem;
+	background: white;
+	border-radius: 0.15rem;
+	position: absolute;
+}
+
+.shuqian_name {
+	width: 96%;
+	margin: 0.45rem auto 0;
+}
+
+.shuqian_name span {
+	font-size: 0.26rem;
+	color: #333333;
+	margin-left: 0.1rem;
+}
+
+.shuqian_name input {
+	text-align: center;
+	height: 0.326rem;
+}
+
+.tian_anniu {
+	margin-top: 1.2rem;
+}
+.tan{
+				width: 3rem;
+				height: 1rem;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				background: skyblue;
+				text-align: center;
+				margin: auto;
+				border-radius: 0.2rem;
+				line-height: 1rem;
+				left: 2.25rem;
+				display: none;
+				z-index: 10;
+				/* padding: 0 0.2rem; */
+				/* box-sizing: border-box; */
+				color: white;
+			}

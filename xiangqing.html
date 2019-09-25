@@ -563,12 +563,12 @@
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
-					// console.log(data)
+					console.log(data)
 					var pick = data.data.books_catalog.catalog_list
 					$('.leng').html(data.data.books_catalog.catalog_list.length)
 					var picker = '';
 					$.each(pick, function(i, obj) {
-						picker += '<li>'
+						picker += '<li onclick="mulu_ru('+obj.catalog_id+')">'
 						picker += obj.catalog_name
 						picker += '</li>';
 					})
@@ -594,7 +594,7 @@
 						var pick = data.data.books_mark
 						var picker = '';
 						$.each(pick, function(i, obj) {
-							picker += '<li>'
+							picker += '<li onclick="qian_ru('+obj.catalog_id+')">'
 								picker += '<div class="all_con">'
 									picker += '<img src="img/label.png">'
 									picker += '<div class="name_type">'
@@ -606,7 +606,7 @@
 										picker += '</p>'
 									picker += '</div>'
 								picker += '</div>'
-								picker +='<span>删除书签</span>'
+								picker +='<span onclick="shan_ru('+obj.mark_id+')">删除书签</span>'
 							picker += '</li>';
 						})
 						$('.shuqian').html(picker)
@@ -633,8 +633,15 @@
 						var pick = data.data.books_soul.soul_arr
 						var picker = '';
 						$.each(pick, function(i, obj) {
-							picker += '<li>'
-							picker += '<img src="img/pdf1.png" >'
+							if(obj.soul_type==1){
+								var img='<img src="img/wenben.png" >'
+							}else if(obj.soul_type==2){
+								var img='<img src="img/pdf1.png" >'
+							}else if(obj.soul_type==3){
+								var img='<img src="img/shipin.png" >'
+							}
+							picker += '<li data-wen="'+obj.soul_path+'">'
+							picker += img
 							picker += '<div>'
 							picker += '<p>'
 							picker += obj.soul_name 
@@ -651,8 +658,14 @@
 				}
 			});
 		}
+		var wen = ''
+		$(".jingdu").on('click', 'li', function() {
+			wen = $(this).data('wen')
+			console.log(wen)
+			window.location.href = wen
+		})
 		$('.yuedu').click(function() {
-			window.location.href = "read.html"
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+1
 		})
 		$('.jiaru').click(function(){
 			$.ajax({
@@ -677,6 +690,38 @@
 		})
 		function img_dian(bookid){
 			window.location.href = "xiangqing.html?books_id=" + bookid
+		}
+		
+		function qian_ru(con){
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con
+		}
+		function shan_ru(con){
+			$.ajax({
+				url: url + '/index.php/books/api/del_book_mark_api',
+				data: {
+					books_id: books_list,
+					user_id: 1,
+					mark_id:con
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				success: function(data) {
+					console.log(data)
+					if(data.status==1){
+						// 提示框显示隐藏
+						$('.tan').html('删除成功');
+						$('.tan').css('display', 'block');
+						$('.tan').fadeOut(2000);
+						shuqian();
+					}
+					
+				}
+			});
+			
+			event.stopImmediatePropagation();
+		}
+		function mulu_ru(con){
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con
 		}
 	</script>
 </html>

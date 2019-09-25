@@ -182,7 +182,7 @@
 		</div> -->
 		<div id="app">
 			<ul class="book_box">
-				<li class="book" v-for="(item,index) in list">
+				<li class="book" v-for="(item,index) in list" @click="xiangqing($event)" :data-bookid="item.books_id">
 					<img :src="item.books_img" alt="">
 					<div class="book_rgh">
 						<p>{{item.books_name}}</p>
@@ -190,7 +190,7 @@
 						<p>简介：{{item.books_brief}}</p>
 						<p class="book_bot">
 							<span @click="yichu($event)" :data-books_shelf_id="item.books_shelf_id">移除书架</span>
-							<span>继续阅读</span>
+							<span @click="jixu($event)" :data-bookid="item.books_id">继续阅读</span>
 						</p>
 					</div>
 				</li>
@@ -257,16 +257,20 @@
 							}else{
 								$('.null').hide();
 							}
-						},
-						error: function(xhr, type, errorThrown) {
-					
 						}
 					});
 				},
 				xiangqing: function(e) {
-					var typeid = e.currentTarget.getAttribute("data-typeid")
-					console.log(typeid)
-					window.location.href = "leibie.html?typeid=" + typeid
+					var bookid = e.currentTarget.getAttribute("data-bookid")
+					console.log(bookid)
+					window.location.href = "xiangqing.html?bookid=" + bookid
+					event.stopImmediatePropagation();
+				},
+				jixu:function(e){
+					var bookid = e.currentTarget.getAttribute("data-bookid")
+					console.log(bookid)
+					window.location.href = "read.html?bookid=" + bookid+'&catalog_id='+1
+					event.stopImmediatePropagation();
 				},
 				yichu:function(e){
 					console.log(e)
@@ -294,6 +298,8 @@
 					
 						}
 					});
+					event.stopImmediatePropagation();
+					
 				}
 			}
 		})

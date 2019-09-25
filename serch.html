@@ -357,6 +357,12 @@
 						}
 					});
 				},
+				xiangq:function(e){
+					var bookid = e.currentTarget.getAttribute("data-books_id")
+					console.log(bookid)
+					window.location.href = "xiangqing.html?bookid=" + bookid
+					event.stopImmediatePropagation();
+				},
 				inputFun(e) {
 					var that = this;
 					//e.target 指向了dom元素
