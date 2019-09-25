@@ -27,6 +27,7 @@
 			<div class="read_con">
 
 			</div>
+			<div style="height: 0.1rem;"></div>
 		</div>
 		<div class="mulu_box">
 			<div class="gong">共<span class="gongji"></span>章</div>
@@ -164,6 +165,10 @@
 		if (back) {
 			$('.con_box').css('background', back)
 		}
+		var color = localStorage.color
+		if (color) {
+			$('.con_box').css('color', color)
+		}
 		// 点击设置
 		$('.shezhi').click(function() {
 			$('.shezhi_box').show()
@@ -202,11 +207,19 @@
 				localStorage.setItem('size', '0.34rem');
 			}
 			if (moshi == '关闭') {
-				$('.con_box').css('background', 'rgba(255,255,255,1)')
+				$('.con_box').css({
+					'background': 'rgba(255,255,255,1)',
+					'color':'#666666'
+				})
 				localStorage.setItem('back', 'rgba(255,255,255,1)');
+				localStorage.setItem('color', '#666666');
 			} else if (moshi == '开启') {
-				$('.con_box').css('background', 'rgba(0,0,0,0.5)')
-				localStorage.setItem('back', 'rgba(0,0,0,0.5)');
+				$('.con_box').css({
+					'background':'rgba(30,30,30,0.5)',
+					'color':'#ffffff'
+				})
+				localStorage.setItem('back', 'rgba(30,30,30,0.5)');
+				localStorage.setItem('color', '#ffffff');
 			}
 			$('.shezhi_box').hide()
 			$('.bott li').css('color', '#666666')
@@ -217,11 +230,21 @@
 			$('.bott li').css('color', '#666666')
 			$('.tian_shuqian').hide()
 		})
+		var a=0;
 		// 目录
 		$('.mulu_btn').click(function() {
-			$('.mulu_box').show()
-			$(this).css('color', '#D7142A')
-			$(".mulu").find("li").eq(lie_num).css('color','red')
+			console.log(a)
+			a+=1;
+			if(a%2==0){
+				$('.mulu_box').hide()
+				$(this).css('color', '#666666')
+				$(".mulu").find("li").eq(lie_num).css('color','red')
+			}else{
+				$('.mulu_box').show()
+				$(this).css('color', '#D7142A')
+				$(".mulu").find("li").eq(lie_num).css('color','red')
+			}
+			
 		})
 
 		// 添加书签
