@@ -86,16 +86,19 @@
 				padding: 0.55rem 0;
 				box-sizing: border-box;
 				border-bottom: 1px solid #EEEEEE;
+				justify-content: space-between;
 			}
 
 			.book_box li img {
 				width: 1.63rem;
 				height: 2.29rem;
+				display: block;
 			}
 
 			.book_rgh {
 				margin-left: 0.32rem;
 				height: 2.29rem;
+				width: 4.5rem;
 			}
 
 			.book_rgh p:nth-of-type(1) {
@@ -114,6 +117,10 @@
 				color: #999999;
 				text-align: justify;
 				margin-top: 0.2rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
 			}
 				
 			.null{
@@ -195,7 +202,7 @@
 					data: {
 						type_id: typeid,
 						page_start: that.page,
-						page_end: 4
+						page_end: 5
 					},
 					dataType: 'json', //服务器返回json格式数据
 					success: function(data) {
@@ -228,16 +235,16 @@
 					var that=this;
 					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
 						//加载更多操作
-						that.page += 4;
+						that.page += 5;
 						console.log(that.page)
 						if(that.page<=that.sum_data_num){
 							$.ajax({
-								url: 'http://172.168.30.10:8080/books/index.php/books/api/get_books_list_api',
+								url: that.url+'/index.php/books/api/get_books_list_api',
 								type: "POST",
 								data: {
 									type_id: typeid,
 									page_start: that.page,
-									page_end: 4
+									page_end: 5
 								},
 								dataType: 'json', //服务器返回json格式数据
 								success: function(data) {

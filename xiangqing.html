@@ -126,6 +126,7 @@
 				left: 0;
 				background: white;
 				border-top: 1px solid #DBDBDB;
+				z-index: 10;
 			}
 
 			.bott li {
@@ -204,6 +205,7 @@
 				padding: 0.49rem 0 0 0.4rem;
 				box-sizing: border-box;
 				background: #F8F8F8;
+				margin-bottom: 1rem;
 			}
 
 			.xinshu .xin_tit {
@@ -405,7 +407,7 @@
 				</div>
 				<!-- 新书上架 -->
 				<div class="xinshu">
-					<div class="xin_tit">新上好书 与你共度</div>
+					<div class="xin_tit"></div>
 					<div class="swiper-container xinshang">
 						<div class="swiper-wrapper xin_lun">
 							<!-- <div class="swiper-slide xin_sli">
@@ -421,10 +423,6 @@
 			<div class="mulu_box" style="display: none;">
 				<div class="gong">共<span class="leng"></span>章</div>
 				<ul class="mulu">
-					<!-- <li>第一章：一个乞丐的流窜</li>
-					<li>第一章：一个乞丐的流窜</li>
-					<li>第一章：一个乞丐的流窜</li>
-					<li>第一章：一个乞丐的流窜</li> -->
 				</ul>
 			</div>
 			<!-- 第三页 -->
@@ -432,11 +430,6 @@
 				<div class="jing">精读目录：</div>
 				<ul class="wenjian xiang_box jingdu">
 					<li>
-						<!-- <img src="img/pdf1.png">
-						<div>
-							<p>《长安十二时辰》</p>
-							<p>类型：文章</p>
-						</div> -->
 					</li>
 				</ul>
 			</div>
@@ -445,14 +438,6 @@
 				<!-- <div class="jing">精读目录：</div> -->
 				<ul class="wenjian xiang_box shuqian">
 					<li>
-						<!-- <div class="all_con">
-							<img src="img/label.png">
-							<div class="name_type">
-								<p>《长安十二时辰》</p>
-								<p>类型：文章</p>
-							</div>
-						</div>
-						<span>删除书签</span> -->
 					</li>
 				</ul>
 			</div>
@@ -513,9 +498,11 @@
 				$('.shuqian_box').show();
 			}
 		})
-		var mySwiper = new Swiper('.xinshang', {
-			slidesPerView: 2,
-		})
+		function swiper(){
+			var mySwiper = new Swiper('.xinshang', {
+				slidesPerView: 2,
+			})
+		}
 		// 移除书架要用的
 		var books_shelf_id=''
 		xuanran();
@@ -542,6 +529,11 @@
 					}else if(data.data.books_shelf.is_status==2){
 						$('.jiaru').html('加入书架');
 					}
+					if(data.data.books_other==null){
+						$('.xin_tit').html('')
+					}else{
+						$('.xin_tit').html('新上好书 与你共度')
+					}
 					var pick = data.data.books_other
 					var picker = '';
 					$.each(pick, function(i, obj) {
@@ -556,6 +548,7 @@
 						picker += '</div>'
 					})
 					$('.xin_lun').html(picker)
+					swiper()
 				}
 			});
 		}

@@ -14,6 +14,10 @@
 		<!-- <script type="text/javascript" src="js/pdfobject.js"></script> -->
 		<script type="text/javascript" src="js/pdfobject.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/read.css" />
+		<!-- <script src="build/pdf.js?v=20190218"></script>
+		<script src="build/pdf.js?v=20190218"></script>
+		<script src="web/viewer.js?v=20190218"></script> -->
+		<!-- <link rel="stylesheet" href="web/viewer.css?v=20190218"> -->
 		<title>
 			阅读
 		</title>
@@ -25,7 +29,8 @@
 		<div class="con_box">
 			<div class="zhangjie"></div>
 			<div class="read_con">
-
+				<!-- <a target="_self" href="web/viewer.html?file=0002评传.pdf">查看文件.PDF</a> -->
+				<!-- <iframe src="http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe> -->
 			</div>
 			
 		</div>
@@ -78,6 +83,15 @@
 	</body>
 
 	<script>
+		if(PDFObject.supportsPDFs){
+			console.log(111)
+		        // PDF嵌入到网页
+				var a="http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
+		        PDFObject.embed(a, ".read_con" );
+		    } else {
+		        console.log(222)
+				// location.href = "read.html";
+		    }
 		// window.onload = function() {
 		// var success = new PDFObject({
 		// 	url: "http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
@@ -116,11 +130,11 @@
 					console.log(data)
 					$('.zhangjie').html(data.data.now_catalog.catalog_name)
 					$('.read_con').html(data.data.now_catalog.content)
-					if (data.data.now_catalog.content == null) {
-						$('.read_con').html('<iframe src="' + data.data.now_catalog.file_url +
-							'" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe>')
+					// if (data.data.now_catalog.content == null) {
+					// 	$('.read_con').html('<iframe src="' + data.data.now_catalog.file_url +
+					// 		'" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe>')
 
-					}
+					// }
 					$('.gongji').html(data.data.catalog_list.length)
 					var pick = data.data.catalog_list
 					var picker = '';
