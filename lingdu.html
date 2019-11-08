@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			html, body {
+			    background: white;
+			}
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+			.book_box {
+				width: 100%;
+				padding: 0 0.4rem 0 0.4rem;
+				box-sizing: border-box;
+				border-bottom: 1px solid #EEEEEE;
+				background: #F8F8F8;
+			}
+			
+			.book_box li {
+				width: 6.7rem;
+				height: 3.39rem;
+				margin: auto;
+				display: flex;
+				padding: 0.55rem 0;
+				box-sizing: border-box;
+				
+			}
+			
+			.book_box li img {
+				width: 1.63rem;
+				height: 2.29rem;
+				display: block;
+			}
+			
+			.book_rgh {
+				margin-left: 0.32rem;
+				height: 2.29rem;
+				width:4.5rem;
+			}
+			
+			.book_rgh p:nth-of-type(1) {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+			
+			.book_rgh p:nth-of-type(2) {
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+			
+			.book_rgh p:nth-of-type(3) {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: justify;
+				margin-top: 0.2rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+				letter-spacing: 0.015rem;
+			}
+			.lingdu{
+				width: 6.7rem;
+				margin: auto;
+				font-size: 0.26rem;
+				color: #333333;
+				margin-top: 0.4rem;
+				display: flex;
+				justify-content: space-between;
+			}
+			.jianjie{
+				width: 6.7rem;
+				margin: auto;
+				border-top: 1px solid #EEEEEE;
+				margin-top: 0.2rem;
+			}
+			.jianjie .jian_top{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 0.35rem;
+			}
+			.jianjie .jian_top .jian_left{
+				display: flex;
+				align-items: center;
+				
+			}
+			.jianjie .jian_top .jian_left img{
+				width: 0.7rem;
+				height: 0.7rem;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+			.jianjie .jian_top .jian_left span{
+				font-size: 0.24rem;
+				color: #333333;
+				margin-left: 0.3rem;
+			}
+			.jian_right{
+				font-size: 0.22rem;
+				color: #999999;
+			}
+			.jian_con{
+				width: 100%;
+				font-size: 0.22rem;
+				color: #333333;
+				margin-top: 0.23rem;
+			}
+			.shengyu{
+				width: 100%;
+				text-align: center;
+				font-size: 0.26rem;
+				color: #666666;
+				margin-top: 0.42rem;
+			}
+			.shengyu span{
+				color: #000000;
+			}
+			.xian{
+				width: 100%;
+				height: 0.15rem;
+				background: #F8F8F8;
+				margin-top: 0.4rem;
+			}
+			.chengyuan{
+				width: 6.7rem;
+				margin: 0.19rem auto 1rem;
+				display: flex;
+				/* justify-content: space-between; */
+				border-top: 1px solid #EEEEEE;
+				flex-wrap: wrap;
+			}
+			.chengyuan li{
+				width: 25%;
+				text-align: center;
+				font-size: 0.26rem;
+				color: #333333;
+				margin-top: 0.355rem;
+			}
+			.chengyuan li img{
+				width: 1.24rem;
+				height: 1.24rem;
+				object-fit: cover;
+			}
+			.chengyuan li p{
+				margin-top: 0.18rem;
+			}
+			button{
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				text-align: center;
+				border: none;
+				background: #D7142A;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>领读</span>
+				<span></span>
+			</div>
+			<ul class="book_box">
+				<li class="book">
+					<img :src="lead.lead_books_img" alt="">
+					<div class="book_rgh">
+						<p>{{lead.lead_books_name}}</p>
+						<p>作者：{{lead.lead_books_author}}</p>
+						<p>简介：{{lead.lead_books_brief}}</p>
+					</div>
+				</li>
+			</ul>
+			<div class="lingdu">领读人：</div>
+			<div class="jianjie">
+				<div class="jian_top">
+					<div class="jian_left">
+						<img :src="lead.lead_user_head_img"  @click="zhuye(lead.lead_user_id)">
+						<span>{{lead.lead_user_name}}</span>
+					</div>
+					<div class="jian_right">{{lead.lead_time_val}}</div>
+				</div>
+				<div class="jian_con">
+					{{lead.lead_reason}}
+				</div>
+				<div class="shengyu">加入共读剩余时间：<span>{{lead.lead_join_end_time}}</span> 天</div>
+			</div>
+			<div class="xian"></div>
+			<div class="lingdu"><span>共读成员：</span><span style="font-size: 0.24rem;color: #4A90E2;" class="chakan" @click="chakan()">查看全部</span></div>
+			<ul class="chengyuan">
+				<li v-for="(item,index) in join_lead_user_list">
+					<img :src="item.user_head_img" style="border-radius: 50px;" @click="zhuye(item.user_id)">
+					<p>{{item.user_name}}</p>
+				</li>
+			</ul>
+			<button v-if="lead.is_lead_follow==2" @click="canyu()">参与共读</button>
+			<button v-if="lead.is_lead_follow==1" @click="jixu()">继续共读</button>
+			<div class="tan_box">
+				<div class="tan"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var browserRule = /^.*((iPhone)|(iPad)|(Safari))+.*$/;
+		if (browserRule.test(navigator.userAgent)) {
+			window.addEventListener('pageshow', function(e) {
+				if (e.persisted) {
+					window.location.reload()
+				}
+			})
+		}
+		var TYPE_NAVIGATE = 0, // 当前页面是通过点击链接，书签和表单提交，或者脚本操作，或者在url中直接输入地址，type值为0
+			TYPE_RELOAD = 1, // 点击刷新页面按钮或者通过Location.reload()方法显示的页面，type值为1
+			TYPE_BACK_FORWARD = 2, // 页面通过历史记录和前进后退访问时。type值为2
+			TYPE_RESERVED = 255; // 任何其他方式，type值为255
+		window.addEventListener('pageshow', (e) => {
+			if (e.persisted || (window.performance &&window.performance.navigation.type == TYPE_BACK_FORWARD)) {
+				location.reload()
+			}
+		}, false)
+		
+		var lead_id = ''
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				lead_id = parameter_arr_new[0];
+			}
+		}
+		
+		geturl()
+		var app = new Vue({
+			el: '#app',
+			data: {
+				lead_id: lead_id,
+				lead: {},
+				url:localStorage.url,
+				join_lead_user_list:[],
+				books_id:''
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				that.xuanran();
+			},
+			methods: {
+				xuanran(){
+					var that=this;
+					$.ajax({
+						url: that.url+'/index.php/books/api/lead_details',
+						type: "POST",
+						data: {
+							lead_id: lead_id,
+							company_identity: company_identity,
+							user_id:user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							
+							if(data.status==2){
+								$('.null').show();
+							}else if(data.status==1){
+								that.lead=data.data
+								that.books_id=data.data.lead_books_id
+								if(data.data.join_lead_user_list==''){
+									$('.chengyuan').html('<p style="fontSize:0.22rem;color:#777;text-align:center;width:100%;margin-top:0.1rem;">暂无共读成员</p>')
+								}else{
+									that.join_lead_user_list=data.data.join_lead_user_list
+								}
+							}else if(data.status==333){
+							window.location.href="no_power.html"
+						}
+							
+						}
+					});
+				},
+				chakan() {
+					window.location.href="gong_per.html?lead_id="+lead_id
+				},
+				zhuye(con){
+					// console.log(con)
+					window.location.href = "zhuye.html?now_user_id=" + con
+				},
+				jixu(){
+					var that=this;
+					window.location.href="read.html?books_id="+that.books_id+'&zhangie='+0+'&lead_id='+lead_id+'&is_source='+2
+					
+				},
+				canyu(){
+					var that=this;
+					$.ajax({
+						url: that.url+'/index.php/books/api/join_lead',
+						type: "POST",
+						data: {
+							lead_id: lead_id,
+							company_identity: company_identity,
+							user_id:user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							that.xuanran();
+						}
+					});
+				}
+			}
+		})
+	</script>
+</html>

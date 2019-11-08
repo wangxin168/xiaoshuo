@@ -9,16 +9,21 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/swiper-4.3.3.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.3.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/box.css" />
 		<title>
 
 		</title>
 		<style type="text/css">
+			html,
+			body {
+				background: white;
+			}
+
 			.footer {
 				width: 100%;
 				height: 0.96rem;
@@ -29,7 +34,7 @@
 				right: 0;
 				z-index: 100;
 			}
-			
+
 			.footer nav {
 				display: -webkit-box;
 				display: -ms-flexbox;
@@ -39,25 +44,79 @@
 				text-align: center;
 				margin-top: 0.1rem;
 			}
-			
+
 			.footer nav a {
 				text-decoration: none;
 			}
-			
+
 			.footer nav p {
 				font-size: 0.22rem;
 				color: #666666;
 				margin-top: 0.1rem;
 			}
-			
+
 			.footer .icon {
 				width: 0.44rem;
 				height: 0.44rem;
 			}
-			
+
 			.footer .select-btn p {
 				font-size: 0.22rem;
 				color: #D7142A;
+			}
+
+			.wenzhang_more {
+				width: 1.98rem;
+				height: 0.46rem;
+				border: 1px solid #D7142A;
+				font-size: 0.24rem;
+				color: #D7142A;
+				text-align: center;
+				line-height: 0.46rem;
+				border-radius: 0.5rem;
+				margin: 0.2rem auto;
+			}
+
+			.lingdu_box_con {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin: 0.4rem auto 0;
+			}
+
+			.lingdu_box_con div {
+				width: 1.98rem;
+				height: 0.46rem;
+				border: 1px solid #D7142A;
+				font-size: 0.24rem;
+				color: #D7142A;
+				text-align: center;
+				line-height: 0.46rem;
+				border-radius: 0.5rem;
+
+			}
+
+			.null {
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+
+			.null img {
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+
+			.null p {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+
+			.con_fllow {
+				margin-bottom: 1rem;
 			}
 		</style>
 	</head>
@@ -74,95 +133,48 @@
 			</div>
 			<div v-if="yeshu==0" class="one">
 				<!-- 顶部书本 -->
-				<div class="swiper-container shuben dingbu_shu">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
+				<div class="swiper-container shuben dingbu_shu" id='dingbu_shu'>
+					<div class="swiper-wrapper ding_shu_box">
+
 					</div>
 				</div>
 				<!-- 灰色 -->
 				<div class="huise"></div>
-				<div class="wenzhang">
-					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
-					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
-					<img src="img/位图2.png" alt="" class="wen_img">
-					<div class="bott">
-						<div class="left">
-							<img src="img/jinrong.png" alt="">
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
-						</div>
-						<div class="right">
-							<img src="img/dianzan.png" class="dianzan">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
-							<img src="img/31pinglun.png" alt="" class="xinxi">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
-						</div>
-					</div>
+				<div class="wenzhang_box">
+
+				</div>
+				<div class="wenzhang_more">
+					查看更多文章
 				</div>
 				<!-- 新书上架 -->
 				<div class="xinshu">
 					<div class="xin_tit">新上好书 与你共度</div>
 					<div class="swiper-container xinshang xinshu_jia">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
+						<div class="swiper-wrapper zuixin_box">
+
 						</div>
 					</div>
 				</div>
 				<!-- 书籍简介 -->
 				<div class="book_jian">
 					<div class="book">
-						<img src="img/4.png" alt="">
+						<img src="img/4.png" alt="" class="book_img">
 						<div class="book_rgh">
-							<p>《长安十二时辰》（上）</p>
-							<p>作者：马伯庸</p>
-							<p>领读人：李渊</p>
+							<p class="book_title_con">《长安十二时辰》（上）</p>
+							<p class="book_zuozhe_con">作者：马伯庸</p>
+							<p class="book_lingduren">领读人：李渊</p>
 						</div>
-
 					</div>
 					<div class="book_bot">
 						拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……
+					</div>
+					<div class="lingdu_box_con">
+						<div class="lingdu_xiang">
+							查看领读详情
+						</div>
+						<div class="lingdu_more">
+							查看更多领读
+						</div>
 					</div>
 				</div>
 				<!-- 灰色 -->
@@ -171,153 +183,32 @@
 				<div class="xinshu">
 					<div class="xin_tit">最热书籍 大家在读</div>
 					<div class="swiper-container xinshang xinshang_er">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide xin_sli">
-								<img src="img/3.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
+						<div class="swiper-wrapper zuixin_con">
+
 						</div>
 					</div>
 				</div>
 				<div class="lingdu">
-					<div class="ling_tit">新上好书 与你共度</div>
+					<div class="ling_tit">优秀领读人 加入一起学习</div>
 					<div class="swiper-container ling_box lingdu_shu">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
-							<div class="swiper-slide ling_sli">
-								<img src="img/jinrong.png" alt="">
-								<p>谈股论经</p>
-								<p>陆一</p>
-							</div>
+						<div class="swiper-wrapper lingdu_con_box">
+
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<div v-if="yeshu==1"  class="two" style="display: none;">
+			<div v-if="yeshu==1" class="two" style="display: none;">
 				<!-- 顶部书本 -->
 				<div class="swiper-container shuben shuben_box">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
-						<div class="swiper-slide shuben_sli">
-							<img src="img/jinrong.png" alt="">
-							<p>谈股论经</p>
-						</div>
+					<div class="swiper-wrapper fllow_shu">
+
 					</div>
 				</div>
 				<!-- 灰色 -->
 				<div class="huise"></div>
-				<div class="wenzhang">
-					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
-					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
-					<img src="img/位图2.png" alt="" class="wen_img">
-					<div class="bott">
-						<div class="left">
-							<img src="img/jinrong.png" alt="">
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
-						</div>
-						<div class="right">
-							<img src="img/dianzan.png" class="dianzan">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
-							<img src="img/31pinglun.png" alt="" class="xinxi">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
-						</div>
-					</div>
-				</div>
-				<!-- 灰色 -->
-				<div class="huise"></div>
-				<!-- 书籍简介 -->
-				<div class="book_jian">
-					<div class="book">
-						<img src="img/4.png" alt="">
-						<div class="book_rgh">
-							<p>《长安十二时辰》（上）</p>
-							<p>作者：马伯庸</p>
-							<p>领读人：李渊</p>
-						</div>
-					</div>
-					<div class="book_bot">
-						拯救长安的全部希望，只有一个即将被斩首的独眼死囚和短短的十二个时辰……
-					</div>
-				</div>
-				<!-- 灰色 -->
-				<div class="huise"></div>
-				<div class="wenzhang" style="margin-bottom: 1rem;">
-					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
-					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
-					<img src="img/位图2.png" alt="" class="wen_img">
-					<div class="bott">
-						<div class="left">
-							<img src="img/jinrong.png" alt="">
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
-						</div>
-						<div class="right">
-							<img src="img/dianzan.png" class="dianzan">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
-							<img src="img/31pinglun.png" alt="" class="xinxi">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
-						</div>
-					</div>
+				<div class="con_fllow">
+
 				</div>
 			</div>
 			<!--尾部 -->
@@ -325,7 +216,7 @@
 				<nav>
 					<a href="index.html" class="select-btn">
 						<img src="img/shouye_yes.png" alt="" class="icon" />
-						<p>首页</p>
+						<p>阅览</p>
 					</a>
 					<a href="list.html">
 						<img src="img/fenlei_no.png" alt="" class="icon" />
@@ -341,71 +232,464 @@
 					</a>
 				</nav>
 			</footer>
+			<div class="null">
+				<img src="img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
 		</div>
 	</body>
 	<script>
 		localStorage.setItem("url", "http://flydev.yuanchuangyuan.com");
-		// 首页轮播
 		var url = localStorage.url
-		$(document).ready(function(){
-			var mySwiper = new Swiper('.dingbu_shu', {
-				slidesPerView: 3,
-			})
-			var mySwiper = new Swiper('.xinshu_jia', {
-				slidesPerView: 2,
-			})
-			var mySwiper = new Swiper('.xinshang_er', {
-				slidesPerView: 3,
-			})
-			var mySwiper = new Swiper('.lingdu_shu', {
-				slidesPerView: 3,
-			})
-			var mySwiper = new Swiper('.shuben_box', {
-				slidesPerView: 3,
-			})
-			$('.swiper-tab-list').on('click', function() {
-				if ($(this).hasClass('selected')) {
-					return false
-				} else {
-					$(this)
-						.siblings()
-						.removeClass('selected')
-						.end()
-						.addClass('selected')
-					var tabName = $(this).text()
-					if (tabName == '推荐') {
-						$('.one').show();
-						$('.two').hide();
-						
-					} else if (tabName == '关注') {
-						$('.one').hide();
-						$('.two').show();
-					}
-					// return alert('切换至：' + type)
-					// list1();
+		// 首页轮播
+		var tabName = ''
+		var lead_id = ''
+		var company = ''
+
+		var uo = ''
+		var un = ''
+		// var user_id=''
+
+		var user_id = localStorage.user_id
+		var company_identity = localStorage.company_identity
+		if (user_id == null) {
+			console.log(company_identity)
+			getUrlArgStr();
+			// return;
+			window.location.href = "kong.html?uo=" + uo + '&un=' + un + '&company_identity=' + company
+		} else {
+			xuanran()
+		}
+
+		//获取页面参数
+		function getUrlArgStr() {
+			var q = window.location.search.substr(1);
+			var qs = q.split('&');
+			// console.log(qs)
+			var argStr = [];
+			if (qs) {
+				for (var i = 0; i < qs.length; i++) {
+					argStr.push(qs[i].substring(qs[i].indexOf('=') + 1));
 				}
-			})
+				company = argStr[0];
+				uo = argStr[1];
+				un = argStr[2];
+				localStorage.setItem("company_identity", argStr[0]);
+			}
+			return argStr;
+		}
+
+
+
+		function xuanran() {
+			// 推荐渲染
+			$.ajax(url + '/index.php/books/api/index_api', {
+				data: {
+					company_identity: company_identity,
+					user_id: user_id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post',
+				success: function(data) {
+					console.log(data)
+					// 推荐
+					if (data.status == 333) {
+						// window.location.href="no_power.html"
+					} else {
+						if (data.data.recommend_list != '' && data.data != null) {
+							var pick = data.data.recommend_list
+							var picker = '';
+							$.each(pick, function(i, obj) {
+								// console.log(obj.is_type)
+								if (obj.is_type == 1) {
+									var tuijian_con = '感悟'
+									var tuijian_img = 'img/tuijian1.png'
+								} else if (obj.is_type == 2) {
+									var tuijian_con = '书评'
+									var tuijian_img = 'img/tuijian2.png'
+								} else if (obj.is_type == 3) {
+									var tuijian_con = '书单'
+									var tuijian_img = 'img/tuijian3.png'
+								} else if (obj.is_type == 4) {
+									var tuijian_con = '领读人'
+									var tuijian_img = 'img/tuijian4.png'
+								} else if (obj.is_type == 5) {
+									var tuijian_con = '领读'
+									var tuijian_img = 'img/tuijian3.png'
+								} else if (obj.is_type == 6) {
+									var tuijian_con = '书籍'
+									var tuijian_img = 'img/tuijian4.png'
+								}
+								picker += '<div class="swiper-slide shuben_sli" onclick="xiang_type(' + obj.is_type + ',' + obj.recommend_id +
+									')">'
+								picker += '<img src="' + tuijian_img + '" alt="">'
+								picker += '<p>'
+								picker += tuijian_con
+								picker += '</p>'
+								picker += '</div>'
+							})
+							$('.ding_shu_box').html(picker);
+							var mySwiper = new Swiper('#dingbu_shu', {
+								slidesPerView: 4,
+							})
+						} else {
+							$('.ding_shu_box').html('暂无数据');
+						}
+
+						// 文章
+						// console.log(data.data.article_list)
+						if (data.data.article_list != '' && data.data != null) {
+							var wenzhang = data.data.article_list
+							var wenzhanger = '';
+							// var article_id = '';
+							$.each(wenzhang, function(i, obj) {
+								// console.log(obj)
+								// console.log(obj.is_type)
+								// article_id = obj.article_id
+								wenzhanger += '<div class="wenzhang" onclick="wenzhang(' + obj.article_id + ')">'
+								wenzhanger += '<div class="title">'
+								wenzhanger += obj.article_title
+								wenzhanger += '</div>'
+								wenzhanger += '<div class="con_tit">'
+								wenzhanger += obj.article_intro
+								wenzhanger += '</div>'
+								wenzhanger += '<img src="' + obj.article_img + '" alt="" class="wen_img">'
+								wenzhanger += '<div class="bott">'
+								wenzhanger += '<div class="left">'
+								wenzhanger += '<img src="' + obj.user_head_img + '" alt="">'
+								wenzhanger += '<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">'
+								wenzhanger += obj.user_name
+								wenzhanger += '</span>'
+								wenzhanger += '<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">'
+								wenzhanger += obj.article_books_num_val
+								wenzhanger += '</span>'
+								wenzhanger += '</div>'
+								wenzhanger += '<div class="right">'
+								wenzhanger += '<img src="img/dianzan.png" class="dianzan">'
+								wenzhanger += '<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">'
+								wenzhanger += obj.article_comment
+								wenzhanger += '</span>'
+								wenzhanger += '<img src="img/31pinglun.png" alt="" class="xinxi">'
+								wenzhanger += '<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">'
+								wenzhanger += obj.article_like
+								wenzhanger += '</span>'
+								wenzhanger += '</div>'
+								wenzhanger += '</div>'
+								wenzhanger += '</div>'
+
+							})
+							$('.wenzhang_box').html(wenzhanger);
+
+						} else {
+							$('.wenzhang_box').html('暂无数据');
+						}
+
+						// 最新
+						if (data.data.new_books_list != '' && data.data != null) {
+							var zuixin = data.data.new_books_list
+							var zuixin_er = '';
+							$.each(zuixin, function(i, obj) {
+								zuixin_er += '<div class="swiper-slide xin_sli" onclick="shuji(' + obj.books_id + ')">'
+								zuixin_er += '<img src="' + obj.books_img + '" alt="">'
+								zuixin_er += '<p>'
+								zuixin_er += obj.books_name
+								zuixin_er += '</p>'
+								zuixin_er += '<p>'
+								zuixin_er += obj.books_author
+								zuixin_er += '</p>'
+								zuixin_er += '</div>'
+							})
+							$('.zuixin_box').html(zuixin_er);
+							var mySwiper = new Swiper('.xinshu_jia', {
+								slidesPerView: 2,
+							})
+						} else {
+							$('.zuixin_box').html('暂无数据');
+						}
+						console.log(data.data.lead_list)
+						// 领读
+						if (data.data.lead_list != '' && data.data != null) {
+							lead_id = data.data.lead_list[0].lead_id
+							$('.book_img').attr('src', data.data.lead_list[0].books_img);
+							$('.book_title_con').html(data.data.lead_list[0].books_name)
+							$('.book_zuozhe_con').html('作者：' + '<span class="shense">'+data.data.lead_list[0].books_author+'</span>')
+							$('.book_lingduren').html('领读人：' + data.data.lead_list[0].lead_name)
+							$('.book_bot').html('领读人' + data.data.lead_list[0].lead_reason)
+						} else {
+							$('.book_jian').hide();
+						}
+
+						// 最热
+						if (data.data.hot_books_list != '' && data.data != null) {
+							var zuire = data.data.hot_books_list
+							var zuireer = '';
+							$.each(zuire, function(i, obj) {
+								zuireer += '<div class="swiper-slide xin_sli" onclick="shuji(' + obj.books_id + ')">'
+								zuireer += '<img src="' + obj.books_img + '" alt="">'
+								zuireer += '<p>'
+								zuireer += obj.books_name
+								zuireer += '</p>'
+								zuireer += '<p>'
+								zuireer += obj.books_author
+								zuireer += '</p>'
+								zuireer += '</div>'
+							})
+							$('.zuixin_con').html(zuireer);
+							var mySwiper = new Swiper('.xinshang_er', {
+								slidesPerView: 2,
+							})
+						}
+
+						// 领读人
+						if (data.data.lead_user_list != '' && data.data != null) {
+							var lingdu = data.data.lead_user_list
+							var lingduren = '';
+							$.each(lingdu, function(i, obj) {
+								console.log(obj.is_follow_status)
+								if (obj.is_follow_status == 2) {
+									var guanzhu_con = '关注'
+								} else if (obj.is_follow_status == 1) {
+									var guanzhu_con = '已关注'
+								}
+								lingduren += '<div class="swiper-slide ling_sli" onclick="zhuye(' + obj.user_id + ')">'
+								lingduren += '<img src="' + obj.user_head_img + '" alt="">'
+								lingduren += '<p>'
+								lingduren += obj.user_name
+								lingduren += '</p>'
+								lingduren += '<p>'
+								lingduren += guanzhu_con
+								lingduren += '</p>'
+								lingduren += '</div>'
+							})
+							$('.lingdu_con_box').html(lingduren);
+							var mySwiper = new Swiper('.lingdu_shu', {
+								slidesPerView: 4,
+							})
+						} else {
+							$('.lingdu_con_box').html('暂无数据');
+						}
+
+					}
+
+				}
+			});
+
+		}
+
+		$('.swiper-tab-list').on('click', function() {
+			if ($(this).hasClass('selected')) {
+				return false
+			} else {
+				$(this)
+					.siblings()
+					.removeClass('selected')
+					.end()
+					.addClass('selected')
+				tabName = $(this).text()
+				if (tabName == '推荐') {
+					$('.one').show();
+					$('.two').hide();
+
+				} else if (tabName == '关注') {
+					$('.one').hide();
+					$('.two').show();
+					guanzhu();
+				}
+				// return alert('切换至：' + type)
+				// list1();
+			}
+		})
+		// });
+		// 关注渲染
+		var page_start = 0
+		var sum_data_num = ''
+
+		function guanzhu() {
+			$.ajax(url + '/index.php/books/api/index_follow_api', {
+				data: {
+					company_identity: company_identity,
+					user_id: user_id,
+					pend_page: 5,
+					page_start: page_start
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post',
+				success: function(data) {
+					console.log(data)
+					if (data.status == 2) {
+						$('.null').show();
+					} else if (data.status == 1) {
+						// if (data.data.article_comment_list == null) {
+							// $('.null').show();
+							// $('.two').hide();
+							// $('.fllow_shu').hide()
+						// } else {
+							sum_data_num = data.data.follow_article_list.page.sum_data_num
+							// 领读人
+							if (data.data.follow_list != '') {
+								var pick = data.data.follow_list
+								var picker = '';
+								$.each(pick, function(i, obj) {
+									picker += '<div class="swiper-slide shuben_sli" onclick="zhuye(' + obj.user_id + ')">'
+									picker += '<img src="' + obj.user_head_img + '" alt="">'
+									picker += '<p>'
+									picker += obj.user_name
+									picker += '</p>'
+									picker += '</div>'
+								})
+								$('.fllow_shu').html(picker);
+								var mySwiper = new Swiper('.shuben_box', {
+									slidesPerView: 4,
+								})
+							} else {
+								$('.fllow_shu').html('暂无数据');
+							}
+							// 文章和领读
+							if (data.data.article_and_lead_list != '') {
+								var lead_list = data.data.article_and_lead_list
+								var lead_lister = '';
+								// var article_id = '';
+
+								$.each(lead_list, function(i, obj) {
+									if (obj.is_type == 1) {
+										lead_lister += '<div class="wenzhang" onclick="wenzhang(' + obj.article_id + ')">'
+										lead_lister += '<div class="title">'
+										lead_lister += obj.article_title
+										lead_lister += '</div>'
+										lead_lister += '<div class="con_tit">'
+										lead_lister += obj.article_intro
+										lead_lister += '</div>'
+										lead_lister += '<img src="' + obj.article_img + '" alt="" class="wen_img">'
+										lead_lister += '<div class="bott">'
+										lead_lister += '<div class="left">'
+										lead_lister += '<img src="' + obj.user_head_img + '" alt="">'
+										lead_lister += '<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">'
+										lead_lister += obj.user_name
+										lead_lister += '</span>'
+										lead_lister += '<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">'
+										lead_lister += obj.article_books_num_val
+										lead_lister += '</span>'
+										lead_lister += '</div>'
+										lead_lister += '<div class="right">'
+										lead_lister += '<img src="img/dianzan.png" class="dianzan">'
+										lead_lister += '<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">'
+										lead_lister += obj.article_comment
+										lead_lister += '</span>'
+										lead_lister += '<img src="img/31pinglun.png" alt="" class="xinxi">'
+										lead_lister += '<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">'
+										lead_lister += obj.article_like
+										lead_lister += '</span>'
+										lead_lister += '</div>'
+										lead_lister += '</div>'
+										lead_lister += '</div>'
+									} else if (obj.is_type == 2) {
+										lead_lister += '<div class="book_jian" onclick="lingdu(' + obj.lead_id + ')">'
+										lead_lister += '<div class="book">'
+										lead_lister += '<img src="' + obj.books_img + '" alt="">'
+										lead_lister += '<div class="book_rgh">'
+										lead_lister += '<p>'
+										lead_lister += obj.books_name
+										lead_lister += '</p>'
+										lead_lister += '<p>'
+										lead_lister += '作者：' + obj.books_author
+										lead_lister += '</p>'
+										lead_lister += '<p>'
+										lead_lister += '领读人：' + obj.lead_name
+										lead_lister += '</p>'
+										lead_lister += '</div>'
+										lead_lister += '</div>'
+										lead_lister += '<div class="book_bot">'
+										lead_lister += obj.lead_reason
+										lead_lister += '</div>'
+										lead_lister += '</div>'
+										$('.fllow_shu').html(picker);
+									}
+								})
+								$('.con_fllow').append(lead_lister);
+
+							} else {
+								// $('.con_fllow').html('暂无数据');
+							}
+						// }
+					} else if (data.status == 333) {
+						// window.location.href="no_power.html"
+					}
+
+
+				}
+			});
+
+		}
+
+		$(window).scroll(function() {
+			//当时滚动条离底部60px时开始加载下一页的内容
+			if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+				//加载更多操作
+				if (tabName == '关注') {
+
+					page_start += 5;
+					if (page_start <= sum_data_num) {
+						guanzhu();
+					}
+
+				}
+			} else {
+				// console.log('不加载')
+			}
 		});
-		$('.xin_sli').click(function(){
+
+		$('.shuben_sli').click(function() {
 			window.location.href = "xiangqing.html?books_id=" + 4
 		})
-		// var app = new Vue({
-		// 	el: '#app',
-		// 	data: {
-		// 		navtab: ["推荐", "关注"],
-		// 		yeshu: 0
-		// 	},
-		// 	created: function() {
-		// 		var that = this;
-		// 	
-		// 	},
-		// 	mounted() {
-		// 		
-		// 		
-		// 	},
-		// 	methods: {
-		// 		
-		// 	}
-		// })
+
+		function shuji(con) {
+			console.log(con)
+			window.location.href = "xiangqing.html?books_id=" + con
+		}
+		$('.ling_sli').click(function() {
+			window.location.href = "xiangqing.html?books_id=" + 4
+		})
+		$('.wenzhang_more').click(function() {
+			window.location.href = "more_shuping.html"
+		})
+		$('.lingdu_more').click(function() {
+			window.location.href = "more_lingdu.html"
+			event.stopImmediatePropagation();
+		})
+		$('.fabiao').click(function() {
+			window.location.href = "xieshuping.html?is_source=" + 1 + '&lead_id=' + '' + '&num_id=' + 1
+		})
+		$('.lingdu_xiang').click(function() {
+			window.location.href = "lingdu.html?lead_id=" + lead_id
+		})
+		$('.book_jian').click(function() {
+			window.location.href = "lingdu.html?lead_id=" + lead_id
+		})
+
+		function lingdu(con) {
+			window.location.href = "lingdu.html?lead_id=" + con
+		}
+
+		function wenzhang(con) {
+			window.location.href = "shuping_news.html?article_id=" + con
+		}
+
+		function zhuye(con) {
+			window.location.href = "zhuye.html?now_user_id=" + con
+		}
+
+		function xiang_type(con, con2) {
+			console.log(con)
+			console.log(con2)
+			if (con == 1 || con == 2 || con == 3) {
+				window.location.href = "shuping_news.html?article_id=" + con2
+			} else if (con == 4) {
+				window.location.href = "zhuye.html?now_user_id=" + con2
+			} else if (con == 5) {
+				window.location.href = "lingdu.html?lead_id=" + con2
+			} else if (con == 6) {
+				window.location.href = "xiangqing.html?books_id=" + con2
+			}
+		}
 	</script>
 </html>

@@ -12,7 +12,9 @@
 	font-size: 0.34rem;
 	color: #999999;
 }
-
+.shuben_sli img{
+	border-radius: 50%;
+}
 /* .swiper-tab-list:nth-of-type(1) {
 	color: #333333;
 	border-bottom: 2px solid #333333;
@@ -46,7 +48,7 @@
 }
 
 .fabiao {
-	font-size: 0.26rem;
+	font-size: 0.3rem;
 	color: #8B572A;
 }
 
@@ -86,9 +88,11 @@
 }
 
 .wenzhang {
-	width: 100%;
-	padding: 0.36rem 0.4rem;
+	width: 6.7rem;
+	padding: 0.36rem 0;
 	box-sizing: border-box;
+	margin: auto;
+	border-bottom: 1px solid #EEEEEE;
 }
 
 .wenzhang .title {
@@ -106,6 +110,8 @@
 	width: 6.7rem;
 	height: 2.28rem;
 	margin-top: 0.17rem;
+	object-fit: cover;
+	border-radius: 0.06rem;
 }
 
 .bott {
@@ -122,6 +128,8 @@
 .bott .left img {
 	width: 0.52rem;
 	height: 0.52rem;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .right {
@@ -157,12 +165,15 @@
 .xinshu .xin_tit {
 	font-size: 0.32rem;
 	color: #333333;
+	font-weight: bold;
 }
 
 .xin_sli {
 	width: 2.18rem !important;
+	/* width: 30%; */
 	height: 3.1rem;
-	margin-right: 0.4rem;
+	/* margin-right: 0.4rem; */
+	margin-right: 0.15rem;
 	background: white;
 	text-align: center;
 }
@@ -197,6 +208,7 @@
 .lingdu .ling_tit {
 	font-size: 0.32rem;
 	color: #333333;
+	font-weight: bold;
 }
 
 .ling_box {
@@ -214,12 +226,16 @@
 .ling_sli img {
 	height: 1.24rem;
 	width: 1.24rem;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .ling_sli p:nth-of-type(1) {
 	font-size: 0.26rem;
 	color: #333333;
 	text-align: center;
+	    overflow: hidden;
+	    height: 0.3rem;
 	margin-top: 0.1rem;
 }
 
@@ -231,6 +247,8 @@
 	color: #D7142A;
 	text-align: center;
 	margin: 0.18rem auto 0;
+	line-height: 0.37rem;
+	border-radius: 0.05rem;
 }
 
 .book_jian {
@@ -256,6 +274,10 @@
 .book .book_rgh p:nth-of-type(1) {
 	font-size: 0.32rem;
 	color: #333333;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .book .book_rgh p:nth-of-type(2) {

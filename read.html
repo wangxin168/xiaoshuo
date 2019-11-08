@@ -9,30 +9,49 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-		<!-- <script type="text/javascript" src="js/pdfobject.js"></script> -->
-		<script type="text/javascript" src="js/pdfobject.min.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/read.css" />
-		<!-- <script src="build/pdf.js?v=20190218"></script>
-		<script src="build/pdf.js?v=20190218"></script>
-		<script src="web/viewer.js?v=20190218"></script> -->
-		<!-- <link rel="stylesheet" href="web/viewer.css?v=20190218"> -->
-		<title>
-			阅读
-		</title>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<script src="build/pdf.js"></script>
+		<style type="text/css">
+			.toolbarButton#secondaryToolbarToggle::before {
+				display: none!important;
+			}
+		</style>
 	</head>
-	<body>
-		<!-- <div class="fenlei">
-			阅读
-		</div> -->
-		<div class="con_box">
+	<body style="overflow: auto;">
+		<div class="fenlei">
+			<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+			<span>阅读</span>
+			<span></span>
+		</div>
+		<div class="per_read">
+			<div class="per_top">
+				<div>
+					<ul class="tu_list">
+						<li><img src="img/tuijian1.png" ></li>
+						<li><img src="img/tuijian1.png" ></li>
+						<li><img src="img/tuijian1.png" ></li>
+						<li><img src="img/tuijian1.png" ></li>
+					</ul>
+					<div style="margin-left: 0.15rem;">共<span class="ren_num"></span>个人共读</div>
+				</div>
+				<p class="chakan">查看全部</p>
+			</div>
+			<div class="per_bott">
+				<div>成员共发表了<span class="pian"></span>篇共读文章</div>
+				<p class="more_gongdu">查看所有共读文章</p>
+			</div>
+		</div>
+		<div class="con_box" style="margin-top: 1rem;">
 			<div class="zhangjie"></div>
 			<div class="read_con">
 				<!-- <a target="_self" href="web/viewer.html?file=0002评传.pdf">查看文件.PDF</a> -->
 				<!-- <iframe src="http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe> -->
+				<!-- <a href="web/viewer.html?file=111.pdf">Open</a> -->
 			</div>
-			
+
 		</div>
 		<div style="height: 0.1rem;"></div>
 		<div class="mulu_box">
@@ -44,11 +63,13 @@
 			<div class="shezhi_con">
 				<p>设置</p>
 				<div class="shuqian shuqian_box">
-					<span>书签名称：</span>
-					<div>小</div>
-					<div class="selected">中</div>
-					<div>大</div>
+					<span>字体大小：</span>
+					<p class="contents">
+						<span class="xian"></span>
+						<span class="comments"></span>
+					</p>
 				</div>
+				
 				<div class="shuqian moshi">
 					<span>夜间模式：</span>
 					<div>开启</div>
@@ -79,28 +100,87 @@
 			<li class="add_shu">添加书签</li>
 			<li class="shezhi">设置</li>
 		</ul>
-		<div class="tan"></div>
+		<div class="tan_box">
+			<div class="tan"></div>
+		</div>
 	</body>
+	<script type="text/javascript">
+		// $(function(){
+			
+			var left_con=''
+			var company_identity = localStorage.company_identity
+			var user_id = localStorage.user_id
+			var contW = $(".comments").width();
+			var contH = $(".comments").height();
+			var startX, startY, sX, sY, moveX, moveY;
+			var winH = $(".contents").height();
+			var winW = $(".contents").width();
+			var headers = $(".headers").height();
+			var paddleft=parseInt($(".contents").css("padding-left"));
+			$(".comments").on({ //绑定事件
+				touchstart: function(e) {
+					startX = e.originalEvent.targetTouches[0].pageX; //获取点击点的X坐标    
+					startY = e.originalEvent.targetTouches[0].pageY; //获取点击点的Y坐标
+					sX = $(this).position().left; //相对于当前窗口X轴的偏移量
+					sY = $(this).offset().top; //相对于当前窗口Y轴的偏移量
+					leftX = startX - sX; //鼠标所能移动的最左端是当前鼠标距div左边距的位置
+					rightX = winW - contW + leftX; //鼠标所能移动的最右端是当前窗口距离减去鼠标距div最右端位置
+					topY = startY - sY; //鼠标所能移动最上端是当前鼠标距div上边距的位置
+					bottomY = winH - contH + topY; //鼠标所能移动最下端是当前窗口距离减去鼠标距div最下端位置
+				},
+				touchmove: function(e) {
+					e.preventDefault();
+					//移动过程中XY轴的坐标要减去margin的距离
+					moveX = e.originalEvent.targetTouches[0].pageX; //移动过程中X轴的坐标
+					moveY = e.originalEvent.targetTouches[0].pageY - headers; //移动过程中Y轴的坐标
+					//判断的时候要计算加上padding的距离
+					if(moveX < leftX+paddleft) {
+						moveX = leftX+paddleft;
+					}
+					if(moveX > rightX+paddleft) {
+						moveX = rightX+paddleft;
+					}
+					if(moveY < topY) {
+						moveY =  topY ;
+					}
+					if(moveY > bottomY) {
+						moveY =bottomY;
+					}
+					left_con=moveX + sX - startX
+					$(this).css({
+						"left": moveX + sX - startX,
+						"top": moveY + sY - startY,
+					})
+				},
+			})
+		// })
 
-	<script>
-		if(PDFObject.supportsPDFs){
-			console.log(111)
-		        // PDF嵌入到网页
-				var a="http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
-		        PDFObject.embed(a, ".read_con" );
-		    } else {
-		        console.log(222)
-				// location.href = "read.html";
-		    }
+		// if (PDFObject.supportsPDFs) {
+		// 	console.log(111)
+		// 	// PDF嵌入到网页
+		// 	var a = "http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
+		// 	PDFObject.embed(a, ".read_con");
+		// } else {
+		// 	console.log(222)
+		// 	location.href = "read.html";
+		// }
 		// window.onload = function() {
-		// var success = new PDFObject({
-		// 	url: "http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
-		// }).embed('.read_con');
-		// PDFObject.embed("http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf", ".read_con");
+		// 	// var aaa="http://flydev.yuanchuangyuan.com/data/upload/books/book/pdf/2019-09-25/测试PDF/0002评传.pdf"
+		// 	// PDFObject.embed(aaa,".read_con");
+		// 	window.location.href="web/viewer.html?file=111.pdf"
 		// };
 		var url = localStorage.url
 		var books_id = ''
 		var zhangjie = ''
+		var lead_id=''
+		// scrollTop
+		var scrollTop=''
+		// 共读还是普通
+		var is_source=1
+		// 书签有用  scrollTop
+		var scroll=0
+		// 是否是PDF
+		var pdf=1
 		function geturl() {
 			var url_parameter = window.location.search.substr(1);
 			var parameter_arr = url_parameter.split("&");
@@ -109,47 +189,151 @@
 				for (var i = 0; i < parameter_arr.length; i++) {
 					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
 				}
+				// 第一个books_id
 				books_id = parameter_arr_new[0];
-				zhangjie= parameter_arr_new[1];
+				// 第二个章节
+				zhangjie = parameter_arr_new[1];
+				// 第三个lead_id
+				lead_id= parameter_arr_new[2];
+				// 类型
+				is_source=parameter_arr_new[3];
+				if(parameter_arr_new[4]){
+					scrollTop=parameter_arr_new[4];
+				}
 			}
 		}
+		
 		geturl();
+		
+		if(is_source==2){
+			$('.per_read').css('margin-top', '1rem');
+			$('.con_box').css('margin-top', '0');
+		}
+		// 记录
+		$.ajax({
+			url: url + '/index.php/books/api/record_books',
+			data: {
+				books_id: books_id,
+				user_id: user_id,
+				company_identity: company_identity
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'post', //HTTP请求类型
+			success: function(data) {
+				// console.log(data)
+				if(data.status==333){
+					window.location.href="no_power.html"
+				}
+			}
+		});
 		// 第几章  会改变
-
+		var jiayi=0
 		function read() {
 			$.ajax(url + '/index.php/books/api/get_books_catalog_details_api', {
 				data: {
 					books_id: books_id,
-					user_id: 1,
-					catalog_id: zhangjie
+					catalog_id: zhangjie,
+					company_identity: company_identity,
+					user_id:user_id
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
-				timeout: 10000, //超时时间设置为10秒；
 				success: function(data) {
 					console.log(data)
+					if(data.status==1){
+						$.ajax(url+'/index.php/books/api/record_books_rate',{
+							data:{
+								books_id: books_id,
+								catalog_id: zhangjie,
+								company_identity: company_identity,
+								user_id:user_id
+							},
+							dataType:'json',//服务器返回json格式数据
+							type:'post',//HTTP请求类型
+							success:function(res){
+								console.log(res)
+							}
+						});
+					}
+					
 					$('.zhangjie').html(data.data.now_catalog.catalog_name)
 					$('.read_con').html(data.data.now_catalog.content)
-					// if (data.data.now_catalog.content == null) {
-					// 	$('.read_con').html('<iframe src="' + data.data.now_catalog.file_url +
-					// 		'" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe>')
-
-					// }
-					$('.gongji').html(data.data.catalog_list.length)
-					var pick = data.data.catalog_list
-					var picker = '';
-					$.each(pick, function(i, obj) {
-						picker += '<li onclick="zhang(' + obj.catalog_id + ',' + i + ')">'
-						picker += obj.catalog_name
-						picker += '</li>';
-					})
-					$('.mulu').html(picker)
-					$(window).scrollTop(0);
+					if (data.data.now_catalog.content == null) {
+						$('.read_con').html('<iframe src="web/viewer.html?file=我是.pdf" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe>')
+						// $('.read_con').html('<iframe src="'+data.data.now_catalog.file_url+'" width="100%" height="100%">该浏览器无法支持PDF，请点击查看：<a href="PDF地址">下载 PDF</a></iframe>')
+						pdf=2
+					}
+					
+					if(is_source==1){
+						$('.gongji').html(data.data.catalog_list.length)
+						var pick = data.data.catalog_list
+						var picker = '';
+						$.each(pick, function(i, obj) {
+							picker += '<li onclick="zhang(' + obj.catalog_id + ',' + i + ')">'
+							picker += obj.catalog_name
+							picker += '</li>';
+						})
+						$('.mulu').html(picker)
+						$('.per_read').hide()
+						
+					}else{
+						if(is_source==2){
+							xuanran();
+						}
+					}
+					jiayi+=1
+					if(scrollTop&&jiayi==1){
+						$(".con_box").scrollTop(scrollTop)
+					}
+					
 				}
 			});
 		}
 		read();
-
+		
+		
+		// 从继续攻读进来
+		function xuanran(){
+			var that=this;
+			$.ajax({
+				url: that.url+'/index.php/books/api/lead_go_on',
+				type: "POST",
+				data: {
+					lead_id: lead_id,
+					company_identity: company_identity,
+					user_id:user_id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					// 从继续攻读进来
+					if(is_source==2){
+						$('.gongji').html(data.data.books_catalog.catalog_list.length)
+						var pick = data.data.books_catalog.catalog_list
+						var picker = '';
+						$.each(pick, function(i, obj) {
+							picker += '<li onclick="zhang(' + obj.catalog_id + ',' + i + ')">'
+							picker += obj.catalog_name
+							picker += '</li>';
+						})
+						$('.mulu').html(picker)
+						
+						
+						var follow = data.data.details_lead_follow_list
+						var follower = '';
+						$.each(follow, function(i, obj) {
+							follower += '<li>'
+							follower += '<img src="'+obj.user_head_img+'" >'
+							follower += '</li>';
+						})
+						$('.tu_list').html(follower)
+						$('.pian').html(data.data.details_lead_list_sum)
+						$('.ren_num').html(data.data.details_lead_follow_list_sum)
+					}
+				}
+			});
+		}
+		
 		var that = this;
 		// $(window).scroll(function() {
 		// 	//当时滚动条离底部60px时开始加载下一页的内容
@@ -162,19 +346,18 @@
 		// });
 
 		// 点击目录列表
-		var lie_num=''
+		var lie_num = ''
+		var hidd=$('.mulu_box').hide()[0].hidden
 		function zhang(num, id) {
-			console.log(num)
-			console.log(id)
-			$('.mulu_box').css('display','none')
+			// console.log(num)
+			// console.log(id)
+			$('.mulu_box').css('display', 'none')
 			$('.bott li').css('color', '#666666')
 			zhangjie = num
 			read();
-			lie_num=id
-		}
-		var size = localStorage.size
-		if (size) {
-			$('.con_box').css('fontSize', size)
+			lie_num = id
+			$(".con_box").scrollTop(0);
+			hidd=false
 		}
 		var back = localStorage.back
 		if (back) {
@@ -184,18 +367,42 @@
 		if (color) {
 			$('.con_box').css('color', color)
 		}
+		var line = localStorage.line
+		if(line){
+			$('.con_box').css('line-height',line)
+		}
+		var size = localStorage.size
+		var line=localStorage.line
+		var baifen=localStorage.baifen
+		if(size){
+			var left=baifen*100
+			$(".comments").css({
+				"left": baifen+'%',
+			})
+			$('.con_box').css({
+				'fontSize': size+'rem',
+				'line-height':line+'rem'
+			})
+		}
+		
 		// 点击设置
 		$('.shezhi').click(function() {
-			$('.shezhi_box').show()
-			$(this).css('color', '#D7142A')
+			console.log(pdf)
+			if(pdf==1){
+				
+				$('.shezhi_box').show()
+				$(this).css('color', '#D7142A')
+			}else if(pdf==2){
+				$('.tan_box .tan').html('使用上方的加减号进行调解');
+				$('.tan_box').css('display', 'block')
+				$('.tan').css('display', 'block');
+				$('.tan_box').fadeOut(2000);
+			}
+			
 		})
+		
+		
 		// 字体大小
-		var shuqian = '中'
-		$('.shuqian_box>div').click(function() {
-			$('.shuqian_box>div').removeClass('selected')
-			$(this).addClass('selected')
-			shuqian = $(this).html()
-		})
 		// 开关模式
 		var moshi = '关闭'
 		$('.moshi>div').click(function() {
@@ -205,39 +412,40 @@
 		})
 		// 确认
 		$('.queren').click(function() {
-			if (shuqian == '小') {
-				$('.con_box').css({
-					fontSize: '0.2rem'
-				})
-				localStorage.setItem('size', '0.2rem');
-			} else if (shuqian == '中') {
-				$('.con_box').css({
-					fontSize: '0.28rem'
-				})
-				localStorage.setItem('size', '0.28rem');
-			} else if (shuqian == '大') {
-				$('.con_box').css({
-					fontSize: '0.34rem'
-				})
-				localStorage.setItem('size', '0.34rem');
-			}
+			var small=30;
+			var big=58;
+			var num=big-small;
+			
+			var baifen=0.735*left_con;
+			var now=100/num;
+			var px=baifen/now;
+			var size=(px+small)/100
+			var line=((px+small)/100)+0.4
+			localStorage.setItem('size', size);
+			localStorage.setItem('line', line);
+			localStorage.setItem('baifen', baifen);
+			$('.con_box').css({
+				'fontSize': size+'rem',
+				'line-height':line+'rem'
+			})
 			if (moshi == '关闭') {
 				$('.con_box').css({
 					'background': 'rgba(255,255,255,1)',
-					'color':'#666666'
+					'color': '#666666'
 				})
 				localStorage.setItem('back', 'rgba(255,255,255,1)');
 				localStorage.setItem('color', '#666666');
 			} else if (moshi == '开启') {
 				$('.con_box').css({
-					'background':'rgba(30,30,30,0.5)',
-					'color':'#ffffff'
+					'background': 'rgba(30,30,30,0.5)',
+					'color': '#ffffff'
 				})
 				localStorage.setItem('back', 'rgba(30,30,30,0.5)');
 				localStorage.setItem('color', '#ffffff');
 			}
 			$('.shezhi_box').hide()
 			$('.bott li').css('color', '#666666')
+			
 		})
 		// 点击取消
 		$('.qvxiao').click(function() {
@@ -245,21 +453,25 @@
 			$('.bott li').css('color', '#666666')
 			$('.tian_shuqian').hide()
 		})
-		var a=0;
+		var a = 0;
 		// 目录
+		
 		$('.mulu_btn').click(function() {
-			console.log(a)
-			a+=1;
-			if(a%2==0){
-				$('.mulu_box').hide()
-				$(this).css('color', '#666666')
-				$(".mulu").find("li").eq(lie_num).css('color','red')
-			}else{
+			
+			if(hidd==false){
+				console.log(hidd)
 				$('.mulu_box').show()
 				$(this).css('color', '#D7142A')
-				$(".mulu").find("li").eq(lie_num).css('color','red')
+				$(".mulu").find("li").eq(lie_num).css('color', 'red')
+				hidd=true
+			}else{
+				console.log(hidd)
+				$('.mulu_box').hide()
+				$(this).css('color', '#666666')
+				$(".mulu").find("li").eq(lie_num).css('color', 'red')
+				hidd=false
 			}
-			
+
 		})
 
 		// 添加书签
@@ -269,34 +481,45 @@
 		})
 		// 写书评
 		$('.write_shu').click(function() {
-			window.location.href = "xieshuping.html"
+			window.location.href = "xieshuping.html?is_source="+is_source+'&lead_id='+lead_id+'&num_id='+''
+		})
+		$('.more_gongdu').click(function(){
+			window.location.href = "more_gongdu.html?lead_id="+lead_id
+		})
+		$('.chakan').click(function(){
+			window.location.href="gong_per.html?lead_id="+lead_id
 		})
 		// 添加书签
-		$('.tian_queren').click(function(){
-			var shuqian_con=$('.qian_input').val();
-			console.log(shuqian_con)
+		$('.tian_queren').click(function() {
+			var shuqian_con = $('.qian_input').val();
+			scroll=$(".con_box").scrollTop()
+			console.log(scroll)
 			$.ajax(url + '/index.php/books/api/add_book_mark_api', {
 				data: {
 					books_id: books_id,
-					user_id: 1,
+					company_identity: company_identity,
+					user_id:user_id,
 					catalog_id: zhangjie,
-					mark_name:shuqian_con
+					mark_name: shuqian_con,
+					position_val:scroll
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				success: function(data) {
 					console.log(data)
-					if(data.status==1){
+					if (data.status == 1) {
 						$('.tian_shuqian').hide();
 						$('.bott li').css('color', '#666666')
 						// 提示框显示隐藏
-						$('.tan').html('添加成功');
-						$('.tan').css('display', 'block');
-						$('.tan').fadeOut(2000);
+						$('.tan_box .tan').html('添加成功');
+						$('.tan_box').css('display', 'block');
+						$('.tan_box').fadeOut(2000);
 					}
 				}
 			});
 		})
+		
 	</script>
+
 </html>

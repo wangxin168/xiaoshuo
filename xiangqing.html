@@ -9,375 +9,25 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/swiper-4.3.3.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/xiangqing.css"/>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
 		<title>
-			长安十二时辰
+			
 		</title>
 		<style type="text/css">
-			* {
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-
-			html,
-			body {
-				background: #F8F8F8;
-			}
-
-			.footer {
-				width: 100%;
-				height: 0.96rem;
-				background: #fff;
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				z-index: 100;
-			}
-
-			.footer nav {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				justify-content: space-around;
-				line-height: 1;
-				text-align: center;
-			}
-
-			.footer nav a {
-				text-decoration: none;
-			}
-
-			.footer nav p {
-				font-size: 0.22rem;
-				color: #666666;
-				margin-top: 0.1rem;
-			}
-
-			.footer .icon {
-				width: 0.44rem;
-				height: 0.44rem;
-			}
-
-			.footer .select-btn p {
-				font-size: 0.22rem;
-				color: #D7142A;
-			}
-
-			.fenlei {
-				width: 100%;
-				height: 0.96rem;
-				line-height: 0.96rem;
-				font-size: 0.34rem;
-				color: #333333;
-				text-align: center;
-				border-bottom: 1px solid #EEEEEE;
-				background: white;
-			}
-
-			.book_jian {
-				width: 100%;
-				padding: 0.36rem 0.32rem 0.36rem 0.4rem;
-				box-sizing: border-box;
-			}
-
-			.book {
-				display: flex;
-			}
-
-			.book img {
-				width: 1.63rem;
-				height: 2.29rem;
-			}
-
-			.book .book_rgh {
-				margin-left: 0.32rem;
-
-			}
-
-			.book .book_rgh p:nth-of-type(1) {
-				font-size: 0.32rem;
-				color: #333333;
-			}
-
-			.book .book_rgh p:nth-of-type(2) {
-				font-size: 0.24rem;
-				color: #999999;
-				margin-top: 0.19rem;
-			}
-
-			.book .book_rgh p:nth-of-type(3) {
-				font-size: 0.24rem;
-				color: #333333;
-				margin-top: 0.99rem;
-			}
-
-			.bott {
-				width: 100%;
-				height: 0.96rem;
-				line-height: 0.96rem;
-				display: flex;
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				background: white;
-				border-top: 1px solid #DBDBDB;
-				z-index: 10;
-			}
-
-			.bott li {
-				width: 33.3%;
-				height: 100%;
-				text-align: center;
-				border-right: 1px solid #DBDBDB;
-				font-size: 0.34rem;
-				color: #333333;
-			}
-
-			.bott li:last-child {
-				border: none;
-				background: #D7142A;
-				color: #ffffff;
-			}
-
-			.select-list {
-				margin-top: 0.28rem;
-				font-size: 0.32rem;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				justify-content: space-around;
-				align-items: center;
-				color: #999999;
-				background: white;
-				height: 0.75rem;
-				border-bottom: 1px solid #DBDBDB;
-			}
-
-			.select-list div {
-				width: 25%;
-				text-align: center;
-				height: 0.42rem;
-				border-right: 1px solid #DBDBDB;
-			}
-
-			.select-list div:nth-of-type(4) {
-				border: none;
-			}
-
-			.select-list .selected {
-				color: #333333;
-			}
-
-			.con_box {
-				width: 100%;
-
-			}
-
-			.xiang_box {
-				width: 100%;
-				background: white;
-				/* height: 2.37rem; */
-				padding: 0.36rem 0.4rem;
-				box-sizing: border-box;
-				margin-bottom: 1rem;
-			}
-
-			.xiang_box .xiang_con {
-				font-size: 0.24rem;
-				color: #999999;
-			}
-
-			.xiang_box .xian {
-				float: right;
-				font-size: 0.22rem;
-				color: #999999;
-				margin-top: 0.36rem;
-			}
-
-			.xinshu {
-				width: 100%;
-				height: 5.33rem;
-				padding: 0.49rem 0 0 0.4rem;
-				box-sizing: border-box;
-				background: #F8F8F8;
-				margin-bottom: 1rem;
-			}
-
-			.xinshu .xin_tit {
-				font-size: 0.32rem;
-				color: #333333;
-			}
-
-			.xinshang {
-				width: 100%;
-				height: 3.1rem;
-				margin-top: 0.6rem;
-			}
-
-			.xin_sli {
-				width: 2.18rem !important;
-				height: 3.1rem;
-				margin-right: 0.4rem;
-				background: white;
-				text-align: center;
-			}
-
-			.xin_sli img {
-				width: 1.3rem;
-				height: 1.8rem;
-				margin-top: 0.2rem;
-			}
-
-			.xin_sli p:nth-of-type(1) {
-				font-size: 0.24rem;
-				color: #333333;
-				text-align: center;
-				margin-top: 0.2rem;
-			}
-
-			.xin_sli p:nth-of-type(2) {
-				font-size: 0.22rem;
-				color: #9E9E9E;
-				text-align: center;
-			}
-
-			.gong {
-				width: 100%;
-				font-size: 0.32rem;
-				color: #B79476;
-				padding: 0.3rem 0 0 0.4rem;
-				box-sizing: border-box;
-				background: white;
-			}
-
-			.jing {
-				width: 100%;
-				font-size: 0.32rem;
-				color: #333333;
-				padding: 0.3rem 0 0 0.4rem;
-				box-sizing: border-box;
-				background: white;
-			}
-
-			.mulu {
-				width: 100%;
-				padding: 0 0.4rem;
-				box-sizing: border-box;
-				background: white;
-				overflow: hidden;
-			}
-
-			.mulu li {
-				width: 100%;
-				height: 0.75rem;
-				line-height: 0.75rem;
-				border-bottom: 1px solid #EEEEEE;
-				font-size: 0.26rem;
-				color: #333333;
-			}
-
-			.mulu li:first-child {
-				margin-top: 0.1rem;
-			}
-
-			.wenjian li {
-				display: flex;
-				height: 2.03rem;
-				width: 6.7rem;
-				margin: auto;
-				align-items: center;
-				border-bottom: 1px solid #EEEEEE;
-				justify-content: space-between;
-			}
-			.jingdu li{
-				display: flex;
-				justify-content: flex-start;
-			}
-			.jingdu li div{
-				margin-left: 0.2rem;
-			}
-				
-			.jingdu li div p:nth-of-type(1){
-				font-size: 0.32rem;
-				color: #333333;
-			}
-			.jingdu li div p:nth-of-type(2){
-				font-size: 0.24rem;
-				color: #999999;
-			}
-			.wenjian li img {
-				width: 0.88rem;
-				height: 1.03rem;
-			}
-
-			.wenjian li .name_type {
-				margin-left: 0.3rem;
-			}
-
-			.wenjian li .name_type>p:nth-of-type(1) {
-				font-size: 0.32rem;
-				color: #333333;
-			}
-
-			.wenjian li .name_type>p:nth-of-type(2) {
-				font-size: 0.24rem;
-				color: #999999;
-			}
-
-			.wenjian li span {
-				width: 1.25rem;
-				height: 0.37rem;
-				text-align: center;
-				line-height: 0.37rem;
-				border: 1px solid #999999;
-				border-radius: 0.04rem;
-				font-size: 0.24rem;
-				color: #999999;
-				float: right;
-				margin-right: 0;
-			}
-
-			.wenjian li .all_con {
-				display: flex;
-			}
-
-			.shuqian li {
-				height: 1.69rem;
-			}
-
-			.shuqian img {
-				width: 0.44rem !important;
-				height: 0.44rem !important;
-			}
-			.tan{
-				width: 3rem;
-				height: 1rem;
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				background: skyblue;
-				text-align: center;
-				margin: auto;
-				border-radius: 0.2rem;
-				line-height: 1rem;
-				left: 2.25rem;
-				display: none;
-				z-index: 10;
-				/* padding: 0 0.2rem; */
-				/* box-sizing: border-box; */
-				color: white;
-			}
+			
 		</style>
 	</head>
 	<body>
-		<!-- <div class="fenlei">
-			长安十二时辰
-		</div> -->
+		<div class="fenlei">
+			<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+			<span>书籍名称</span>
+			<span></span>
+		</div>
 		<!-- 书籍简介 -->
 		<div class="book_jian">
 			<div class="book">
@@ -427,7 +77,7 @@
 			</div>
 			<!-- 第三页 -->
 			<div class="leixing" style="display: none;">
-				<div class="jing">精读目录：</div>
+				<!-- <div class="jing">精读目录：</div> -->
 				<ul class="wenjian xiang_box jingdu">
 					<li>
 					</li>
@@ -443,17 +93,22 @@
 			</div>
 		</div>
 		<ul class="bott">
-			<li>发起领读</li>
+			<li class="faqi_ling">发起领读</li>
 			<li class="jiaru">加入书架</li>
 			<li class="yuedu">立即阅读</li>
 		</ul>
-		<div class="tan"></div>
+		<div class="tan_box">
+			<div class="tan"></div>
+		</div>
 	</body>
 
 	<script>
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
 		var url = localStorage.url
 		var books_list = ''
-
+		var page=0
+		var sum_data_num =0
 		function geturl() {
 			var url_parameter = window.location.search.substr(1);
 			var parameter_arr = url_parameter.split("&");
@@ -503,6 +158,7 @@
 				slidesPerView: 2,
 			})
 		}
+		
 		// 移除书架要用的
 		var books_shelf_id=''
 		xuanran();
@@ -511,44 +167,50 @@
 				url: url + '/index.php/books/api/get_books_details_api',
 				data: {
 					books_id: books_list,
-					user_id: 1
+					user_id: user_id,
+					company_identity: company_identity
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
-					$('.book_name').html(data.data.books_details.books_name)
-					$('.author').html('作者：' + data.data.books_details.books_author)
-					$('.readr').html('出版时间：' + data.data.books_details.books_publish_time_str)
-					$('.fengmian').attr('src', data.data.books_details.books_img)
-					$('.xiang_con').html(data.data.books_details.books_brief)
-					// 移除书架的id
-					books_shelf_id=data.data.books_shelf.books_shelf_id
-					if(data.data.books_shelf.is_status==1){
-						$('.jiaru').html('移出书架');
-					}else if(data.data.books_shelf.is_status==2){
-						$('.jiaru').html('加入书架');
-					}
-					if(data.data.books_other==null){
-						$('.xin_tit').html('')
+					if(data.status==333){
+						window.location.href="no_power.html"
 					}else{
-						$('.xin_tit').html('新上好书 与你共度')
+						$('.book_name').html(data.data.books_details.books_name)
+						$('.author').html('作者：' + '<span class="shense">'+data.data.books_details.books_author+'</span>')
+						$('.readr').html('出版时间：' + data.data.books_details.books_publish_time_str)
+						$('.fengmian').attr('src', data.data.books_details.books_img)
+						$('.xiang_con').html(data.data.books_details.books_brief)
+						// 移除书架的id
+						books_shelf_id=data.data.books_shelf.books_shelf_id
+						if(data.data.books_shelf.is_status==1){
+							$('.jiaru').html('移出书架');
+						}else if(data.data.books_shelf.is_status==2){
+							$('.jiaru').html('加入书架');
+						}
+						if(data.data.books_other==null){
+							$('.xin_tit').html('')
+						}else{
+							$('.xin_tit').html('新上好书 与你共度')
+						}
+						var pick = data.data.books_other
+						var picker = '';
+						$.each(pick, function(i, obj) {
+							picker += '<div class="swiper-slide xin_sli" onclick="img_dian(' + obj.books_id + ')">'
+							picker += '<img src="' + obj.books_img + '">';
+							picker += '<p>';
+							picker += obj.books_name
+							picker += '</p>';
+							picker += '<p>';
+							picker += obj.books_author
+							picker += '</p>';
+							picker += '</div>'
+						})
+						$('.xin_lun').html(picker)
+						swiper()
 					}
-					var pick = data.data.books_other
-					var picker = '';
-					$.each(pick, function(i, obj) {
-						picker += '<div class="swiper-slide xin_sli" onclick="img_dian(' + obj.books_id + ')">'
-						picker += '<img src="' + obj.books_img + '">';
-						picker += '<p>';
-						picker += obj.books_name
-						picker += '</p>';
-						picker += '<p>';
-						picker += obj.books_author
-						picker += '</p>';
-						picker += '</div>'
-					})
-					$('.xin_lun').html(picker)
-					swiper()
+					
 				}
 			});
 		}
@@ -558,12 +220,16 @@
 				url: url + '/index.php/books/api/get_books_details_api',
 				data: {
 					books_id: books_list,
-					user_id: 1
+					user_id: user_id,
+					company_identity: company_identity,
+					page_start: page,
+					page_end: 10,
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
+					sum_data_num=data.data.books_catalog.page.sum_data_num
 					var pick = data.data.books_catalog.catalog_list
 					$('.leng').html(data.data.books_catalog.catalog_list.length)
 					var picker = '';
@@ -572,7 +238,7 @@
 						picker += obj.catalog_name
 						picker += '</li>';
 					})
-					$('.mulu').html(picker)
+					$('.mulu').append(picker)
 				}
 			});
 		}
@@ -582,19 +248,20 @@
 				url: url + '/index.php/books/api/get_books_details_api',
 				data: {
 					books_id: books_list,
-					user_id: 1
+					user_id: user_id,
+					company_identity: company_identity
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
 					if(data.data.books_mark==null){
-						$('.shuqian').html('您还未给此书籍添加书签')
+						$('.shuqian').html('<p style="font-size: 0.32rem;color: #777;text-align:center;width:100%;">您还未给此书籍添加书签</p>')
 					}else{
 						var pick = data.data.books_mark
 						var picker = '';
 						$.each(pick, function(i, obj) {
-							picker += '<li onclick="qian_ru('+obj.catalog_id+')">'
+							picker += '<li onclick="qian_ru('+obj.catalog_id+','+obj.position_val+')">'
 								picker += '<div class="all_con">'
 									picker += '<img src="img/label.png">'
 									picker += '<div class="name_type">'
@@ -621,14 +288,15 @@
 				url: url + '/index.php/books/api/get_books_details_api',
 				data: {
 					books_id: books_list,
-					user_id: 1
+					user_id: user_id,
+					company_identity: company_identity
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					console.log(data)
 					if(data.data.books_soul.soul_arr==null){
-						$('.jingdu').html('该书籍暂无精读内容')
+						$('.jingdu').html('<p style="font-size: 0.32rem;color: #777;text-align:center;width:100%;">该书籍暂无精读内容</p>')
 					}else{
 						var pick = data.data.books_soul.soul_arr
 						var picker = '';
@@ -640,7 +308,7 @@
 							}else if(obj.soul_type==3){
 								var img='<img src="img/shipin.png" >'
 							}
-							picker += '<li data-wen="'+obj.soul_path+'">'
+							picker += '<li data-wen="'+obj.soul_path+'" data-soul_type='+obj.soul_type+'>'
 							picker += img
 							picker += '<div>'
 							picker += '<p>'
@@ -659,13 +327,28 @@
 			});
 		}
 		var wen = ''
+		var soul_type=''
 		$(".jingdu").on('click', 'li', function() {
+			soul_type=$(this).data('soul_type')
 			wen = $(this).data('wen')
 			console.log(wen)
-			window.location.href = wen
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			// console.log('是否是Android：'+isAndroid);
+			// alert('是否是iOS：'+isiOS);
+			if(soul_type==2){
+				if(isAndroid==true){
+					window.location.href = 'pdf_box.html?wen='+wen
+				}else{
+					window.location.href = wen
+				}
+			}else{
+				window.location.href = wen
+			}
 		})
 		$('.yuedu').click(function() {
-			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+1
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+0+'&lead_id='+''+'&is_source='+1
 		})
 		$('.jiaru').click(function(){
 			var name=$('.jiaru').html()
@@ -674,7 +357,8 @@
 					url: url + '/index.php/books/api/add_book_shelf_api',
 					data: {
 						books_id: books_list,
-						user_id: 1
+						user_id: user_id,
+						company_identity: company_identity
 					},
 					dataType: 'json', //服务器返回json格式数据
 					type: 'post', //HTTP请求类型
@@ -682,7 +366,7 @@
 						console.log(data)
 						if(data.status==1){
 							// 提示框显示隐藏
-							$('.tan').html('添加成功');
+							$('.tan_box .tan').html('添加成功');
 							$('.tan').css('display', 'block');
 							$('.tan').fadeOut(2000);
 							xuanran();
@@ -694,8 +378,9 @@
 				$.ajax({
 					url: url + '/index.php/books/api/del_book_shelf_api',
 					data: {
-						user_id: 1,
-						books_shelf_id:books_shelf_id
+						user_id: user_id,
+						books_shelf_id:books_shelf_id,
+						company_identity: company_identity
 					},
 					dataType: 'json', //服务器返回json格式数据
 					type: 'post', //HTTP请求类型
@@ -703,7 +388,7 @@
 						console.log(data)
 						if(data.status==1){
 							// 提示框显示隐藏
-							$('.tan').html('移出成功');
+							$('.tan_box .tan').html('移出成功');
 							$('.tan').css('display', 'block');
 							$('.tan').fadeOut(2000);
 							xuanran();
@@ -718,16 +403,17 @@
 			window.location.href = "xiangqing.html?books_id=" + bookid
 		}
 		
-		function qian_ru(con){
-			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con
+		function qian_ru(con,box){
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con+'&lead_id='+''+'&is_source='+1+'&scrollTop='+box
 		}
 		function shan_ru(con){
 			$.ajax({
 				url: url + '/index.php/books/api/del_book_mark_api',
 				data: {
 					books_id: books_list,
-					user_id: 1,
-					mark_id:con
+					user_id: user_id,
+					mark_id:con,
+					company_identity: company_identity
 				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'post', //HTTP请求类型
@@ -735,7 +421,7 @@
 					console.log(data)
 					if(data.status==1){
 						// 提示框显示隐藏
-						$('.tan').html('删除成功');
+						$('.tan_box .tan').html('删除成功');
 						$('.tan').css('display', 'block');
 						$('.tan').fadeOut(2000);
 						shuqian();
@@ -747,7 +433,26 @@
 			event.stopImmediatePropagation();
 		}
 		function mulu_ru(con){
-			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con
+			window.location.href = "read.html?books_id="+books_list+'&catalog_id='+con+'&lead_id='+''+'&is_source='+1
 		}
+		$('.faqi_ling').click(function(){
+			window.location.href = "faqi_ling.html?books_id="+books_list
+		})
+
+		$(window).scroll(function() {
+			var that=this;
+			if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+				//加载更多操作
+				if(bang_type=='目录'){
+					console.log(bang_type)
+					page += 10;
+					// console.log(page)
+					if(page<=sum_data_num){
+						mulu()
+						
+					}
+				}
+			}
+		});
 	</script>
 </html>

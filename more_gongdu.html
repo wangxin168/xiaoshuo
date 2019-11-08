@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			html,
+			body {
+				background: white;
+			}
+
+			.wenzhang {
+				width: 100%;
+				padding: 0.36rem 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.wenzhang .title {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.wenzhang .con_tit {
+				font-size: 0.26rem;
+				color: #666666;
+				margin-top: 0.11rem;
+			}
+
+			.wenzhang .wen_img {
+				width: 100%;
+				height: 2.28rem;
+				margin-top: 0.17rem;
+				object-fit: cover;
+			}
+
+			.bott {
+				margin-top: 0.17rem;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.bott .left {
+				display: flex;
+				align-items: center;
+			}
+
+			.bott .left img {
+				width: 0.52rem;
+				height: 0.52rem;
+				border-radius: 50%;
+			}
+
+			.right {
+				display: flex;
+				align-items: center;
+			}
+
+			.right .dianzan {
+				width: 0.3rem;
+				height: 0.3rem;
+			}
+
+			.right .xinxi {
+				width: 0.3rem;
+				height: 0.26rem;
+				margin-left: 0.2rem;
+			}
+			.null{
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+			.null img{
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+			.null p{
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>更多共读</span>
+				<span></span>
+			</div>
+			<div class="wen_con" style="margin-bottom: 1rem;">
+				<div class="wenzhang" v-for="(item,index) in article_list" :data-article_id="item.article_id" @click="shuping_news($event)">
+					<div class="title">{{item.article_title}}</div>
+					<div class="con_tit">{{item.article_intro}}</div>
+					<img :src="item.article_img" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img :src="item.user_head_img" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">{{item.user_name}}</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">{{item.article_books_num_val}}</span>
+						</div>
+						<div class="right">
+							<img src="img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_comment}}</span>
+							<img src="img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_like}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="null">
+				<img src="img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		var lead_id=''
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				lead_id= parameter_arr_new[0];
+			}
+		}
+		
+		geturl();
+		var app = new Vue({
+			el: '#app',
+			data: {
+				article_list: [],
+				page: 0,
+				sum_data_num: '',
+				url: localStorage.url
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				$.ajax({
+					url: that.url + '/index.php/books/api/lead_article_list',
+					type: "POST",
+					data: {
+						page_start: that.page,
+						page_end: 5,
+						company_identity: company_identity,
+						user_id: user_id,
+						lead_id:lead_id
+					},
+					dataType: 'json', //服务器返回json格式数据
+					success: function(data) {
+						console.log(data)
+						if (data.status == 2) {
+							$('.null').show();
+						} else if(data.status == 1){
+		
+							if (data.data.article_list == '') {
+								$('.null').show();
+							} else {
+								that.article_list = data.data.article_list
+								that.sum_data_num = data.data.article_page_list.page.sum_data_num
+							}
+						}else if(data.status==333){
+							window.location.href="no_power.html"
+						}
+		
+					}
+				});
+				window.addEventListener('scroll', this.onScroll);
+			},
+			methods: {
+				shuping_news: function(e) {
+					var article_id = e.currentTarget.getAttribute("data-article_id")
+					console.log(article_id)
+					window.location.href = "shuping_news.html?article_id=" + article_id
+				},
+		
+				onScroll() {
+					var that = this;
+					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+						//加载更多操作
+						that.page += 5;
+						console.log(that.page)
+						if (that.page <= that.sum_data_num) {
+							$.ajax({
+								url: that.url + '/index.php/books/api/lead_article_list',
+								type: "POST",
+								data: {
+									page_start: that.page,
+									page_end: 5,
+									company_identity: company_identity,
+									user_id: user_id,
+								},
+								dataType: 'json', //服务器返回json格式数据
+								success: function(data) {
+									console.log(data)
+									if(data.status==1){
+										that.article_list = that.article_list.concat(data.data.article_list)
+									}
+									
+								}
+							});
+						}
+		
+					}
+				}
+			}
+		})
+	</script>
+</html>

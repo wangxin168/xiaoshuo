@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="js/swiper-4.3.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			html,
+			body {
+				background: white;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+
+			.haoyou {
+				width: 6.7rem;
+				margin: auto;
+			}
+
+			.haoyou li {
+				width: 6.7rem;
+				height: 1.57rem;
+				display: flex;
+				justify-content: space-between;
+				border-bottom: 0.01rem solid #eeeeee;
+				align-items: center;
+			}
+
+			.haoyou li div {
+				display: flex;
+				align-items: center;
+			}
+
+			.haoyou li div img {
+				display: block;
+				border-radius: 50%;
+				width: 0.9rem;
+				height: 0.9rem;
+				object-fit: cover;
+			}
+
+			.haoyou li div span {
+				margin-left: 0.3rem;
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.haoyou li p {
+				/* width: 1.25rem; */
+				height: 0.37rem;
+				line-height: 0.37rem;
+				text-align: center;
+				/* border: 1px solid #999999; */
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #ffffff;
+				background: #D7142A;
+				padding: 0 0.21rem;
+				box-sizing: border-box;
+			}
+
+			.xinshu {
+				width: 100%;
+				height: 5.33rem;
+				padding: 0.49rem 0 0 0.4rem;
+				box-sizing: border-box;
+				background: #F8F8F8;
+				/* margin-bottom: 1rem; */
+			}
+
+			.xinshu .xin_tit {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.xinshang {
+				width: 100%;
+				height: 3.1rem;
+				margin-top: 0.6rem;
+			}
+
+			.xin_sli {
+				width: 2.18rem !important;
+				height: 3.1rem;
+				margin-right: 0.4rem;
+				background: white;
+				text-align: center;
+			}
+
+			.xin_sli img {
+				width: 1.3rem;
+				height: 1.8rem;
+				margin-top: 0.2rem;
+			}
+
+			.xin_sli p:nth-of-type(1) {
+				font-size: 0.24rem;
+				color: #333333;
+				text-align: center;
+				margin-top: 0.2rem;
+			}
+
+			.xin_sli p:nth-of-type(2) {
+				font-size: 0.22rem;
+				color: #9E9E9E;
+				text-align: center;
+			}
+
+			.select-list {
+				margin-top: 0.28rem;
+				font-size: 0.32rem;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				color: #999999;
+				background: white;
+				height: 0.75rem;
+				border-bottom: 1px solid #DBDBDB;
+			}
+
+			.select-list div {
+				width: 50%;
+				text-align: center;
+				height: 0.42rem;
+				border-right: 1px solid #DBDBDB;
+			}
+
+			.select-list div:nth-of-type(2) {
+				border: none;
+			}
+
+			.select-list .selected {
+				color: #333333;
+			}
+
+			.wenzhang {
+				width: 100%;
+				padding: 0.36rem 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.wenzhang .title {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.wenzhang .con_tit {
+				font-size: 0.26rem;
+				color: #666666;
+				margin-top: 0.11rem;
+			}
+
+			.wenzhang .wen_img {
+				width: 100%;
+				height: 2.28rem;
+				margin-top: 0.17rem;
+				object-fit: cover;
+			}
+
+			.bott {
+				margin-top: 0.17rem;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.bott .left {
+				display: flex;
+				align-items: center;
+			}
+
+			.bott .left img {
+				width: 0.52rem;
+				height: 0.52rem;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+
+			.right {
+				display: flex;
+				align-items: center;
+			}
+
+			.right .dianzan {
+				width: 0.3rem;
+				height: 0.3rem;
+			}
+
+			.right .xinxi {
+				width: 0.3rem;
+				height: 0.26rem;
+				margin-left: 0.2rem;
+			}
+
+			.book_jian {
+				width: 100%;
+				padding: 0.36rem 0.32rem 0.36rem 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.book {
+				display: flex;
+			}
+
+			.book img {
+				width: 1.63rem;
+				height: 2.29rem;
+			}
+
+			.book .book_rgh {
+				margin-left: 0.32rem;
+
+			}
+
+			.book .book_rgh p:nth-of-type(1) {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.book .book_rgh p:nth-of-type(2) {
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+
+			.book .book_rgh p:nth-of-type(3) {
+				font-size: 0.24rem;
+				color: #333333;
+				margin-top: 0.99rem;
+			}
+
+			.xian {
+				width: 100%;
+				height: 0.02rem;
+				background: #EEEEEE;
+				margin-top: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>个人主页</span>
+				<span></span>
+			</div>
+			<ul class="haoyou">
+				<li>
+					<div>
+						<img :src="con_zhuye.user_head_img">
+						<span>{{con_zhuye.user_name}}</span>
+					</div>
+					<p v-if="con_zhuye.is_follow_status==1" @click="guanzhu()">取消关注</p>
+					<p v-if="con_zhuye.is_follow_status==2" @click="guanzhu()">关注</p>
+				</li>
+			</ul>
+			<!-- 新书上架 -->
+			<div class="xinshu">
+				<div class="xin_tit">TA领读的书：{{con_zhuye.user_lead_list_sum}}</div>
+				<div class="swiper-container xinshang">
+					<div class="swiper-wrapper xin_lun">
+						<div class="swiper-slide xin_sli" v-for="(item,index) in user_lead_books_list" @click="shuji(item.books_id)">
+							<img :src="item.books_img" alt="">
+							<p>{{item.books_name}}</p>
+							<p>{{item.books_author}}</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="select-list">
+				<div class="week-btn selected" @click="zhuan('感悟·书评')">感悟·书评</div>
+				<div class="day-btn" @click="zhuan('他的共读')">他的共读</div>
+			</div>
+			<div class="ganwu">
+				<div class="wenzhang" v-for="(item,index) in user_article_list" @click="wenzhang(item.article_id)">
+					<div class="title">{{item.article_title}}</div>
+					<div class="con_tit">{{item.article_intro}}</div>
+					<img :src="item.article_img" alt="" class="wen_img">
+					<div class="bott">
+						<div class="left">
+							<img :src="item.user_head_img" alt="">
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">{{item.user_name}}</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">{{item.article_books_num_val}}</span>
+						</div>
+						<div class="right">
+							<img src="img/dianzan.png" class="dianzan">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_comment}}</span>
+							<img src="img/31pinglun.png" alt="" class="xinxi">
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_like}}</span>
+						</div>
+					</div>
+					<div class="xian"></div>
+				</div>
+
+			</div>
+			<div class="gongdu" style="display: none;">
+				<!-- 书籍简介 -->
+				<div class="book_jian" v-for="(item,index) in user_lead_list" @click="lingdu(item.lead_id)">
+					<div class="book">
+						<img :src="item.books_img" alt="" class="fengmian">
+						<div class="book_rgh">
+							<p class="book_name">{{item.books_name}}</p>
+							<p class="author">作者：{{item.books_author}}</p>
+							<p class="readr">领读人：{{item.lead_name}}</p>
+						</div>
+
+					</div>
+					<div style="font-size: 0.24rem;color: #999999;margin-top: 0.24rem;">
+						简介：{{item.lead_reason}}
+					</div>
+				</div>
+			</div>
+			<div class="tan_box">
+				<div class="tan"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var now_user_id = ''
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				now_user_id = parameter_arr_new[0];
+			}
+		}
+
+		geturl();
+
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				now_user_id: now_user_id,
+				user_lead_books_list: [],
+				page: 0,
+				page1: 0,
+				sum_data_num: '',
+				url: localStorage.url,
+				bang_type: '',
+				con_zhuye: {},
+				user_article_list: [],
+				user_lead_list: [],
+				con: '感悟·书评',
+				sum_data_num: '',
+				sum_data: ''
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				that.xuanran();
+				window.addEventListener('scroll', this.onScroll);
+				that.swiper();
+				that.ganwu()
+
+			},
+			methods: {
+				xiangq: function(e) {
+					var books_id = e.currentTarget.getAttribute("data-books_id")
+					console.log(books_id)
+					window.location.href = "xiangqing.html?books_id=" + books_id
+				},
+				xuanran() {
+					var that = this;
+					$.ajax({
+						url: that.url + '/index.php/books/api/personal_homepage',
+						type: "POST",
+						data: {
+							now_user_id: now_user_id,
+							company_identity: company_identity,
+							user_id: user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if (data.status == 333) {
+								window.location.href = "no_power.html"
+							} else {
+								that.con_zhuye = data.data;
+								that.user_lead_books_list = data.data.user_lead_books_list
+								if (data.data.user_lead_books_list == "") {
+									$('.xinshu').hide()
+								}
+							}
+
+						}
+					});
+				},
+				ganwu() {
+					var that = this;
+					$.ajax({
+						url: that.url + '/index.php/books/api/personal_homepage_article',
+						type: "POST",
+						data: {
+							now_user_id: now_user_id,
+							page_start: that.page,
+							page_end: 5,
+							company_identity: company_identity,
+							user_id: user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if (data.data.user_article_list == "") {
+								$('.ganwu').html('<p style="margin-left:0.4rem;margin-top:0.4rem;font-size:0.24rem;">暂无数据</p>')
+							} else {
+								that.user_article_list = data.data.user_article_list
+								that.sum_data_num = data.data.user_article_page.page.sum_data_num
+							}
+						}
+					});
+				},
+				gongdu() {
+					var that = this;
+					$.ajax({
+						url: that.url + '/index.php/books/api/personal_homepage_lead',
+						type: "POST",
+						data: {
+							now_user_id: now_user_id,
+							page_start: that.page1,
+							page_end: 5,
+							company_identity: company_identity,
+							user_id: user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if (data.data.user_lead_list == "") {
+								$('.gongdu').html('<p style="margin-left:0.4rem;margin-top:0.4rem;font-size:0.24rem;">暂无数据</p>')
+							} else {
+								that.user_lead_list = data.data.user_lead_list
+								that.sum_data = data.data.user_lead_page.page.sum_data_num
+							}
+						}
+					});
+				},
+				onScroll() {
+					var that = this;
+					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+						//加载更多操作
+						if (that.con == "感悟·书评") {
+							that.page += 5;
+							console.log(that.page)
+							if (that.page <= that.sum_data_num) {
+								// console.log(that.url+'/index.php/books/api/personal_homepage_article')
+								$.ajax({
+									url: that.url + '/index.php?g=&m=api&a=personal_homepage_article',
+									type: "POST",
+									data: {
+										now_user_id: now_user_id,
+										page_start: that.page,
+										page_end: 5,
+										company_identity: company_identity,
+										user_id: user_id
+									},
+									dataType: 'json', //服务器返回json格式数据
+									success: function(data) {
+										console.log("ssss" + data)
+										that.user_article_list = that.user_article_list.concat(data.data.user_article_list)
+									},
+									error: function(error) {
+										console.log(error)
+									}
+								});
+							}
+						} else if (that.con == "他的共读") {
+							that.page1 += 5;
+							console.log(that.page)
+							if (that.page1 <= that.sum_data) {
+								$.ajax({
+									url: that.url + '/index.php/books/api/personal_homepage_lead',
+									type: "POST",
+									data: {
+										now_user_id: now_user_id,
+										page_start: that.page1,
+										page_end: 5,
+										company_identity: company_identity,
+										user_id: user_id
+									},
+									dataType: 'json', //服务器返回json格式数据
+									success: function(data) {
+										that.user_lead_list = that.user_lead_list.concat(data.data.user_lead_list)
+									}
+								});
+							}
+						}
+
+					}
+				},
+				zhuan(con) {
+					var that = this;
+					console.log(con)
+					that.con = con
+					if (con == '感悟·书评') {
+						// xuanran();
+						$('.ganwu').show();
+						$('.gongdu').hide();
+						$('.week-btn').addClass('selected');
+						$('.day-btn').removeClass('selected')
+					} else if (con == '他的共读') {
+						$('.ganwu').hide();
+						$('.gongdu').show();
+						$('.day-btn').addClass('selected');
+						$('.week-btn').removeClass('selected')
+						that.gongdu()
+					}
+				},
+				swiper() {
+					var mySwiper = new Swiper('.xinshang', {
+						slidesPerView: 2,
+					})
+				},
+				guanzhu() {
+					var that = this;
+					$.ajax({
+						url: that.url + '/index.php/books/api/follow_api',
+						type: "POST",
+						data: {
+							be_follow_user_id: now_user_id,
+							company_identity: company_identity,
+							user_id: user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							if (data.status == 1) {
+								that.xuanran();
+							}
+						}
+					});
+				},
+				wenzhang(con) {
+					// console.log(con)
+					window.location.href = "shuping_news.html?article_id=" + con
+				},
+				lingdu(con) {
+					// console.log(con)					
+					window.location.href = "lingdu.html?lead_id=" + con
+				},
+				shuji(con) {
+					window.location.href = "xiangqing.html?books_id=" + con
+				}
+			}
+		})
+	</script>
+</html>

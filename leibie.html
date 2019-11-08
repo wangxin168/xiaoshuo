@@ -9,13 +9,17 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
 		<title>
 
 		</title>
 		<style type="text/css">
+			html, body {
+			    background: white;
+			}
 			* {
 				margin: 0;
 				padding: 0;
@@ -70,6 +74,16 @@
 				color: #333333;
 				text-align: center;
 				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
 			}
 
 			.book_box {
@@ -143,15 +157,17 @@
 	</head>
 	<body>
 		<div id="app">
-			<!-- <div class="fenlei">
-				金融知识
-			</div> -->
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>类别</span>
+				<span></span>
+			</div>
 			<ul class="book_box">
 				<li class="book" v-for="(item,index) in books_list" :data-books_id="item.books_id" @click="xiangq($event)">
 					<img :src="item.books_img" alt="">
 					<div class="book_rgh">
 						<p>{{item.books_name}}</p>
-						<p>作者：{{item.books_author}}</p>
+						<p>作者：<span class="shense">{{item.books_author}}</span></p>
 						<p>简介：{{item.books_brief}}</p>
 					</div>
 				</li>
@@ -169,7 +185,8 @@
 			window.location.href = "xiangqing.html"
 		})
 		var typeid = ''
-
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
 		function geturl() {
 			var url_parameter = window.location.search.substr(1);
 			var parameter_arr = url_parameter.split("&");
@@ -190,7 +207,8 @@
 				books_list: [],
 				page:0,
 				sum_data_num:'',
-				url:localStorage.url
+				url:localStorage.url,
+				name:name
 			},
 			type: 'get',
 			created: function() {
@@ -202,14 +220,16 @@
 					data: {
 						type_id: typeid,
 						page_start: that.page,
-						page_end: 5
+						page_end: 5,
+						company_identity: company_identity,
+						user_id:user_id
 					},
 					dataType: 'json', //服务器返回json格式数据
 					success: function(data) {
 						console.log(data)
 						if(data.status==2){
 							$('.null').show();
-						}else{
+						}else if(data.status==1){
 							
 							if(data.data==''){
 								$('.null').show();
@@ -218,6 +238,8 @@
 								that.sum_data_num=data.data.page.sum_data_num
 								// console.log(that.books_list)
 							}
+						}else if(data.status==333){
+							window.location.href="no_power.html"
 						}
 						
 					}
@@ -244,7 +266,9 @@
 								data: {
 									type_id: typeid,
 									page_start: that.page,
-									page_end: 5
+									page_end: 5,
+									company_identity: company_identity,
+									user_id:user_id
 								},
 								dataType: 'json', //服务器返回json格式数据
 								success: function(data) {

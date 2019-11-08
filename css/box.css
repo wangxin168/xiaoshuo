@@ -1,0 +1,66 @@
+.tan_box {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 10;
+}
+
+.tan {
+	width: 4rem;
+	padding: 0.3rem 0.3rem;
+	box-sizing: border-box;
+	position: absolute;
+	top: 6rem;
+	background: #000;
+	text-align: center;
+	margin: auto;
+	border-radius: 0.2rem;
+	background: rgba(0, 0, 0, 0.6);
+	left: 1.75rem;
+	z-index: 10;
+	color: white;
+}
+
+.fenlei {
+	width: 100%;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	font-size: 0.34rem;
+	color: #333333;
+	text-align: center;
+	border-bottom: 1px solid #EEEEEE;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 0.4rem;
+	box-sizing: border-box;
+	    background: #fff;
+	    z-index: 2;
+}
+
+.fenlei .fan_hui {
+	width: 0.163rem;
+	height: 0.28rem;
+	display: block;
+}
+
+.fenlei span:nth-of-type(2){
+	width: 0.163rem;
+	overflow: hidden;
+}
+.shense{
+	color: #2A2A2A;
+}
+textarea{
+	resize:none;
+	outline: none;
+	padding: 0.2rem;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+}
+input{
+	-webkit-appearance: none;
+}

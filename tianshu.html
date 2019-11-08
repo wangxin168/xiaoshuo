@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			html,
+			body {
+				background: white;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+
+			.book_box {
+				width: 100%;
+				padding: 0 0.4rem 0 0.4rem;
+				box-sizing: border-box;
+				margin-bottom: 1rem;
+			}
+
+			.book_box li {
+				width: 6.7rem;
+				height: 3.39rem;
+				margin: auto;
+				display: flex;
+				padding: 0.55rem 0;
+				box-sizing: border-box;
+				border-bottom: 1px solid #EEEEEE;
+			}
+
+			.book_box li .shu_img {
+				width: 1.63rem;
+				height: 2.29rem;
+				display: block;
+			}
+
+			.book_rgh {
+				margin-left: 0.32rem;
+				height: 2.29rem;
+				width: 4.5rem;
+			}
+
+			.book_rgh p:nth-of-type(1) {
+				font-size: 0.32rem;
+				color: #333333;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.book_rgh p:nth-of-type(2) {
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+
+			.book_rgh p:nth-of-type(3) {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: justify;
+				margin-top: 0.2rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+			}
+
+			.check {
+				width: 0.37rem;
+				height: 0.37rem;
+			}
+
+			.fabu {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				text-align: center;
+				background: #D7142A;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+			}
+
+			.serch {
+				width: 6.69rem;
+				height: 0.635rem;
+				margin: 0.36rem auto 0;
+				border: 1px solid #EEEEEE;
+				border-radius: 0.38rem;
+				display: flex;
+				align-items: center;
+				font-size: 0.268rem;
+				color: #DBDBDB;
+			}
+
+			.serch img {
+				width: 0.26rem;
+				height: 0.28rem;
+				margin-left: 0.28rem;
+			}
+
+			.serch input {
+				border: none;
+				background: none;
+				outline: none;
+				margin-left: 0.19rem;
+				color: #777;
+				    width: 70%;
+					height: 0.5rem;
+			}
+			::-webkit-input-placeholder { /* WebKit browsers */
+			    color:    #DBDBDB;
+				font-size: 0.24rem;
+			}
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			    color:    #DBDBDB;
+				font-size: 0.24rem;
+			}
+			::-moz-placeholder { /* Mozilla Firefox 19+ */
+			    color:    #DBDBDB;
+				font-size: 0.24rem;
+			}
+			:-ms-input-placeholder { /* Internet Explorer 10+ */
+			    color:    #DBDBDB;
+				font-size: 0.24rem;
+			}
+			.null {
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+
+			.null img {
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+
+			.null p {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+
+			/* .choose_check {
+				display: block;
+				float: left;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #ccc;
+				border-radius: 2px;
+			}
+
+			.choose_checked {
+				display: block;
+				float: left;
+				width: 22px;
+				height: 22px;
+				border-radius: 2px;
+				background: url(img/check_ok.png) no-repeat;
+				background-size: 100%;
+			} */
+
+			.choose_input {
+				background: none;
+			}
+			input[type=checkbox] {
+			    margin-right: 10px;
+			    cursor: pointer;
+			    /* width: 15px;
+			    height: 15px; */
+				    width: 0px;
+				    height: 0px;
+			    position: relative;
+				    top: -15px;
+					    border: none;
+			}
+			 
+			input[type=checkbox]:after {
+			    position: absolute;
+			    width: 10px;
+			    height: 15px;
+			    top: 0;
+			    content: " ";
+			    background-color: #fff;
+			    color: #fff;
+			    display: inline-block;
+			    visibility: visible;
+			    border: 1px solid grey;
+			    padding: 0 3px;
+			    border-radius: 3px;
+			}
+			 
+			input[type=checkbox]:checked:after {
+			    /* background-color: #0f97e7; */
+			    content: "✓";
+			    font-size: 12px;
+				color: #333;
+			}
+			 
+			input[type=checkbox]:disabled:after {
+			    width: 10px;
+			    height: 15px;
+			    top: 0;
+			    color: #333;
+			    display: inline-block;
+			    visibility: visible;
+			    border: 1px solid grey;
+			    padding: 0 3px;
+			    border-radius: 3px;
+			    background-color: #E9E7E3;
+			    content: "✓";
+			    font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>添加书籍</span>
+				<span></span>
+			</div>
+			<div class="serch">
+				<img src="img/4256db47eeb50412fe33ff9380f3406.png" alt="">
+				<input type="text" placeholder="请输入要搜索的书名或作者姓名">
+			</div>
+			<ul class="book_box">
+				<!-- <li class="book">
+					<img :src="item.books_img" alt="" class="shu_img">
+					<div class="book_rgh">
+						<p>
+							<span>{{item.books_name}}</span>
+							<label for="chooseAll" class="choose_label choose_check">
+								<input id="chooseAll" type="checkbox" name="chooseAll" class="choose_input" autocomplete ="off"/>
+							</label>
+						</p>
+						<p>作者：{{item.books_author}}</p>
+						<p>简介：{{item.books_brief}}</p>
+					</div>
+				</li> -->
+			</ul>
+			<div class="fabu">完成</div>
+			<div class="null">
+				<img src="img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
+		</div>
+		<div class="tan_box">
+			<div class="tan">不可超过10本</div>
+		</div>
+	</body>
+	<script>
+		var url = localStorage.url
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		var inputValue = '';
+		$('input').bind('input propertychange', function() {
+			console.log($(this).val())
+			inputValue=$(this).val()
+			var that=this
+			xuanran();
+		});
+		xuanran();
+		var fanhui=''
+		function xuanran() {
+			var that = this;
+			$.ajax(that.url + '/index.php/books/api/push_article_books_list', {
+				data: {
+					user_id: user_id,
+					company_identity: company_identity,
+					search_val: inputValue
+				},
+				type: 'post',
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					if (data.data.books_list.list == undefined) {
+						$('.null').show();
+					} else {
+						$('.null').hide();
+					}
+					var pick = data.data.books_list.list
+					var picker = '';
+					var shu_arr=[]
+					$.each(pick, function(i, obj) {
+						picker += '<li class="book">'
+						picker += '<img src="'+obj.books_img+'" alt="" class="shu_img">'
+						picker += '<div class="book_rgh">'
+						picker += '<p>'
+						picker += '<span>'
+						picker += obj.books_name
+						picker += '</span>'
+						picker += '<span>'
+						picker +='<input type="checkbox" name="chooseAll" class="choose_input" autocomplete ="off" data-img="'+obj.books_img+'"/>'
+						picker += '<label for="checkbox3"></label>'
+						picker += '</span>'
+						picker += '</p>'
+						picker += '<p>'
+						picker += '作者：' + obj.books_author
+						picker += '</p>'
+						picker += '<p>'
+						picker += '简介：'+obj.books_brief
+						picker += '</p>'
+						picker += '</div>'
+						picker += '</li>'
+					})
+					$('.book_box').html(picker)
+					$('.fabu').click(function(){
+						$("input:checkbox:checked").each(function(index,element){
+							var str_arr=pick[index].books_id
+							shu_arr.push(str_arr)
+							console.log(shu_arr)
+							if(shu_arr.length>10){
+								$('.tan_box').css('display', 'block');
+								$('.tan_box').fadeOut(2000);
+							}else{
+								var shu_Arr=shu_arr.join(',')
+								console.log(shu_Arr)
+								localStorage.setItem("shu_arr", shu_Arr);
+							}
+							
+						});
+						go();
+					})
+				}
+			});
+		}
+		
+		function go()
+		
+		{
+		
+		window.history.go(-1);
+		
+		}
+		function xiangqing(e) {
+			var bookid = e.currentTarget.getAttribute("data-bookid")
+			console.log(bookid)
+			window.location.href = "xiangqing.html?bookid=" + bookid
+			event.stopImmediatePropagation();
+		}
+	</script>
+</html>

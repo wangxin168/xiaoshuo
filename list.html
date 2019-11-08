@@ -9,13 +9,17 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
 		<title>
 			分类
 		</title>
 		<style type="text/css">
+			html, body {
+			    background: white;
+			}
 			* {
 				margin: 0;
 				padding: 0;
@@ -71,6 +75,16 @@
 				color: #333333;
 				text-align: center;
 				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
 			}
 
 			.serch {
@@ -88,7 +102,7 @@
 			.serch img {
 				width: 0.26rem;
 				height: 0.28rem;
-				margin-left: 1.28rem;
+				margin-left: 0.28rem;
 			}
 
 			.serch input {
@@ -133,7 +147,9 @@
 	<body>
 		<div id="list">
 			<!-- <div class="fenlei">
-				分类
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>分类</span>
+				<span></span>
 			</div> -->
 			<div class="serch" @click="serch()">
 				<img src="img/4256db47eeb50412fe33ff9380f3406.png" alt="">
@@ -152,7 +168,7 @@
 				<nav>
 					<a href="index.html">
 						<img src="img/shouye_no.png" alt="" class="icon" />
-						<p>首页</p>
+						<p>阅览</p>
 					</a>
 					<a href="list.html" class="select-btn">
 						<img src="img/fenlei_yes.png" alt="" class="icon" />
@@ -175,6 +191,8 @@
 		// 	window.location.href = "leibie.html"
 		// })
 		// var url = localStorage.url
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
 		var app = new Vue({
 			el: '#list',
 			data: {
@@ -190,13 +208,20 @@
 				console.log(that.url)
 				$.ajax(that.url+'/index.php/books/api/get_type_list_api',{
 					data:{
-						
+						company_identity:company_identity,
+						user_id:user_id
 					},
 					dataType:'json',//服务器返回json格式数据
+					type: 'post',
 					success:function(data){
 						console.log(data)
-						that.list=data.data.type_list
-						console.log(that.list)
+						
+						if(data.status==333){
+							window.location.href="no_power.html"
+						}else{
+							that.list=data.data.type_list
+							console.log(that.list)
+						}
 					},
 					error:function(xhr,type,errorThrown){
 						
@@ -207,7 +232,6 @@
 			methods: {
 				xiangqing:function(e){
 					var typeid=e.currentTarget.getAttribute("data-typeid")
-					console.log(typeid)
 					window.location.href="leibie.html?typeid="+typeid
 				},
 					

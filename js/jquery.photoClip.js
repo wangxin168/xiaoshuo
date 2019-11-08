@@ -647,7 +647,7 @@
 				"margin-right": clipWidth/2,
 				"margin-top": -clipHeight/2,
 				"margin-bottom": -clipHeight/2,
-				"background-color": "rgba(0,0,0,.5)"
+				"background-color": "rgba(255,255,255,1)"
 			}).appendTo($mask);
 			var $mask_right = $("<div class='photo-clip-mask-right'>").css({
 				"position": "absolute",
@@ -658,7 +658,7 @@
 				"margin-left": clipWidth/2,
 				"margin-top": -clipHeight/2,
 				"margin-bottom": -clipHeight/2,
-				"background-color": "rgba(0,0,0,.5)"
+				"background-color": "rgba(255,255,255,1)"
 			}).appendTo($mask);
 			var $mask_top = $("<div class='photo-clip-mask-top'>").css({
 				"position": "absolute",
@@ -667,7 +667,7 @@
 				"top": 0,
 				"bottom": "50%",
 				"margin-bottom": clipHeight/2,
-				"background-color": "rgba(0,0,0,.5)"
+				"background-color": "rgba(255,255,255,1)"
 			}).appendTo($mask);
 			var $mask_bottom = $("<div class='photo-clip-mask-bottom'>").css({
 				"position": "absolute",
@@ -676,7 +676,7 @@
 				"top": "50%",
 				"bottom": 0,
 				"margin-top": clipHeight/2,
-				"background-color": "rgba(0,0,0,.5)"
+				"background-color": "rgba(255,255,255,1)"
 			}).appendTo($mask);
 			// 创建截取区域
 			var $clip_area = $("<div class='photo-clip-area'>").css({

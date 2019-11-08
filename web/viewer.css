@@ -278,9 +278,9 @@
   position: relative;
   overflow: visible;
   border: 9px solid transparent;
-  background-clip: content-box;
+  /* background-clip: content-box; */
   -o-border-image: url(images/shadow.png) 9 9 repeat;
-     border-image: url(images/shadow.png) 9 9 repeat;
+     /* border-image: url(images/shadow.png) 9 9 repeat; */
   background-color: white;
 }
 
@@ -1118,6 +1118,7 @@ html[dir='rtl'] .dropdownToolbarButton {
 .secondaryToolbarButton:focus {
   background-color: hsla(0,0%,0%,.12);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  
   background-clip: padding-box;
   border: 1px solid hsla(0,0%,0%,.35);
   border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
@@ -2092,6 +2093,7 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
 
   html[dir='ltr'] .toolbarButton#secondaryToolbarToggle::before {
     content: url(images/toolbarButton-secondaryToolbarToggle@2x.png);
+	display: none;
   }
   html[dir='rtl'] .toolbarButton#secondaryToolbarToggle::before {
     content: url(images/toolbarButton-secondaryToolbarToggle-rtl@2x.png);

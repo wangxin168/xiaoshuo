@@ -1,47 +1,101 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<script src="../../duanxin/jquery-3.2.1.js"></script>
-		<style type="text/css">
-			.login-err {
-				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-				transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-				border-radius: 4px;
-				background: #ffeaea none repeat scroll 0 0;
-				border: 1px solid #e5c3c4;
-				color: #b94a48;
-				line-height: 38px;
-			}
-		</style>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>来啊拖我啊，反正有大把时光</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 	</head>
+<style>
+	.contents{
+		width: 4rem;
+		height: 0.3rem;
+		box-sizing:border-box;
+		/* border:1px solid red; */
+		position:relative;
+		top:1rem;
+		left:0rem;
+		bottom:0;
+	}
+	.comments {
+		width: 0.3rem;
+		height: 0.3rem;
+		position:absolute;
+		top:0;
+		background: #000;
+		border-radius:50%;
+	}
+	.xian{
+		width: 100%;
+		position: absolute;
+		height: 0.02rem;
+		background: #000;
+		top: 0.14rem;
+	}
+
+</style>
 	<body>
-		<!-- <ul class="ull">
+		<div style="display: flex;">
+			<!-- <div>2222222</div> -->
+			<div class="contents">
+				<div class="xian"></div>
+				<div class="comments">       
+				</div>
+			</div>
 			
-		</ul>
-		<button onclick="dianji()"></button> -->
-		<div id="login-err" class="login-err">请输入正确的帐号或密码</div>
-		<div id="login-eee" class="login-err">请输入正确的帐号</div>
+		</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		var contW = $(".comments").width();
+		var contH = $(".comments").height();
+		var startX, startY, sX, sY, moveX, moveY;
+		var winH = $(".contents").height();
+		var winW = $(".contents").width();
+		var headers = $(".headers").height();
+		var paddleft=parseInt($(".contents").css("padding-left"));
+		$(".comments").on({ //绑定事件
+			touchstart: function(e) {
+				startX = e.originalEvent.targetTouches[0].pageX; //获取点击点的X坐标    
+				startY = e.originalEvent.targetTouches[0].pageY; //获取点击点的Y坐标
+				sX = $(this).offset().left; //相对于当前窗口X轴的偏移量
+				
+				sY = $(this).offset().top; //相对于当前窗口Y轴的偏移量
+				leftX = startX - sX; //鼠标所能移动的最左端是当前鼠标距div左边距的位置
+				rightX = winW - contW + leftX; //鼠标所能移动的最右端是当前窗口距离减去鼠标距div最右端位置
+				topY = startY - sY; //鼠标所能移动最上端是当前鼠标距div上边距的位置
+				bottomY = winH - contH + topY; //鼠标所能移动最下端是当前窗口距离减去鼠标距div最下端位置    
+				console.log(sX)
+				console.log(startX)
+			},
+			touchmove: function(e) {
+				e.preventDefault();
+				//移动过程中XY轴的坐标要减去margin的距离
+				moveX = e.originalEvent.targetTouches[0].pageX; //移动过程中X轴的坐标
+				moveY = e.originalEvent.targetTouches[0].pageY - headers; //移动过程中Y轴的坐标
+				//判断的时候要计算加上padding的距离
+				if(moveX < leftX+paddleft) {
+					moveX = leftX+paddleft;
+				}
+				if(moveX > rightX+paddleft) {
+					moveX = rightX+paddleft;
+				}
+				if(moveY < topY) {
+					moveY =  topY ;
+				}
+				if(moveY > bottomY) {
+					moveY =bottomY;
+				}
+				$(this).css({
+					"left": moveX + sX - startX,
+					"top": moveY + sY - startY,
+				})
+			},
+		})
+	})
+</script>
 	</body>
-	<script>
-		
-		function shake() {
-			var $panel = $(".login-err");
-			box_left = 0;
-			$panel.css({
-				'left': box_left,
-				'position': 'relative'
-			});
-			for (var i = 1; 4 >= i; i++) {
-				$panel.animate({
-					left: box_left - (20 - 5 * i)
-				}, 300);
-				$panel.animate({
-					left: box_left + (20 - 5 * i)
-				}, 300);
-			}
-		}
-		setInterval(shake,1000)
-	</script>
 </html>

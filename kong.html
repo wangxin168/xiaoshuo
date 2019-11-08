@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/jquery-3.2.1.js"></script>
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		localStorage.setItem("url", "http://flydev.yuanchuangyuan.com");
+		var url = localStorage.url
+		var company_identity = ''
+		var uo=''
+		var un=''
+		var user_id=''
+		
+		getUrlArgStr();
+		//获取页面参数
+		function getUrlArgStr() {
+			var q = window.location.search.substr(1);
+			var qs = q.split('&');
+			// console.log(qs)
+			var argStr = [];
+			if (qs) {
+				for (var i = 0; i < qs.length; i++) {
+					argStr.push(qs[i].substring(qs[i].indexOf('=') + 1));
+				}
+				company_identity = argStr[2];
+				uo = argStr[0];
+				un = argStr[1];
+				localStorage.setItem("company_identity", argStr[2]);
+			}
+			return argStr;
+		}
+		if(uo){
+			user()
+			// getUrlArgStr();
+		}
+		
+		function user(){
+			$.ajax({
+				url:url+'/index.php/books/api/login_api',
+				type: "POST",
+				data: {
+					user_openid:uo,
+					company_identity: company_identity,
+					user_name:un
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					if(data.status==1){
+						user_id=data.data
+						localStorage.setItem("user_id",user_id);
+						window.location.href="index.html"
+					}
+				}
+			});
+		}
+	</script>
+</html>

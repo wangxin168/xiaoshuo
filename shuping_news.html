@@ -10,17 +10,24 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/swiper-4.3.3.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.3.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/box.css" />
 		<style type="text/css">
-			*{
+			html,
+			body {
+				background: white;
+			}
+
+			* {
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
-			.top{
+
+			.top {
 				width: 100%;
 				height: 0.96rem;
 				display: flex;
@@ -30,31 +37,39 @@
 				box-sizing: border-box;
 				border-bottom: 1px solid #EEEEEE;
 			}
-			.top_le{
+
+			.top_le {
 				display: flex;
 				align-items: center;
 			}
-			.top_le img{
+
+			.top_le img {
 				width: 0.52rem;
 				height: 0.52rem;
 				border-radius: 50%;
+				object-fit: cover;
 			}
-			.top_le p{
+
+			.top_le p {
 				font-size: 0.24rem;
 				color: #333333;
 				margin-left: 0.2rem;
 			}
-			.top_ri{
-				width: 0.89rem;
+
+			.top_ri {
+				/* width: 0.89rem; */
 				height: 0.37rem;
 				text-align: center;
 				line-height: 0.37rem;
 				background: #D7142A;
 				border-radius: 0.04rem;
 				font-size: 0.24rem;
+				padding: 0 0.21rem;
+				box-sizing: border-box;
 				color: #FFFFFF;
 			}
-			.time{
+
+			.time {
 				font-size: 0.22rem;
 				color: #999999;
 				width: 100%;
@@ -63,46 +78,54 @@
 				height: 1rem;
 				line-height: 1rem;
 			}
-			.xinshu{
+
+			.xinshu {
 				width: 100%;
-				height: 5.33rem;
-				padding: 0.49rem 0 0 0.4rem;
+				/* height: 5.33rem; */
+				padding: 0.49rem 0 0.2rem 0.4rem;
 				box-sizing: border-box;
 				background: #F8F8F8;
 			}
-			.xinshu .xin_tit{
-				font-size: 0.32rem;
+
+			.xinshu .xin_tit {
+				font-size: 0.26rem;
 				color: #333333;
 			}
+
 			.xinshang {
 				width: 100%;
-				height: 3.1rem;
+				/* height: 3.1rem; */
 				margin-top: 0.6rem;
 			}
-			.xin_sli{
-				width: 2.18rem!important;
+
+			.xin_sli {
+				width: 2.18rem !important;
 				height: 3.1rem;
 				margin-right: 0.4rem;
 				background: white;
 				text-align: center;
 			}
-			.xin_sli img{
+
+			.xin_sli img {
 				width: 1.3rem;
 				height: 1.8rem;
 				margin-top: 0.2rem;
 			}
-			.xin_sli p:nth-of-type(1){
+
+			.xin_sli p:nth-of-type(1) {
 				font-size: 0.24rem;
 				color: #333333;
 				text-align: center;
 				margin-top: 0.2rem;
 			}
-			.xin_sli p:nth-of-type(2){
+
+			.xin_sli p:nth-of-type(2) {
 				font-size: 0.22rem;
 				color: #9E9E9E;
 				text-align: center;
 			}
-			.bottom{
+
+			.bottom {
 				display: flex;
 				align-items: center;
 				width: 100%;
@@ -112,69 +135,556 @@
 				left: 0;
 				justify-content: space-around;
 				border-top: 1px solid #EEEEEE;
+				background: white;
+				z-index: 10;
 			}
-			.bottom img{
+
+			.bottom img {
 				width: 0.44rem;
 				height: 0.4rem;
 			}
-			.ping_box{
-				
+
+			.ping_box {}
+
+			.ping_list {
+				width: 6.7rem;
+				margin: 0 auto 1.2rem;
+				border-top: 1px solid #EEEEEE;
+				overflow: hidden;
+			}
+
+			.ping_list li {
+				width: 100%;
+				/* height: 3.19rem; */
+				border-bottom: 0.01rem solid #EEEEEE;
+				padding: 0 0 0.2rem 0;
+				box-sizing: border-box;
+			}
+
+			.ping_list li .news_top {
+				width: 100%;
+				height: 0.7rem;
+				display: flex;
+				align-items: center;
+				margin-top: 0.36rem;
+				justify-content: space-between;
+			}
+
+			.ping_list li .news_top .touxiang {
+				width: 0.7rem;
+				height: 0.7rem;
+				border-radius: 50%;
+
+			}
+
+			.news {
+				width: 2.6rem;
+				height: 0.7rem;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+				margin-left: 0.35rem;
+			}
+
+			.news .name {
+				font-size: 0.24rem;
+				color: #333333;
+			}
+
+			.news .date {
+				font-size: 0.22rem;
+				color: #999999;
+			}
+
+			.chakan {
+				padding: 0.05rem 0.15rem;
+				box-sizing: border-box;
+				height: 0.44rem;
+				background: #D7142A;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #FFFFFF;
+				line-height: 0.44rem;
+			}
+
+			.shanchu {
+				width: 1.25rem;
+				text-align: center;
+				height: 0.44rem;
+				background: #DBDBDB;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #999999;
+				line-height: 0.44rem;
+				margin-left: 0.2rem;
+			}
+
+			.con {
+				width: 100%;
+				font-size: 0.26rem;
+				color: #333333;
+				margin-top: 0.24rem;
+			}
+
+			.news_con {
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.news_con .shoutu {
+				width: 100%;
+				border-radius: 0.06rem;
+			}
+
+			.new_con_box {
+				font-size: 0.3rem;
+				color: #333333;
+				margin-top: 0.51rem;
+				letter-spacing: 0.02rem;
+				line-height: 0.4rem;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.new_con_box img {
+				width: 100%;
+			}
+
+			.new_title {
+				font-size: 0.32rem;
+				color: #333333;
+				margin: 0.28rem 0 0.56rem;
+				font-weight: bold;
+			}
+
+			.ping_top_box {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+				height: 0.8rem;
+			}
+
+			.ping_top_box .zuixin_ping {
+				font-size: 0.26rem;
+				color: #333333;
+			}
+
+			.ping_top_box .ping_right_box {
+				display: flex;
+				align-items: center;
+			}
+
+			.ping_top_box .ping_right_box span {
+				font-size: 0.22rem;
+				color: #999999;
+			}
+
+			.ping_top_box .ping_right_box img {
+				width: 0.15rem;
+				height: 0.2rem;
+				margin-left: 0.15rem;
+			}
+
+			.right_dianzan {
+				display: flex;
+				align-items: center;
+			}
+
+			.dianzan {
+				width: 0.3rem;
+				height: 0.29rem;
+			}
+
+			.dian_num {
+				font-size: 0.24rem;
+				color: #9E9E9E;
+				margin-left: 0.2rem;
+			}
+
+			.bottom div {
+				position: relative;
+				width: 0.7rem;
+				height: 0.6rem;
+			}
+
+			.bottom div span {
+				position: absolute;
+				top: 0.1rem;
+				right: 0;
+				height: 0.2rem;
+				padding: 0 0.1rem;
+				box-sizing: border-box;
+				background: #D7142A;
+				border-radius: 0.25rem;
+				line-height: 0.2rem;
+				color: #ffffff;
+				font-size: 0.2rem;
+				display: block;
+			}
+
+			.bottom div img {
+				margin-top: 0.16rem;
+			}
+
+			.input_hide {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				z-index: 100;
+				background: none;
+				outline: none;
+				border: none;
 			}
 		</style>
 	</head>
-	
+
 	<body>
 		<div class="top">
-			<div class="top_le">
-				<img src="img/位图5.png" alt="">
-				<p>李渊</p>
+			<div style="display: flex;align-items: center;">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()" style="width: 0.163rem;height: 0.28rem;display: block;">
+				<div class="top_le" style="margin-left: 0.2rem;">
+					<img src="" alt="" class="user_img">
+					<p class="user_name"></p>
+				</div>
 			</div>
-			<div class="top_ri">关注</div>
+			<div class="top_ri"></div>
 		</div>
-		<div class="con">
-			
+		<div class="news_con">
+			<div class="new_title"></div>
+			<img src="" class="shoutu">
+			<div class="new_con_box"></div>
 		</div>
 		<div class="time">创建于昨天10:00</div>
 		<!-- 新书上架 -->
 		<div class="xinshu">
-			<div class="xin_tit">新上好书  与你共度</div>
+			<div class="xin_tit">文章书籍：<span class="num_book"></span></div>
 			<div class="swiper-container xinshang">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide xin_sli">
-						<img src="img/3.png" alt="">
-						<p>金融书单</p>
-						<p>陆一</p>
-					</div>
-					<div class="swiper-slide xin_sli">
-						<img src="img/3.png" alt="">
-						<p>金融书单</p>
-						<p>陆一</p>
-					</div>
-					<div class="swiper-slide xin_sli">
-						<img src="img/3.png" alt="">
-						<p>金融书单</p>
-						<p>陆一</p>
-					</div>
-					<div class="swiper-slide xin_sli">
-						<img src="img/3.png" alt="">
-						<p>金融书单</p>
-						<p>陆一</p>
-					</div>
+				<div class="swiper-wrapper shuji_new">
+
 				</div>
 			</div>
 		</div>
 		<div class="ping_box">
-			
+			<div class="ping_top_box">
+				<span class="zuixin_ping">最新评论</span>
+				<div class="ping_right_box">
+					<span>查看全部</span>
+					<img src="img/qv.png">
+				</div>
+			</div>
+			<ul class="ping_list">
+				<li>
+					<div class="news_top">
+						<div style="display: flex;">
+							<img src="" class="touxiang">
+							<div class="news">
+								<p class="name"></p>
+								<p class="date"></p>
+							</div>
+						</div>
+						<div class="right_dianzan">
+							<img src="img/dianzan.png" class="dianzan">
+							<span class="dian_num"></span>
+						</div>
+					</div>
+					<div class="con">
+
+					</div>
+				</li>
+
+			</ul>
 		</div>
 		<div class="bottom">
-			<img src="img/pingzan.png" alt="">
-			<img src="img/pingxin.png" alt="">
-			<img src="img/pingshou.png" alt="">
+			<div>
+				<img src="" alt="" onclick="pingdian()" class="pingzan">
+				<span class="ping_dian_num">30</span>
+			</div>
+			<div onclick="faping()">
+				<img src="img/pingxin.png" alt="">
+				<span class="pinglun_num">30</span>
+			</div>
+			<img src="" alt="" class="shoucang" onclick="shoucang()">
+		</div>
+		<div class="tan_box">
+			<div class="tan"></div>
 		</div>
 	</body>
 	<script>
-		var mySwiper=new Swiper('.xinshang', {
-			slidesPerView : 2,  
+		// ios不回显问题  ios返回到上一页不刷新
+		var browserRule = /^.*((iPhone)|(iPad)|(Safari))+.*$/;
+		if (browserRule.test(navigator.userAgent)) {
+			window.addEventListener('pageshow', function(e) {
+				if (e.persisted) {
+					window.location.reload()
+				}
+			})
+		}
+		var TYPE_NAVIGATE = 0, // 当前页面是通过点击链接，书签和表单提交，或者脚本操作，或者在url中直接输入地址，type值为0
+			TYPE_RELOAD = 1, // 点击刷新页面按钮或者通过Location.reload()方法显示的页面，type值为1
+			TYPE_BACK_FORWARD = 2, // 页面通过历史记录和前进后退访问时。type值为2
+			TYPE_RESERVED = 255; // 任何其他方式，type值为255
+		window.addEventListener('pageshow', (e) => {
+			if (e.persisted || (window.performance &&window.performance.navigation.type == TYPE_BACK_FORWARD)) {
+				location.reload()
+			}
+		}, false)
+		
+		
+		var url = localStorage.url
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		var article_id = ''
+
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				article_id = parameter_arr_new[0];
+			}
+		}
+
+		geturl()
+		
+		var article_user_id = ''
+		xuanran()
+
+		function xuanran() {
+			$.ajax({
+				url: url + '/index.php/books/api/article_details',
+				data: {
+					article_id: article_id,
+					user_id: user_id,
+					company_identity: company_identity
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				success: function(data) {
+					console.log(data)
+					if (data.status == 1) {
+						article_user_id = data.data.article_user_id
+						if (data.data.is_like_status == 1) {
+							var img = "img/yidianzan.png"
+							$('.pingzan').attr('src', img)
+						} else if (data.data.is_like_status == 2) {
+							var img = "img/pingzan.png"
+							$('.pingzan').attr('src', img)
+						}
+						$('.shoutu').attr('src', data.data.article_img);
+						$('.new_con_box').html(data.data.article_content);
+						$('.new_title').html(data.data.article_title);
+						$('.user_img').attr('src', data.data.article_user_head_img);
+						$('.user_name').html(data.data.article_user_name);
+						$('.num_book').html(data.data.article_books_sum)
+						if (data.data.article_is_collect == 2) {
+							$('.shoucang').attr('src', 'img/pingshou.png')
+						} else if (data.data.article_is_collect == 1) {
+							$('.shoucang').attr('src', 'img/pingyishou.png')
+						}
+						if (data.data.is_follow_status == 1) {
+							$('.top_ri').html('取消关注')
+						} else if (data.data.is_follow_status == 2) {
+							$('.top_ri').html('关注')
+						}
+						$('.time').html('创建于' + data.data.article_time_val)
+						// 书籍
+						if (data.data.article_books_list != '') {
+							var zuixin = data.data.article_books_list
+							var zuixin_er = '';
+							var bookid = ''
+							$.each(zuixin, function(i, obj) {
+								bookid = obj.books_id
+								zuixin_er += '<div class="swiper-slide xin_sli" onclick="shuji(' + obj.books_id + ')">'
+								zuixin_er += '<img src="' + obj.books_img + '" alt="">'
+								zuixin_er += '<p>'
+								zuixin_er += obj.books_name
+								zuixin_er += '</p>'
+								zuixin_er += '<p>'
+								zuixin_er += obj.books_author
+								zuixin_er += '</p>'
+								zuixin_er += '</div>'
+							})
+							$('.shuji_new').html(zuixin_er);
+							var mySwiper = new Swiper('.xinshang', {
+								slidesPerView: 2,
+							})
+
+						} else {
+							// $('.shuji_new').html('暂无书籍');
+							// $(".shuji_new").css('fontSize','0.24rem')
+							$('.xinshu').hide();
+						}
+						$('.ping_dian_num').html(data.data.article_like_sum)
+						$('.pinglun_num').html(data.data.article_comment_sum)
+						// 评论
+						if (data.data.article_comment_list != '') {
+							var pinglun = data.data.article_comment_list
+							var pingluner = '';
+
+							$.each(pinglun, function(i, obj) {
+								if (obj.comment_is_like == 1) {
+									var imgsrc = "img/yidianzan.png"
+								} else if (obj.comment_is_like == 2) {
+									var imgsrc = "img/dianzan.png"
+								}
+
+								pingluner += '<li>'
+								pingluner += '<div class="news_top">'
+								pingluner += '<div style="display: flex;">'
+								pingluner += '<img src="' + obj.comment_user_head_img + '" class="touxiang">'
+								pingluner += '<div class="news">'
+								pingluner += '<p class="name">'
+								pingluner += obj.comment_user_name
+								pingluner += '</p>'
+								pingluner += '<p class="date">'
+								pingluner += obj.comment_time
+								pingluner += '</p>'
+								pingluner += '</div>'
+								pingluner += '</div>'
+								pingluner += '<div class="right_dianzan">'
+								pingluner += '<img src="' + imgsrc + '" class="dianzan" onclick="dianzan(' + obj.comment_id + ')">'
+								pingluner += '<span class="dian_num">'
+								pingluner += obj.comment_like_sum
+								pingluner += '</span>'
+								pingluner += '</div>'
+								pingluner += '</div>'
+								pingluner += '<div class="con">'
+								pingluner += obj.comment_comment_content
+								pingluner += '</div>'
+								pingluner += '</li>'
+							})
+							$('.ping_list').html(pingluner);
+						} else {
+							$('.ping_list').html(
+								'<p style="width:100%;font-size:0.32rem;color:#777;text-align:center;margin-top:0.2rem;">暂无评论</p>');
+							$(".ping_list").css('fontSize', '0.24rem')
+						}
+
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					}
+				}
+			});
+		}
+
+		function shuji(con) {
+			window.location.href = "xiangqing.html?books_id=" + con
+		}
+		$('.ping_right_box').click(function() {
+			window.location.href = "pinglun_list.html?article_id=" + article_id
 		})
+		$('.top_ri').click(function() {
+			var that = this;
+			$.ajax({
+				url: url + '/index.php/books/api/follow_api',
+				type: "POST",
+				data: {
+					be_follow_user_id: article_user_id,
+					company_identity: company_identity,
+					user_id: user_id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					$('.tan_box .tan').html(data.message);
+					$('.tan_box').css('display', 'block');
+					$('.tan_box').fadeOut(2000);
+					if (data.status == 1) {
+						xuanran();
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					}
+				}
+			});
+		})
+
+		$('.user_img').click(function() {
+			window.location.href = "zhuye.html?now_user_id=" + article_user_id
+		})
+
+		function dianzan(con) {
+			$.ajax({
+				url: url + '/index.php/books/api/like_api',
+				type: "POST",
+				data: {
+					source_id: con,
+					company_identity: company_identity,
+					user_id: user_id,
+					is_type: 2
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					$('.tan_box .tan').html(data.message);
+					$('.tan_box').css('display', 'block');
+					$('.tan_box').fadeOut(2000);
+					if (data.status == 1) {
+						xuanran();
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					}
+				}
+			});
+		}
+
+		function pingdian() {
+			$.ajax({
+				url: url + '/index.php/books/api/like_api',
+				type: "POST",
+				data: {
+					source_id: article_id,
+					company_identity: company_identity,
+					user_id: user_id,
+					is_type: 1
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					$('.tan_box .tan').html(data.message);
+					$('.tan_box').css('display', 'block');
+					$('.tan_box').fadeOut(2000);
+					if (data.status == 1) {
+						xuanran();
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					}
+				}
+			});
+		}
+
+		function shoucang() {
+			$.ajax({
+				url: url + '/index.php/books/api/collect_api',
+				type: "POST",
+				data: {
+					article_id: article_id,
+					company_identity: company_identity,
+					user_id: user_id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				success: function(data) {
+					console.log(data)
+					$('.tan_box .tan').html(data.message);
+					$('.tan_box').css('display', 'block');
+					$('.tan_box').fadeOut(2000);
+					if (data.status == 1) {
+						xuanran();
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					}
+				}
+			});
+		}
+
+		function faping() {
+			window.location.href = "faping.html?article_id=" + article_id
+		}
 	</script>
 </html>

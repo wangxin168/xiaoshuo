@@ -9,11 +9,15 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
 		<title>搜索</title>
 		<style type="text/css">
+			html, body {
+			    background: white;
+			}
 			* {
 				margin: 0;
 				padding: 0;
@@ -35,7 +39,7 @@
 			.serch img {
 				width: 0.26rem;
 				height: 0.28rem;
-				margin-left: 1.28rem;
+				margin-left: 0.28rem;
 			}
 
 			.serch input {
@@ -43,8 +47,26 @@
 				background: none;
 				outline: none;
 				margin-left: 0.19rem;
+				color: #777;
+				    width: 70%;
+					height: 0.5rem;
 			}
-
+			::-webkit-input-placeholder { /* WebKit browsers */
+			    color:    #DBDBDB;
+				/* font-size: 0.268rem; */
+			}
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			    color:    #DBDBDB;
+				/* font-size: 0.268rem; */
+			}
+			::-moz-placeholder { /* Mozilla Firefox 19+ */
+			    color:    #DBDBDB;
+				/* font-size: 0.268rem; */
+			}
+			:-ms-input-placeholder { /* Internet Explorer 10+ */
+			    color:    #DBDBDB;
+				/* font-size: 0.268rem; */
+			}
 			.select-list {
 				margin-top: 0.28rem;
 				font-size: 0.32rem;
@@ -124,9 +146,11 @@
 				
 			}
 			.wenzhang{
-				width: 100%;
-				padding: 0.36rem 0.4rem;
+				width: 6.7rem;
+				padding: 0.36rem 0;
 				box-sizing: border-box;
+				border-bottom: 1px solid #eeeeee;
+				margin: auto;
 			}
 			.wenzhang .title{
 				font-size: 0.32rem;
@@ -220,13 +244,41 @@
 			.touxiang{
 				border-radius: 50%;
 			}
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+			.fenlei span:nth-of-type(2) {
+			    width: 1.063rem;
+			    overflow: hidden;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span style="margin-left: 0.5rem;">搜索</span>
+				<span @click="wancheng()">完成</span>
+			</div>
 			<div class="serch">
 				<img src="img/4256db47eeb50412fe33ff9380f3406.png" alt="">
-				<input type="text" placeholder="请输入要搜索的书名或作者姓名" @input="inputFun">
+				<input type="text" placeholder="请输入要搜索的书名或作者姓名" class="shuru_con">
 			</div>
 			<div class="select-list">
 				<div class="week-btn selected" @click="fangfa(1)">书籍</div>
@@ -244,21 +296,21 @@
 				</li>
 			</ul>
 			<div class="wen_con" style="display: none;">
-				<div class="wenzhang" style="margin-bottom: 1rem;">
-					<div class="title">人生一定要学会的两种思维：价值思维和趋势思维</div>
-					<div class="con_tit">文章虽长，但认真读完读懂，简直超值！</div>
-					<img src="img/位图2.png" alt="" class="wen_img">
+				<div class="wenzhang" v-for="(item,index) in article_list">
+					<div class="title">{{item.article_title}}</div>
+					<div class="con_tit">{{item.article_intro}}</div>
+					<img :src="item.article_img" alt="" class="wen_img">
 					<div class="bott">
 						<div class="left">
 							<img src="img/jinrong.png" alt="">
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">李渊</span>
-							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">7本书</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #333333;">{{item.article_user_name}}</span>
+							<span style="margin-left: 0.2rem;font-size: 0.24rem;color: #999999;">{{item.article_books_num_val}}</span>
 						</div>
 						<div class="right">
 							<img src="img/dianzan.png" class="dianzan">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">2</span>
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_like_sum_val}}</span>
 							<img src="img/31pinglun.png" alt="" class="xinxi">
-							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">1</span>
+							<span style="font-size: 0.24rem;color: #9E9E9E;margin-left: 0.2rem;">{{item.article_comment_sum_val}}</span>
 						</div>
 					</div>
 				</div>
@@ -266,10 +318,11 @@
 			<div class="user_box" style="display: none;">
 				<div v-for="(item,index) in books_user_list">
 					<p>
-						<img :src="item.user_head_img" class="touxiang">
+						<img :src="item.user_head_img" class="touxiang" @click="zhuye($event)" :data-user_id_ren="item.user_id">
 						<span>{{item.user_name}}</span>
 					</p>
-					<span>已关注</span>
+					<span v-if="item.is_follow==1">已关注</span>
+					<span v-if="item.is_follow==2">未关注</span>
 				</div>
 			</div>
 			<div class="null">
@@ -279,6 +332,8 @@
 		</div>
 	</body>
 	<script>
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
 		var app = new Vue({
 			el: '#app',
 			data: {
@@ -286,7 +341,8 @@
 				url: localStorage.url,
 				type_id: 1,
 				inputValue: '',
-				books_user_list:[]
+				books_user_list:[],
+				article_list:[]
 			},
 			created() {
 
@@ -297,13 +353,18 @@
 				$.ajax(that.url + '/index.php/books/api/search_api', {
 					data: {
 						type_id: that.type_id,
-						search_val: this.inputValue
+						search_val: this.inputValue,
+						company_identity: company_identity,
+						user_id:user_id
 					},
 					dataType: 'json', //服务器返回json格式数据
+					type:"post",
 					success: function(data) {
 						console.log(data)
 						if(data.status==2){
 							$('.null').show();
+						}else if(data.status==333){
+							window.location.href="no_power.html"
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -328,7 +389,7 @@
 						that.type_id = 2
 						that.xuanran();
 						$('.book_box').hide();
-						$('.wen_con').hide();
+						$('.wen_con').show();
 						$('.user_box').hide();
 					} else if (con == 3) {
 						$('.month-btn').addClass('selected')
@@ -344,7 +405,9 @@
 					$.ajax(that.url + '/index.php/books/api/search_api', {
 						data: {
 							type_id: that.type_id,
-							search_val: this.inputValue
+							search_val: this.inputValue,
+							company_identity: company_identity,
+							user_id:user_id
 						},
 						type: 'post',
 						dataType: 'json', //服务器返回json格式数据
@@ -353,9 +416,23 @@
 							if(data.status==2){
 								$('.null').show();
 							}else{
-								that.list = data.data.books_list.list
-								that.books_user_list=data.data.books_user_list.list
-								console.log(data.data.books_list.books_user_list)
+								if(that.type_id==1){
+									that.list = data.data.books_list.list
+								}else if(that.type_id==2){
+									if(data.data.article_list.list==undefined){
+										$('.null').show();
+									}else{
+										that.article_list=data.data.article_list.list
+									}
+								}else if(that.type_id==3){
+									if(data.data.books_user_list.list==undefined){
+										$('.null').show();
+									}else{
+										that.books_user_list=data.data.books_user_list.list
+									}
+								}
+								
+								// console.log(data.data.books_list.books_user_list)
 								$('.null').hide();
 							}
 						},
@@ -370,12 +447,19 @@
 					window.location.href = "xiangqing.html?bookid=" + bookid
 					event.stopImmediatePropagation();
 				},
-				inputFun(e) {
+				wancheng() {
 					var that = this;
 					//e.target 指向了dom元素
-					this.inputValue = e.target.value;
-					console.log(this.inputValue)
+					
+					console.log($('.shuru_con').val())
+					this.inputValue = $('.shuru_con').val()
 					that.xuanran();
+				},
+					
+				zhuye:function(e){
+					var user_id_ren = e.currentTarget.getAttribute("data-user_id_ren")
+					console.log(user_id_ren)
+					window.location.href = "zhuye.html?now_user_id=" + user_id_ren
 				}
 			}
 		})

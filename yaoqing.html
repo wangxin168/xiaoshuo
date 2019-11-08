@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css" />
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			html,
+			body {
+				background: white;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+
+			.fenlei .fan_hui {
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+
+			ul {
+				width: 6.7rem;
+				margin: 0 auto 1rem auto;
+			}
+
+			ul li {
+				width: 6.7rem;
+				height: 1.57rem;
+				display: flex;
+				justify-content: space-between;
+				border-bottom: 0.01rem solid #eeeeee;
+				align-items: center;
+			}
+
+			ul li div {
+				display: flex;
+				align-items: center;
+			}
+
+			ul li div .touxiang {
+				display: block;
+				border-radius: 50%;
+				width: 0.9rem;
+				height: 0.9rem;
+			}
+
+			ul li div span {
+				margin-left: 0.3rem;
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			ul li p {
+				width: 1.25rem;
+				height: 0.37rem;
+				line-height: 0.37rem;
+				text-align: center;
+				border: 1px solid #999999;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #999999;
+			}
+
+			.check {
+				width: 0.37rem;
+				height: 0.37rem;
+			}
+
+			button {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				text-align: center;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				background: #D7142A;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				border: none;
+			}
+
+			.choose_input {
+				background: none;
+			}
+
+			input[type=checkbox] {
+				margin-right: 10px;
+				cursor: pointer;
+				/* width: 15px;
+			    height: 15px; */
+				width: 0px;
+				height: 0px;
+				position: relative;
+				top: -15px;
+				border: none;
+			}
+
+			input[type=checkbox]:after {
+				position: absolute;
+				width: 10px;
+				height: 15px;
+				top: 0;
+				content: " ";
+				background-color: #fff;
+				color: #fff;
+				display: inline-block;
+				visibility: visible;
+				border: 1px solid grey;
+				padding: 0 3px;
+				border-radius: 3px;
+			}
+
+			input[type=checkbox]:checked:after {
+				/* background-color: #0f97e7; */
+				content: "✓";
+				font-size: 12px;
+				color: #333;
+			}
+
+			input[type=checkbox]:disabled:after {
+				width: 10px;
+				height: 15px;
+				top: 0;
+				color: #333;
+				display: inline-block;
+				visibility: visible;
+				border: 1px solid grey;
+				padding: 0 3px;
+				border-radius: 3px;
+				background-color: #E9E7E3;
+				content: "✓";
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>邀请</span>
+				<span></span>
+			</div>
+			<ul class="haoyou">
+				<li v-for="(item,index) in user_list">
+					<div>
+						<img :src="item.user_head_img" class="touxiang">
+						<span>{{item.user_name}}</span>
+					</div>
+					<!-- <img src="img/check_no.png" class="check"> -->
+					<span>
+						<input type="checkbox" name="chooseAll" class="choose_input" autocomplete="off" />
+						<label for="checkbox3"></label>
+					</span>
+				</li>
+			</ul>
+			<button @click="wancheng()">完成</button>
+		</div>
+
+	</body>
+	<script>
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		var app = new Vue({
+			el: '#app',
+			data: {
+				user_list: [],
+				page: 0,
+				sum_data_num: '',
+				url: localStorage.url,
+				shu_arr: []
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				$.ajax({
+					url: that.url + '/index.php/books/api/lead_invite_user_list',
+					type: "POST",
+					data: {
+						page_start: that.page,
+						page_end: 5,
+						company_identity: company_identity,
+						user_id: user_id
+					},
+					dataType: 'json', //服务器返回json格式数据
+					success: function(data) {
+						console.log(data)
+						if (data.status == 2) {
+							$('.null').show();
+						} else if (data.status == 1) {
+
+							if (data.data == '') {
+								$('.null').show();
+							} else {
+								that.user_list = data.data.user_list
+								that.sum_data_num = data.data.user_page_list.page.sum_data_num
+							}
+						} else if (data.status == 333) {
+							window.location.href = "no_power.html"
+						}
+
+					}
+				});
+				window.addEventListener('scroll', this.onScroll);
+			},
+			methods: {
+				lingdu: function(e) {
+					var lead_id = e.currentTarget.getAttribute("data-lead_id")
+					console.log(lead_id)
+					window.location.href = "lingdu.html?lead_id=" + lead_id
+				},
+				wancheng: function() {
+					var that = this
+					$("input:checkbox:checked").each(function(index, element) {
+						var str_arr = that.user_list[index].user_id
+						that.shu_arr.push(str_arr)
+						var a = Array.from(new Set(that.shu_arr))
+						var shu_Arr = a.join(',')
+						console.log(shu_Arr)
+						localStorage.setItem("userid_arr", shu_Arr);
+					});
+					that.go_it()
+				},
+				go_it(){
+					console.log(111111)
+					window.history.go(-1);
+
+				},
+				onScroll() {
+					var that = this;
+					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+						//加载更多操作
+						that.page += 5;
+						console.log(that.page)
+						if (that.page <= that.sum_data_num) {
+							$.ajax({
+								url: that.url + '/index.php/books/api/personal_lead_api',
+								type: "POST",
+								data: {
+									page_start: that.page,
+									page_end: 5,
+									company_identity: company_identity,
+									user_id: user_id
+								},
+								dataType: 'json', //服务器返回json格式数据
+								success: function(data) {
+									that.user_list = that.user_list.concat(data.data.user_list)
+								}
+							});
+						}
+
+					}
+				}
+			}
+		})
+	</script>
+</html>

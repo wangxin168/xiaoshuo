@@ -9,13 +9,17 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
 		<title>
 
 		</title>
 		<style type="text/css">
+			html, body {
+			    background: white;
+			}
 			* {
 				margin: 0;
 				padding: 0;
@@ -71,20 +75,31 @@
 				color: #333333;
 				text-align: center;
 				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
 			}
 
 			.book_box {
 				width: 100%;
 				padding: 0 0.4rem 0 0.4rem;
 				box-sizing: border-box;
+				margin-bottom: 1rem;
 			}
 
 			.book_box li {
 				width: 6.7rem;
-				height: 3.39rem;
+				/* height: 3.39rem; */
 				margin: auto;
 				display: flex;
-				padding: 0.55rem 0;
+				padding: 0.55rem 0 0.4rem;
 				box-sizing: border-box;
 				border-bottom: 1px solid #EEEEEE;
 			}
@@ -97,13 +112,13 @@
 
 			.book_rgh {
 				margin-left: 0.32rem;
-				height: 2.29rem;
+				/* height: 2.29rem; */
 				width:4.5rem;
 			}
 
 			.book_rgh p:nth-of-type(1) {
 				font-size: 0.32rem;
-				color: #333333;
+				color: #333;
 			}
 
 			.book_rgh p:nth-of-type(2) {
@@ -119,13 +134,13 @@
 				margin-top: 0.2rem;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 3;
+				-webkit-line-clamp: 2;
 				overflow: hidden;
 			}
 
 			.book_bot {
 				display: flex;
-				margin-top: 0.05rem;
+				margin-top: 0.4rem;
 			}
 
 			.book_bot span {
@@ -163,41 +178,25 @@
 				text-align: center;
 				margin-top: 0.66rem;
 			}
-			.tan{
-				width: 3rem;
-				height: 1rem;
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				background: skyblue;
-				text-align: center;
-				margin: auto;
-				border-radius: 0.2rem;
-				line-height: 1rem;
-				left: 2.25rem;
-				display: none;
-				z-index: 10;
-				/* padding: 0 0.2rem; */
-				/* box-sizing: border-box; */
-				color: white;
-			}
 		</style>
 	</head>
 	<body>
 		<!-- <div class="fenlei">
-			书架
+			<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+			<span>书架</span>
+			<span></span>
 		</div> -->
 		<div id="app">
 			<ul class="book_box">
 				<li class="book" v-for="(item,index) in list" @click="xiangqing($event)" :data-bookid="item.books_id">
 					<img :src="item.books_img" alt="">
 					<div class="book_rgh">
-						<p>{{item.books_name}}</p>
-						<p>作者：{{item.books_author}}</p>
+						<p><b>{{item.books_name}}</b></p>
+						<p>作者：<span class="shense">{{item.books_author}}</span></p>
 						<p>简介：{{item.books_brief}}</p>
 						<p class="book_bot">
 							<span @click="yichu($event)" :data-books_shelf_id="item.books_shelf_id">移出书架</span>
-							<span @click="jixu($event)" :data-bookid="item.books_id">继续阅读</span>
+							<span @click="jixu($event)" :data-bookid="item.books_id" :data-catalog_id="item.catalog_id">继续阅读</span>
 						</p>
 					</div>
 				</li>
@@ -207,7 +206,7 @@
 				<nav>
 					<a href="index.html">
 						<img src="img/shouye_no.png" alt="" class="icon" />
-						<p>首页</p>
+						<p>阅览</p>
 					</a>
 					<a href="list.html">
 						<img src="img/fenlei_no.png" alt="" class="icon" />
@@ -223,7 +222,9 @@
 					</a>
 				</nav>
 			</footer>
-			<div class="tan"></div>
+			<div class="tan_box">
+				<div class="tan"></div>
+			</div>
 			<div class="null">
 				<img src="img/null.png" alt="">
 				<p>这里什么都没有！</p>
@@ -231,6 +232,8 @@
 		</div>
 	</body>
 	<script>
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
 		var app = new Vue({
 			el: '#app',
 			data: {
@@ -251,19 +254,25 @@
 					var that=this;
 					$.ajax(that.url + '/index.php/books/api/get_books_shelf_list_api', {
 						data: {
-							user_id:1
+							user_id:user_id,
+							company_identity:company_identity
 						},
 						type:'post',
 						dataType: 'json', //服务器返回json格式数据
 						success: function(data) {
 							console.log(data)
-							that.list = data.data.books_shelf_list
-							console.log(that.list)
-							if(data.data==''){
-								$('.null').show();
+							if(data.status==333){
+								window.location.href="no_power.html"
 							}else{
-								$('.null').hide();
+								that.list = data.data.books_shelf_list
+								console.log(that.list)
+								if(data.data==''){
+									$('.null').show();
+								}else{
+									$('.null').hide();
+								}
 							}
+							
 						}
 					});
 				},
@@ -275,8 +284,9 @@
 				},
 				jixu:function(e){
 					var bookid = e.currentTarget.getAttribute("data-bookid")
-					console.log(bookid)
-					window.location.href = "read.html?bookid=" + bookid+'&catalog_id='+1
+					var catalog_id = e.currentTarget.getAttribute("data-catalog_id")
+					console.log(catalog_id)
+					window.location.href = "read.html?bookid=" + bookid+'&catalog_id='+catalog_id+'&lead_id='+''+'&is_source='+1
 					event.stopImmediatePropagation();
 				},
 				yichu:function(e){
@@ -285,8 +295,9 @@
 					var books_shelf_id = e.currentTarget.getAttribute("data-books_shelf_id")
 					$.ajax(that.url + '/index.php/books/api/del_book_shelf_api', {
 						data: {
-							user_id:1,
-							books_shelf_id:books_shelf_id
+							user_id:user_id,
+							books_shelf_id:books_shelf_id,
+							company_identity: company_identity
 						},
 						type:'post',
 						dataType: 'json', //服务器返回json格式数据
@@ -294,7 +305,7 @@
 							console.log(data)
 							if(data.status==1){
 								// 提示框显示隐藏
-								$('.tan').html('移除成功');
+								$('.tan_box .tan').html('移除成功');
 								$('.tan').css('display', 'block');
 								$('.tan').fadeOut(2000);
 								that.xuanran()

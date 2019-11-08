@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			html,
+			body {
+				background: white;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+
+			.book_box {
+				width: 100%;
+				padding: 0 0.4rem 0 0.4rem;
+				box-sizing: border-box;
+				border-bottom: 1px solid #EEEEEE;
+				background: #F8F8F8;
+			}
+
+			.book_box li {
+				width: 6.7rem;
+				height: 3.39rem;
+				margin: auto;
+				display: flex;
+				padding: 0.55rem 0;
+				box-sizing: border-box;
+
+			}
+
+			.book_box li img {
+				width: 1.63rem;
+				height: 2.29rem;
+				display: block;
+			}
+
+			.book_rgh {
+				margin-left: 0.32rem;
+				height: 2.29rem;
+				width: 4.5rem;
+			}
+
+			.book_rgh p:nth-of-type(1) {
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.book_rgh p:nth-of-type(2) {
+				font-size: 0.24rem;
+				color: #999999;
+				margin-top: 0.19rem;
+			}
+
+			.book_rgh p:nth-of-type(3) {
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: justify;
+				margin-top: 0.2rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+			}
+
+			.con {
+				width: 6.7rem;
+				margin: auto;
+			}
+
+			.con .chang_con {
+				margin-top: 0.42rem;
+				font-size: 0.26rem;
+				color: #333333;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			textarea {
+				width: 100%;
+				height: 4.31rem;
+				margin-top: 0.23rem;
+				border: 1px solid #EEEEEE;
+				padding: 0.2rem;
+				box-sizing: border-box;
+				outline: none;
+			}
+
+			.con .time {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				margin-top: 0.28rem;
+			}
+
+			.con .time span {
+				width: 1.71rem;
+				height: 0.6rem;
+				border: 1px solid #999999;
+				border-radius: 0.45rem;
+				text-align: center;
+				line-height: 0.6rem;
+				font-size: 0.26rem;
+				color: #999999;
+			}
+				
+			.selected{
+				color: #ffffff!important;
+				background: #D7142A;
+				font-size: 0.26rem;
+				border: none!important;
+			}
+			.guanzhu {
+				width: 6.7rem;
+				margin: 0 auto 1rem;
+			}
+
+			.guanzhu li {
+				width: 6.7rem;
+				height: 1.57rem;
+				display: flex;
+				justify-content: space-between;
+				border-bottom: 0.01rem solid #eeeeee;
+				align-items: center;
+			}
+
+			.guanzhu li div {
+				display: flex;
+				align-items: center;
+			}
+
+			.guanzhu li div img {
+				display: block;
+				border-radius: 50%;
+				width: 0.9rem;
+				height: 0.9rem;
+			}
+
+			.guanzhu li div span {
+				margin-left: 0.3rem;
+				font-size: 0.32rem;
+				color: #333333;
+			}
+
+			.guanzhu li p {
+				width: 1.25rem;
+				height: 0.37rem;
+				line-height: 0.37rem;
+				text-align: center;
+				border: 1px solid #999999;
+				border-radius: 0.04rem;
+				font-size: 0.24rem;
+				color: #999999;
+			}
+
+			button {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				text-align: center;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				background: #D7142A;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>发起领读</span>
+				<span></span>
+			</div>
+			<ul class="book_box">
+				<li class="book">
+					<img :src="books_details.books_img" alt="">
+					<div class="book_rgh">
+						<p>{{books_details.books_name}}</p>
+						<p>作者：{{books_details.books_author}}</p>
+						<p>简介：{{books_details.books_brief}}</p>
+					</div>
+				</li>
+			</ul>
+			<div class="con">
+				<div class="chang_con">领读理由：</div>
+				<textarea rows="" cols="" maxlength="200" placeholder="请输入领读理由，限200字">
+
+				</textarea>
+				<div class="chang_con" style="margin-top: 0.56rem;">加入领读有效期：</div>
+				<div class="time">
+					<span @click="timer(3)" class="week-btn">3天</span>
+					<span @click="timer(7)" class="day-btn selected">7天</span>
+					<span @click="timer(10)" class="month-btn">10天</span>
+				</div>
+				<div class="chang_con" style="margin-top: 0.56rem;">
+					<p>邀请他人: (选填)</p>
+					<p>已选择<span>{{length}}</span>人</p>
+				</div>
+			</div>
+			<ul class="guanzhu">
+				<li v-for="(item,index) in user_info_list">
+					<div>
+						<img :src="item.user_head_img">
+						<span>{{item.user_name}}</span>
+					</div>
+					<p @click="yichu(item.user_id)">移除</p>
+				</li>
+				
+				<li class="yaoqing" @click="yaoqing()">
+					<div>
+						<img src="img/yaoqing.png">
+						<span>邀请其他人</span>
+					</div>
+				</li>
+			</ul>
+			<button @click="faqi_read()">提交</button>
+			<div class="tan_box">
+				<div class="tan"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var books_id = ''
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				books_id = parameter_arr_new[0];
+			}
+		}
+		geturl();
+		var app = new Vue({
+			el: '#app',
+			data: {
+				url: localStorage.url,
+				books_details:{},
+				arr:localStorage.userid_arr,
+				time:7,
+				user_info_list:[],
+				length:0,
+				arr_B:[]
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				$.ajax({
+					url: that.url + '/index.php/books/api/get_books_details_api',
+					type: "POST",
+					data: {
+						company_identity: company_identity,
+						user_id: user_id,
+						books_id:books_id
+					},
+					dataType: 'json', //服务器返回json格式数据
+					success: function(data) {
+						
+						if(data.status==333){
+							window.location.href="no_power.html"
+						}else{
+							that.books_details = data.data.books_details
+						}
+					}
+				});
+				console.log(that.arr)
+				
+				if (that.arr!="") {
+					that.check_user();
+				}
+			},
+			methods: {
+				check_user(){
+					var that=this;
+					$.ajax({
+						url: that.url + '/index.php/books/api/initiate_lead_user_list',
+						type: "POST",
+						data: {
+							company_identity: company_identity,
+							user_id: user_id,
+							user_str:that.arr
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if(data.status==1){
+								that.user_info_list=data.data.user_info_list
+								that.length=data.data.user_info_list.length
+							}
+							
+							
+						}
+					});
+				},
+				yichu:function(con){
+					var that=this;
+					var arrA=that.arr;
+					that.arr_B=that.arr.split(',')
+					var index = that.arr_B.indexOf(con);
+					if(index>-1){//大于0 代表存在，
+						that.arr_B.splice(index,1);//存在就删除
+					}
+					that.arr=that.arr_B.join(',')
+					localStorage.setItem("userid_arr", that.arr);
+					console.log(that.arr)
+					if(that.arr!=''){
+						that.check_user();
+					}else if(that.arr==''){
+						that.user_info_list=[]
+						that.length=0
+					}
+					
+				},
+				faqi_read: function() {
+					var that = this;
+					var lead_reason=$('textarea').val()
+					if(lead_reason==""){
+						return;
+					}
+					$.ajax({
+						url: that.url + '/index.php/books/api/initiate_lead',
+						type: "POST",
+						data: {
+							company_identity: company_identity,
+							user_id: user_id,
+							books_id:books_id,
+							join_end_time:that.time,
+							lead_invite_user:that.arr,
+							lead_reason:lead_reason
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							if(data.status==1){
+								localStorage.removeItem("userid_arr");
+								window.history.go(-1);
+							}
+							
+						}
+					});
+				},
+				yaoqing: function(){
+					window.location.href = "yaoqing.html"
+				},
+				zhuye(con) {
+					// console.log(con)
+					window.location.href = "zhuye.html?now_user_id=" + con
+				},
+				timer(con){
+					var that=this;
+					console.log(con)
+					$('.time >span').removeClass('selected')
+					if(con==3){
+						that.time=con
+						$('.week-btn').addClass('selected')
+					}else if(con==7){
+						that.time=con
+						$('.day-btn').addClass('selected')
+					}else if(con==10){
+						that.time=con
+						$('.month-btn').addClass('selected')
+					}
+				}
+			}
+		})
+	</script>
+</html>

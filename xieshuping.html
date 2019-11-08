@@ -10,13 +10,23 @@
 		<meta content="email=no" name="format-detection" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script type="text/javascript" src="js/rem.js"></script>
 		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css" />
+		<script src="layui/layui.js"></script>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+		<script src="js/wangEditor.js"></script>
+		<script src="js/jquery.exif.js"></script>
 		<style type="text/css">
 			* {
 				margin: 0;
 				padding: 0;
 				list-style: none;
+			}
+
+			html,
+			body {
+				background: white;
 			}
 
 			.biaoti {
@@ -52,13 +62,15 @@
 				color: #999999;
 				margin-top: 0.2rem;
 			}
-			.wen_con{
+
+			.wen_con {
 				font-size: 0.26rem;
 				color: #333333;
 				width: 90%;
 				margin: 0.45rem auto 0;
 			}
-			.wen_img{
+
+			.wen_img {
 				width: 6.7rem;
 				height: 2.29rem;
 				line-height: 2.29rem;
@@ -68,14 +80,25 @@
 				margin: 0.3rem auto 0;
 				font-size: 0.22rem;
 				color: #666666;
+				
 			}
-			.zhengwen{
+
+			.img_wen {
 				width: 6.7rem;
-				height: 4.3rem;
+				height: 2.29rem;
+				margin: 0.3rem auto 0;
+				display: block;
+				object-fit: cover;
+			}
+
+			.zhengwen {
+				width: 6.7rem;
+				/* height: 4.3rem; */
 				border: 1px solid #EEEEEE;
 				margin: 0.23rem auto 0;
 			}
-			.zhengwen textarea{
+
+			.zhengwen textarea {
 				width: 100%;
 				height: 3.6rem;
 				padding: 0.2rem;
@@ -83,14 +106,16 @@
 				border: none;
 				outline: none;
 			}
-			.charu{
+
+			.charu {
 				width: 86%;
 				margin: 0.2rem auto 0;
 				text-align: right;
 				font-size: 0.22rem;
 				color: #4A90E2;
 			}
-			.fabu{
+
+			.fabu {
 				width: 100%;
 				height: 0.96rem;
 				line-height: 0.96rem;
@@ -101,34 +126,368 @@
 				position: fixed;
 				bottom: 0;
 				left: 0;
+				z-index: 10;
+			}
+
+			.xiangguan {
+				font-size: 0.26rem;
+				color: #333333;
+				margin-left: 0.4rem;
+				margin-top: 0.44rem;
+			}
+
+			.tian_shu {
+				width: 6.7rem;
+				margin: 0.58rem auto 1.2rem;
+				flex-wrap: wrap;
+
+			}
+
+			.tian_shu li {
+				text-align: center;
+				float: left;
+				/* margin-left: 0.1rem; */
+				width: 33.3%;
+			}
+
+			.tian_shu li img {
+				width: 1.3rem;
+				height: 1.82rem;
+			}
+
+			.tian_shu li p {
+				font-size: 0.24rem;
+				color: #999999;
+			}
+
+			.tianjia {
+				width: 1.3rem;
+				margin: 0.2rem 0 1.2rem 0;
+			}
+
+			.tianjia img {
+				width: 1.3rem;
+				height: 1.82rem;
+				margin-left: 0.78rem;
+				margin-top: 0.2rem;
+			}
+			.tishi_box{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 20;
+				background: rgba(0,0,0,0.7);
+				display: none;
+			}
+			.tishi{
+				width: 5.68rem;
+				height: 3.32rem;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				left: 0.914rem;
+				background: #FFFFFF;
+				border-radius: 0.1536rem;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+			}
+			.tishi button{
+				width: 100%;
+				height: 0.889rem;
+				background: #D7142A;
+				text-align: center;
+				line-height: 0.889rem;
+				font-size: 0.34rem;
+				color: #FFFFFF;
+				border: none;
+				outline: none;
+				border-radius: 0 0 0.1536rem 0.1536rem;
+			}
+			.tishi .tishi_con p:nth-of-type(1){
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				margin-top: 0.311rem;
+			}
+			.tishi .tishi_con p:nth-of-type(2){
+				width: 3.02rem;
+				margin: 0.29rem auto 0;
+				font-size: 0.28rem;
+				color: #828282;
+				text-align: center;
 			}
 		</style>
 	</head>
 	<body>
+		<div class="fenlei">
+			<img src="img/fanhui.png" class="fan_hui" onclick="fan()">
+			<span>写书评</span>
+			<span></span>
+		</div>
 		<div class="biaoti">
 			<div class="biao_con">
 				<p>文章标题:</p>
-				<input type="text" placeholder="请输入标题">
+				<input type="text" placeholder="请输入标题" class="biaoti_con">
 			</div>
 			<div class="more">最多30字</div>
 		</div>
 		<div class="wen_con">文章首图:</div>
-		<div class="wen_img">
+		<div class="wen_img img_caijian" id="img_caijian">
 			设置文章首图
 		</div>
+		<img src="" class="img_wen img_caijian" style="display: none;" id="img_caijian2" exif=true>
+		
 		<div class="wen_con">文章正文:</div>
 		<div class="zhengwen">
-			<textarea placeholder="图文编辑(至少一张图或者至少50字)" maxlength="10000">
-				
-			</textarea>
-			<div class="more" style="margin-right: 0.1rem;">最多1万字</div>
+			<div id="demo"></div>
 		</div>
-		<div class="charu">插入图片</div>
-		<div class="fabu">立即发布</div>
+		<!-- <div class="charu">插入图片</div> -->
+		<div class="add_book">
+			<div class="xiangguan">相关图书: (可选,最多添加10本)</div>
+			<ul class="tian_shu">
+			</ul>
+			<div class="tianjia" id="tianjia">
+				<img src="img/add_book.png">
+				<p></p>
+				<p></p>
+			</div>
+		</div>
+		<div class="fabu" id="fabu">立即发布</div>
+		<div class="tan_box">
+			<div class="tan"></div>
+		</div>
+		<div class="tishi_box">
+			<div class="tishi">
+				<div class="tishi_con">
+					<p>提示</p>
+					<p class="success">发布成功，您可以在[我的-感悟·书单]中查看</p>
+				</div>
+				<button onclick="know()">知道了</button>
+			</div>
+		</div>
 	</body>
 	<script>
-		$('.wen_img').click(function(){
-			window.location.href="caijian.html"
+		// ios不回显问题  ios返回到上一页不刷新
+		var browserRule = /^.*((iPhone)|(iPad)|(Safari))+.*$/;
+		if (browserRule.test(navigator.userAgent)) {
+			window.addEventListener('pageshow', function(e) {
+				if (e.persisted) {
+					window.location.reload()
+				}
+			})
+		}
+		var TYPE_NAVIGATE = 0, // 当前页面是通过点击链接，书签和表单提交，或者脚本操作，或者在url中直接输入地址，type值为0
+			TYPE_RELOAD = 1, // 点击刷新页面按钮或者通过Location.reload()方法显示的页面，type值为1
+			TYPE_BACK_FORWARD = 2, // 页面通过历史记录和前进后退访问时。type值为2
+			TYPE_RESERVED = 255; // 任何其他方式，type值为255
+		window.addEventListener('pageshow', (e) => {
+			if (e.persisted || (window.performance &&window.performance.navigation.type == TYPE_BACK_FORWARD)) {
+				location.reload()
+			}
+		}, false)
+
+		// 自己的返回按钮
+		function fan() {
+			window.history.go(-1);
+			localStorage.removeItem("img_url");
+			localStorage.removeItem("shu_arr");
+			localStorage.removeItem("text_con");
+			localStorage.removeItem("biaoti_con");
+		}
+
+
+
+		var url = localStorage.url
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		var is_source = ''
+		var lead_id = ''
+		var num_id = ''
+
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				is_source = parameter_arr_new[0];
+				lead_id = parameter_arr_new[1];
+				num_id = parameter_arr_new[2];
+			}
+		}
+
+		geturl();
+		if(num_id==''){
+			$('.add_book').hide();
+			$('.zhengwen').css('margin-bottom','1rem')
+		}
+		
+		var E = window.wangEditor
+		var editor = new E('#demo')
+		// 自定义菜单配置
+		editor.customConfig.menus = [
+			'bold', // 粗体
+			'italic', // 斜体
+			'underline', // 下划线
+			'justify', // 对齐方式
+			// 'fontName', // 字体
+		]
+		// 或者 var editor = new E( document.getElementById('editor') )
+		editor.create()
+		document.getElementById('fabu').addEventListener('click', function() {
+			// $('.fabu').click(function(){
+			// 读取 html
+			// alert(editor.txt.html())
+			var b = editor.txt.html()
+			// console.log(b)
+
+			if (localStorage.shu_arr) {
+				var arr = localStorage.shu_arr.split(',')
+				console.log(arr)
+			}
+			var a = $('.biaoti_con').val()
+			$.ajax({
+				url: url + '/index.php/books/api/push_article_done',
+				data: {
+					user_id: user_id,
+					company_identity: company_identity,
+					article_title: a,
+					article_img: localStorage.img_url,
+					article_content: b,
+					article_content_two: arr,
+					is_source: is_source,
+					lead_id: lead_id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				success: function(data) {
+					console.log(data)
+					if (data.status == 1) {
+						localStorage.removeItem("shu_arr");
+						localStorage.removeItem("img_url");
+						localStorage.removeItem("text_con");
+						localStorage.removeItem("biaoti_con");
+						$('.success').html(data.message)
+						$('.tishi_box').show();
+					} else if (data.status == 333) {
+						window.location.href = "no_power.html"
+					} else if (data.status == 2) {
+						$('.tan_box .tan').html(data.message);
+						$('.tan_box').css('display', 'block');
+						$('.tan_box').fadeOut(2000);
+					}
+
+				}
+			});
+		}, false)
+
+		if (localStorage.img_url) {
+			$('.wen_img').hide();
+			$('.img_wen').show();
+			$('.img_wen').attr('src', localStorage.img_url)
+			var img=$("#img_caijian2");
+			var orientation=img.exif("Orientation");
+			if (typeof orientation[0]=='undefined'){
+			    // console.log("没有Orientation信息");
+			    // return;
+			}
+			switch (orientation[0]){
+			    case '3':
+			        img.rotate(180);
+			        break;
+			    case '6':
+			        img.rotate(90);
+			        break;
+			    case '8':
+			        img.rotate(270);
+			        break;
+			}
+		}
+		if (localStorage.text_con) {
+			$('#demo .w-e-text').html(localStorage.text_con)
+		}
+		if (localStorage.biaoti_con) {
+			$('.biaoti_con').val(localStorage.biaoti_con)
+		}
+		if (localStorage.shu_arr) {
+			var shu_arr = localStorage.shu_arr.split(',')
+			console.log(shu_arr)
+			var arr = []
+
+			for (var i = 0; i < shu_arr.length; i++) {
+				console.log(shu_arr[i])
+				$.ajax({
+					url: url + '/index.php/books/api/get_books_details_api',
+					data: {
+						books_id: shu_arr[i],
+						user_id: user_id,
+						company_identity: company_identity
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					success: function(data) {
+						console.log(data)
+						var pick = data.data.books_details
+						if (pick != null) {
+
+							arr.push(pick)
+							console.log(arr)
+							var picker = '';
+							$.each(arr, function(i, obj) {
+								picker += '<li>'
+								picker += '<img src="' + obj.books_img + '" >'
+								picker += '<p>'
+								picker += obj.books_name
+								picker += '</p>'
+								picker += '<p>'
+								picker += obj.books_author
+								picker += '</p>'
+								picker += '</li>'
+							})
+							$('.tian_shu').html(picker)
+						}
+
+					}
+				});
+			}
+		} else {
+			$('.tian_shu').hide();
+		}
+		$('.img_caijian').click(function() {
+			window.location.href = "caijian.html"
 		})
+		$('.tianjia').click(function() {
+			window.location.href = "tianshu.html"
+		})
+		document.getElementById('img_caijian').addEventListener('click', function() {
+			var b = editor.txt.html()
+			console.log(b)
+			localStorage.setItem("text_con", b);
+			var a = $('.biaoti_con').val()
+			localStorage.setItem("biaoti_con", a);
+		})
+		document.getElementById('img_caijian2').addEventListener('click', function() {
+			var b = editor.txt.html()
+			console.log(b)
+			var a = $('.biaoti_con').val()
+			localStorage.setItem("text_con", b);
+			localStorage.setItem("biaoti_con", a);
+		})
+		document.getElementById('tianjia').addEventListener('click', function() {
+			var b = editor.txt.html()
+			console.log(b)
+			var a = $('.biaoti_con').val()
+			localStorage.setItem("text_con", b);
+			localStorage.setItem("biaoti_con", a);
+		})
+		function know(){
+			window.history.go(-1);
+		}
 	</script>
 </html>

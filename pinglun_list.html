@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.fenlei {
+				width: 100%;
+				height: 0.96rem;
+				line-height: 0.96rem;
+				font-size: 0.34rem;
+				color: #333333;
+				text-align: center;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 0.4rem;
+				box-sizing: border-box;
+			}
+			.fenlei .fan_hui{
+				width: 0.163rem;
+				height: 0.28rem;
+				display: block;
+			}
+			.ping_list{
+				width: 6.7rem;
+				margin: 0 auto 1.2rem;
+				border-top: 1px solid #EEEEEE;
+				overflow: hidden;
+			}
+			.ping_list li{
+				width: 100%;
+				/* height: 3.19rem; */
+				border-bottom: 0.01rem solid #EEEEEE;
+				padding: 0 0 0.2rem 0;
+				box-sizing: border-box;
+			}
+			.ping_list li .news_top{
+				width: 100%;
+				height: 0.7rem;
+				display: flex;
+				align-items: center;
+				margin-top: 0.36rem;
+				justify-content: space-between;
+			}
+			.ping_list li .news_top .touxiang{
+				width: 0.7rem;
+				height: 0.7rem;
+				border-radius: 50%;
+				
+			}
+			.news{
+				width: 2.6rem;
+				height: 0.7rem;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+				margin-left: 0.35rem;
+			}
+			.news .name{
+				font-size: 0.24rem;
+				color: #333333;
+			}
+			.news .date{
+				font-size: 0.22rem;
+				color: #999999;
+			}
+			.right_dianzan{
+				display: flex;
+				align-items: center;
+			}
+			.dianzan{
+				width: 0.3rem;
+				height: 0.29rem;
+			}
+			.dian_num{
+				font-size: 0.24rem;
+				color: #9E9E9E;
+				margin-left: 0.2rem;
+			}
+			.con{
+				width: 100%;
+				font-size: 0.26rem;
+				color: #333333;
+				margin-top: 0.24rem;
+			}
+			.bottom{
+				display: flex;
+				align-items: center;
+				width: 100%;
+				height: 0.96rem;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				justify-content: space-around;
+				border-top: 1px solid #EEEEEE;
+				background: white;
+				z-index: 10;
+			}
+			.bottom img{
+				width: 0.44rem;
+				height: 0.4rem;
+			}
+			.bottom div{
+				position: relative;
+				width: 0.7rem;
+				height: 0.6rem;
+			}
+			.bottom div span{
+				position: absolute;
+				top: 0.1rem;
+				right: 0;
+				height: 0.2rem;
+				padding: 0 0.1rem;
+				box-sizing: border-box;
+				background: #D7142A;
+				border-radius: 0.25rem;
+				line-height: 0.2rem;
+				color: #ffffff;
+				font-size: 0.2rem;
+			}
+			.bottom div img{
+				margin-top: 0.16rem;
+			}
+			.null{
+				width: 100%;
+				margin-top: 1.8rem;
+				text-align: center;
+				display: none;
+			}
+			.null img{
+				width: 2.88rem;
+				height: 4.27rem;
+			}
+			.null p{
+				font-size: 0.24rem;
+				color: #999999;
+				text-align: center;
+				margin-top: 0.66rem;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="fenlei">
+				<img src="img/fanhui.png" class="fan_hui" onclick="go()">
+				<span>全部评论</span>
+				<span></span>
+			</div>
+			<ul class="ping_list">
+				<li v-for="(item,index) in article_comment_list">
+					<div class="news_top">
+						<div style="display: flex;">
+							<img :src="item.comment_user_head_img" class="touxiang">
+							<div class="news">
+								<p class="name">{{item.comment_user_name}}</p>
+								<p class="date">{{item.comment_user_name}}</p>
+							</div>
+						</div>
+						<div class="right_dianzan">
+							<img src="img/dianzan.png" class="dianzan" @click="dianzan($event)" :data-comment_id="item.comment_id">
+							<span class="dian_num">{{item.comment_like_sum}}</span>
+						</div>
+					</div>
+					<div class="con">
+						{{item.comment_comment_content}}
+					</div>
+				</li>
+			</ul>
+			<!-- <div class="bottom">
+				<div>
+					<img src="img/pingzan.png" alt="" v-if="is_like_status==2" @click="pingdian()">
+					<img src="img/yidianzan.png" alt="" v-if="is_like_status==1" @click="pingdian()">
+					<span class="ping_dian_num">{{article_like_sum}}</span>
+				</div>
+				<div  @click="faping()">
+					<img src="img/pingxin.png" alt="">
+					<span class="pinglun_num">{{article_comment_sum}}</span>
+				</div>
+				<img src="img/pingyishou.png" alt="" class="shoucang" v-if="article_is_collect==1" @click="shoucang()">
+				<img src="img/pingshou.png" alt="" class="shoucang" v-if="article_is_collect==2" @click="shoucang()">
+			</div> -->
+			<div class="null">
+				<img src="img/null.png" alt="">
+				<p>这里什么都没有！</p>
+			</div>
+			<div class="tan_box">
+				<div class="tan"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var article_id = ''
+		var company_identity = localStorage.company_identity
+		var user_id = localStorage.user_id
+		function geturl() {
+			var url_parameter = window.location.search.substr(1);
+			var parameter_arr = url_parameter.split("&");
+			var parameter_arr_new = [];
+			if (parameter_arr) {
+				for (var i = 0; i < parameter_arr.length; i++) {
+					parameter_arr_new.push(parameter_arr[i].substring(parameter_arr[i].indexOf('=') + 1));
+				}
+				article_id = parameter_arr_new[0];
+			}
+		}
+		
+		geturl()
+		var app = new Vue({
+			el: '#app',
+			data: {
+				article_id: article_id,
+				article_comment_list: [],
+				page:0,
+				sum_data_num:'',
+				url:localStorage.url,
+				article_is_collect:'',
+				article_like_sum:'',
+				article_comment_sum:'',
+				is_like_status:''
+			},
+			type: 'get',
+			created: function() {
+				var that = this;
+				that.xuanran();
+				window.addEventListener('scroll', this.onScroll);
+			},
+			methods: {
+				xiangq: function(e) {
+					var books_id = e.currentTarget.getAttribute("data-books_id")
+					console.log(books_id)
+					window.location.href = "xiangqing.html?books_id=" + books_id
+				},
+				xuanran:function(){
+					var that=this;
+					$.ajax({
+						url: that.url+'/index.php/books/api/article_comment',
+						type: "POST",
+						data: {
+							article_id: article_id,
+							page_start: that.page,
+							page_end: 5,
+							company_identity: company_identity,
+							user_id:user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							if(data.status==2){
+								$('.null').show();
+							}else if(data.status == 1){
+								
+								if(data.data.article_comment_list==''){
+									$('.null').show();
+								}else{
+									that.article_comment_list=data.data.article_comment_list
+									that.article_is_collect=data.data.article_is_collect
+									that.is_like_status=data.data.is_like_status
+									that.article_like_sum=data.data.article_like_sum
+									that.article_comment_sum=data.data.article_comment_sum
+								}
+							}else if(data.status==333){
+								window.location.href="no_power.html"
+							}
+							
+						}
+					});
+				},
+				dianzan:function(e){
+					var that=this
+					var comment_id = e.currentTarget.getAttribute("data-comment_id")
+					console.log(comment_id)
+					$.ajax({
+						url: that.url+'/index.php/books/api/like_api',
+						type: "POST",
+						data: {
+							source_id: comment_id,
+							company_identity: company_identity,
+							user_id:user_id,
+							is_type:2
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							if(data.status==1){
+								that.xuanran();
+							}else if(data.status==333){
+								window.location.href="no_power.html"
+							}
+						}
+					});
+				},
+				pingdian(){
+					var that=this;
+					$.ajax({
+						url: that.url+'/index.php/books/api/like_api',
+						type: "POST",
+						data: {
+							source_id: article_id,
+							company_identity: company_identity,
+							user_id:1,
+							is_type:user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							if(data.status==1){
+								that.xuanran();
+							}else if(data.status==333){
+								window.location.href="no_power.html"
+							}
+						}
+					});
+				},
+				shoucang(){
+					var that=this;
+					$.ajax({
+						url: that.url+'/index.php/books/api/collect_api',
+						type: "POST",
+						data: {
+							article_id: article_id,
+							company_identity: company_identity,
+							user_id:user_id
+						},
+						dataType: 'json', //服务器返回json格式数据
+						success: function(data) {
+							console.log(data)
+							$('.tan_box .tan').html(data.message);
+							$('.tan').css('display', 'block');
+							$('.tan').fadeOut(2000);
+							if(data.status==1){
+								that.xuanran();
+							}else if(data.status==333){
+								window.location.href="no_power.html"
+							}
+						}
+					});
+				},
+				faping(){
+					window.location.href = "faping.html?article_id="+article_id
+				},
+				onScroll() {
+					var that=this;
+					if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+						//加载更多操作
+						that.page += 5;
+						console.log(that.page)
+						if(that.page<=that.sum_data_num){
+							$.ajax({
+								url: that.url+'/index.php/books/api/article_comment',
+								type: "POST",
+								data: {
+									article_id: article_id,
+									page_start: that.page,
+									page_end: 5,
+									company_identity: company_identity,
+									user_id:user_id
+								},
+								dataType: 'json', //服务器返回json格式数据
+								success: function(data) {
+									that.article_comment_list=that.article_comment_list.concat(data.data.article_comment_list)
+								}
+							});
+						}
+						
+					}
+				}
+			}
+		})
+	</script>
+</html>

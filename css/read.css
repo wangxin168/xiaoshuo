@@ -17,7 +17,8 @@ iframe {
 
 html,
 body {
-	height: 100%;
+	height: 95%;
+	background: white;
 }
 
 .fenlei {
@@ -28,7 +29,21 @@ body {
 	color: #333333;
 	text-align: center;
 	border-bottom: 1px solid #EEEEEE;
-	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 0.4rem;
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #fff;
+}
+
+.fenlei .fan_hui {
+	width: 0.163rem;
+	height: 0.28rem;
+	display: block;
 }
 
 .bott {
@@ -53,12 +68,18 @@ body {
 
 .con_box {
 	font-size: 0.28rem;
-	color: #666666;
+	color: #444444 !important;
 	padding: 0.36rem;
 	box-sizing: border-box;
-	line-height: 0.4rem;
+	/* line-height: 0.4rem; */
 	margin-bottom: 1rem;
-	min-height: 100%;
+	height: 100%;
+	/* position: relative; */
+	/* top: 1rem; */
+	/* z-index: 0; */
+	overflow: auto;
+	width: 100%;
+	letter-spacing: 0.02rem;
 }
 
 .shezhi_box,
@@ -68,7 +89,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.7);
 	display: none;
 }
 
@@ -96,6 +117,7 @@ body {
 	display: flex;
 	width: 90%;
 	margin: 0.355rem auto 0.4rem;
+	align-items: center;
 }
 
 .shuqian span {
@@ -166,7 +188,9 @@ body {
 	padding: 0 0.4rem;
 	box-sizing: border-box;
 	background: white;
-	overflow: hidden;
+	overflow-y: auto;
+	position: absolute;
+	height: 100%;
 }
 
 .mulu li {
@@ -217,28 +241,109 @@ body {
 }
 
 .shuqian_name input {
-	text-align: center;
-	height: 0.326rem;
+	/* text-align: center; */
+	padding: 0 0.1rem;
+	box-sizing: border-box;
+	height: 0.49rem;
+	width: 3.64rem;
+	outline: none;
+	border: 1px solid #EEEEEE;
+}
+
+::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	font-size: 0.24rem;
+	color: #DBDBDB;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #DBDBDB;
+	font-size: 0.24rem;
+}
+
+:-ms-input-placeholder {
+	/* IE 10+ */
+	color: #DBDBDB;
+	font-size: 0.24rem;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: #DBDBDB;
+	font-size: 0.24rem;
 }
 
 .tian_anniu {
 	margin-top: 1.2rem;
 }
-.tan{
-				width: 3rem;
-				height: 1rem;
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				background: skyblue;
-				text-align: center;
-				margin: auto;
-				border-radius: 0.2rem;
-				line-height: 1rem;
-				left: 2.25rem;
-				display: none;
-				z-index: 10;
-				/* padding: 0 0.2rem; */
-				/* box-sizing: border-box; */
-				color: white;
-			}
+
+
+.per_read {
+	padding: 0.36rem 0.4rem;
+	box-sizing: border-box;
+	background: #F8F8F8;
+}
+
+.per_read div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.per_read div p {
+	font-size: 0.24rem;
+	color: #4A90E2;
+}
+
+.per_read>div div {
+	font-size: 0.24rem;
+	color: #666666;
+}
+
+.per_read ul {
+	width: 2.5rem;
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+}
+
+.per_read img {
+	width: 0.52rem;
+	height: 0.52rem;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.read_con {
+	margin-bottom: 1rem;
+}
+
+.contents {
+	width: 3rem;
+	height: 0.3rem;
+	box-sizing: border-box;
+	/* border:1px solid red; */
+	position: relative;
+	top: 0rem;
+	left: 0rem;
+	bottom: 0;
+}
+
+.comments {
+	width: 0.3rem;
+	height: 0.3rem;
+	position: absolute;
+	top: 0;
+	background: #000;
+	left: 0;
+	border-radius: 50%;
+}
+
+.xian {
+	width: 100%;
+	position: absolute;
+	height: 0.02rem;
+	background: #000;
+	top: 0.14rem;
+}

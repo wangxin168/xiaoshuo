@@ -7,15 +7,16 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="format-detection" content="telephone=no, email=no" />
 	<title></title>
+	<script type="text/javascript" src="js/rem.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/default.css"> -->
 	<style>
 		body,html{
 			background: #EEEEEE;
 		}
 	#clipArea {
-		height: 300px;
-		margin: 100px 0 0;
+		height: 7rem;
+		margin: 0.5rem 0 0;
 	}
 	.photo-clip-mask-bottom,.photo-clip-mask-top,.photo-clip-mask-right,.photo-clip-mask-left{
 		/* background: rgba(255,255,255,1)!important; */
@@ -26,47 +27,50 @@
 	}
 	#clipBtn{
 		width: 100%;
-		height: 48px;
-		background: #D7142A;
-		line-height: 48px;
-		text-align: center;
-		font-size: 17px;
-		color: #FFFFFF;
+		    height: 0.96rem;
+		    line-height: 0.96rem;
+		    text-align: center;
+		    background: #D7142A;
+		    font-size: 0.34rem;
+		    color: #FFFFFF;
 		position: fixed;
 		left: 0;
 		bottom: 0;
 		margin: 0;
+		border: none;
+		outline: none;
 	}
 	#view {
 		margin: 0 auto;
-		width: 200px;
-		height: 200px;
+		width: 4rem;
+		height: 4rem;
 	}
 	.tuo{
 		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0 10px 0 20px;
+		padding: 0 0.2rem 0 0.4rem;
+		box-sizing: border-box;
 	}
 	.tuo p{
-		font-size: 11px;
+		font-size: 0.32rem;
 		color: #999999;
 	}
 	.tuo span{
 		position: relative;
-		font-size: 11px;
+		font-size: 0.32rem;
 		color: #4A90E2;
-		width: 60px;
-		height: 20px;
-		line-height: 20px;
+		width: 1.48rem;
+		height: 0.4rem;
+		line-height: 0.4rem;
 		text-align: center;
 	}
 	#file{
-		width: 60px;
-		height: 20px;
+		width: 1.2rem;
+		height: 0.4rem;
 		position: absolute;
-		font-size: 100px;  
+		font-size: 2rem;  
 		            right: 0;  
 		            top: 0;  
 		            opacity: 0;
@@ -86,7 +90,7 @@
 			</span>
 		</div>
 		<button id="clipBtn" class="jieqv">截取</button>
-		<div id="view"></div>
+		<!-- <div id="view" style="background-color: rgb(255,255,255,1)!important;"></div> -->
 		
 	<!-- </article> -->
 	
@@ -97,9 +101,12 @@
 	<script src="js/jquery.photoClip.js"></script>
 	<script>
 	//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	var url=localStorage.url
+	var company_identity = localStorage.company_identity
+	var user_id = localStorage.user_id
 	$("#clipArea").photoClip({
 		width: 335,
-		height: 100,
+		height: 250,
 		file: "#file",
 		view: "#view",
 		ok: "#clipBtn",
@@ -110,9 +117,33 @@
 			console.log("照片读取完成");
 		},
 		clipFinish: function(dataURL) {
-			console.log(dataURL);
+			$.ajax({
+				url: url + '/index.php/books/api/push_article_upload_img',
+				data: {
+					img_base: dataURL,
+					user_id: user_id,
+					company_identity: company_identity,
+					type:1
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				success: function(data) {
+					console.log(data)
+					localStorage.setItem("img_url", data.data);
+					
+					
+					setTimeout(go(),1000);
+				}
+			});
 		}
 	});
+	function go()
+	
+	{
+	
+	window.history.go(-1);
+	
+	}
 	</script>
 </body>
 </html>
